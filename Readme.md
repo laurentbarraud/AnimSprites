@@ -1,7 +1,7 @@
-## MA-24 - Projet de recherche en programmation
-# Animation de sprites dans un programme C **
+# MA-24 - Projet de recherche en programmation
+### Animation de sprites dans un programme C **
 
-# Problématique : animation de sprites dans une fenêtre **
+### Problématique : animation de sprites dans une fenêtre **
 
 
 - [ ] Afficher une partie de plusieurs images dans des picturebox.
@@ -19,7 +19,7 @@ Ceci est
 - [ ] Tester le bon fonctionnement et la fluidité de l'animation.
 
 
-# Tests unitaires :
+### Tests unitaires :
 
 - [ ] Contrôle que les sprites défilent dans le bon ordre
 
@@ -30,7 +30,7 @@ Ceci est
 - [ ] Test de la fluidité de l'animation
 
 
-# Références :
+### Références :
 
 Source : https://codes-sources.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
 
@@ -66,7 +66,7 @@ source : https://stackoverflow.com/questions/24620464/how-to-draw-an-image-onto-
 
 source : https://docs.microsoft.com/en-us/dotnet/api/system.drawing.graphics.drawimage
 
-# Ressources, libres de droit :
+### Ressources, libres de droit :
 
 - [x] « tileset », pour jeu de plateforme : 
 https://www.gameart2d.com/free-platformer-game-tileset.html 
