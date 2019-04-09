@@ -64,6 +64,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource2.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resource3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource3.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource4.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource5.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource6.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource7.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmAnimSprites.resx">
       <DependentUpon>frmAnimSprites.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +110,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource2.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource3.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource4.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource4.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource5.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource5.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource6.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource6.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource7.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource7.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,6 +150,18 @@
     <Resource Include="Resources\nature-tileset.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nature-objects.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-idle-sprites.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-walk-sprites.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-attack-sprites.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
