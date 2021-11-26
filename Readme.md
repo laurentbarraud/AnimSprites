@@ -53,10 +53,10 @@ En jouant avec ses 2 rectangles on peut varier les mouvements du personnage et s
 La méthode DrawImage est issue de GDI+, qui est une librairie déjà intégrée à tous les projets.
 Ceci évite de devoir recourir à un framework externe, tel que XNA ou DirectX. 
 
-### Les trois étapes de base, commentées :**
+### Les trois étapes de base, commentées :
 source : https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-		gdi
 
-### Exemple d’application - comment dessiner une image dans une picture box :**
+### Exemple d’application - comment dessiner une image dans une picture box :
 ![Dessiner une image sur un picturebox](https://raw.githubusercontent.com/laurentbarraud/AnimSprites/master/Drawing-an-image-on-a-picturebox-Stackoverflow.jpg)
 
 source : https://stackoverflow.com/questions/24620464/how-to-draw-an-image-onto-a-picturebox-image
