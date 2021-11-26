@@ -1,7 +1,7 @@
 # MA-24 - Projet de recherche en programmation
-## Animation de sprites dans un programme C **
+## Animation de sprites dans un programme C
 
-## Problématique : animation de sprites dans une fenêtre **
+## Problématique : animation de sprites dans une fenêtre
 
 
 - [ ] Afficher une partie de plusieurs images dans des picturebox.
@@ -37,7 +37,7 @@ Source : https://codes-sources.commentcamarche.net/forum/affich-878141-comprend-
 «… Je voudrais savoir si quelqu'un a déjà utilisé les sprites pour faire bouger un personnage par exemple ? 
 (…) J'ai comme projet de faire un petit jeu en 2d tout simple »
 
-### Réponse du forum :**
+### Réponse du forum :
 
 « Il faut bien dessiner toutes les étapes de l'animation de ton personnage mais au lieu d'avoir plusieurs images on en charge une seule en mémoire qui contient toutes ses étapes dans un ordre précis. 
 (Ce qu’on appelle alors, une « sprite-sheet »).
@@ -77,5 +77,3 @@ https://www.gameart2d.com/the-knight-free-sprites.html
 
 - [x] « sprites » de guerrier sombre et chef suprême :
 https://opengameart.org/content/dark-soldier-rework 
-
-
