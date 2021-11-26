@@ -54,7 +54,7 @@ La méthode DrawImage est issue de GDI+, qui est une librairie déjà intégrée
 Ceci évite de devoir recourir à un framework externe, tel que XNA ou DirectX. 
 
 ### Les trois étapes de base, commentées :
-source : https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-		gdi
+source : https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
 
 ### Exemple d’application - comment dessiner une image dans une picture box :
 ![Dessiner une image sur un picturebox](https://raw.githubusercontent.com/laurentbarraud/AnimSprites/master/Drawing-an-image-on-a-picturebox-Stackoverflow.jpg)
