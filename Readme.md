@@ -1,20 +1,27 @@
-# MA-24 - Projet de recherche en programmation
-## Animation de sprites dans un programme C
+## MA-24 - Projet scolaire de recherche en programmation
+## Animation de sprites dans un programme C-sharp
 
-## Problématique : animation de sprites dans une fenêtre
+## Problématique : animation de sprites dans une fenêtre à travers un jeu de plateforme
 
+- [x] Afficher une partie de plusieurs images dans des picturebox.
 
-- [ ] Afficher une partie de plusieurs images dans des picturebox.
-
-Ceci est 
-
-- [ ] Faire défiler le sprite suivant de l'animation à l'écran, au moyen d'un timer.
-
-- [ ] Faire défiler le sprite suivant de l'animation à l'écran, au moyen des touches du clavier.
+- [ ] Faire l'animation du sprite à l'écran, au moyen d'un timer.
 
 - [ ] Déplacer le sprite de 10 pixels dans la direction de la flèche pressée sur le clavier.
 
+- [ ] Implémenter une gravité pour que le sprite tombe de la plate-forme
+
+- [ ] Implémenter l'animation de saut lorsque l'utilisateur appuie sur la barre d'espace
+
 - [ ] Définir des limites de bord pour éviter que le sprite sorte de l'écran.
+
+- [ ] Implémenter l'animation d'attaque
+
+- [ ] Implémenter l'ennemi et ses animations au moyen d'une boucle et d'un random
+
+- [ ] Implémenter l'effet de poussée quand on frappe l'ennemi et quand on est touché
+
+- [ ] Implémenter la fin du jeu lorsqu'un des deux joueurs est tombé de la plate-forme
 
 - [ ] Tester le bon fonctionnement et la fluidité de l'animation.
 
@@ -34,11 +41,6 @@ Ceci est
 
 Source : https://codes-sources.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
 
-«… Je voudrais savoir si quelqu'un a déjà utilisé les sprites pour faire bouger un personnage par exemple ? 
-(…) J'ai comme projet de faire un petit jeu en 2d tout simple »
-
-### Réponse du forum :
-
 « Il faut bien dessiner toutes les étapes de l'animation de ton personnage mais au lieu d'avoir plusieurs images on en charge une seule en mémoire qui contient toutes ses étapes dans un ordre précis. 
 (Ce qu’on appelle alors, une « sprite-sheet »).
 La couleur magenta ou lime ou n'importe quelle autre couleur unique (pas de compression jpeg pour les sprites), qui n'est pas utilisée par les sprites sera la couleur de fond, ce qui permet de ne pas l'afficher au moment du rendu.
@@ -55,16 +57,6 @@ Ceci évite de devoir recourir à un framework externe, tel que XNA ou DirectX.
 
 ### Les trois étapes de base, commentées :
 source : https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
-
-### Exemple d’application - comment dessiner une image dans une picture box :
-![Dessiner une image sur un picturebox](https://raw.githubusercontent.com/laurentbarraud/AnimSprites/master/Drawing-an-image-on-a-picturebox-Stackoverflow.jpg)
-
-source : https://stackoverflow.com/questions/24620464/how-to-draw-an-image-onto-a-picturebox-image
-
-### Une des syntaxes possibles de la fonction DrawImage (surchargeable avec plus d’arguments) :
-![Syntaxe de DrawImage](https://raw.githubusercontent.com/laurentbarraud/AnimSprites/master/Fonction-Drawimage-syntaxe-simple-MSDN.jpg)
-
-source : https://docs.microsoft.com/en-us/dotnet/api/system.drawing.graphics.drawimage
 
 ### Ressources, libres de droit :
 
