@@ -16,7 +16,7 @@ namespace AnimSprites
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAnimSprites());
+            Application.Run(new frmMain());
         }
     }
 }

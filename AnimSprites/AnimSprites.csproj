@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>AnimSprites</RootNamespace>
     <AssemblyName>AnimSprites</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,51 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAnimSprites.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAnimSprites.Designer.cs">
-      <DependentUpon>frmAnimSprites.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource2.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource3.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource4.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource4.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource5.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource5.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource6.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource6.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource7.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource7.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="frmAnimSprites.resx">
-      <DependentUpon>frmAnimSprites.cs</DependentUpon>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,34 +68,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource2.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource2.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource3.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource4.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource4.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource5.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource5.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource6.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource6.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource7.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource7.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -162,6 +100,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\knight-attack-sprites.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-dead-sprites.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-jump-attack-sprites.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-jump-sprites.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\knight-run-sprites.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
