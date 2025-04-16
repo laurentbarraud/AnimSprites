@@ -1,71 +1,63 @@
-## MA-24 - Projet scolaire de recherche en programmation
-## Animation de sprites dans un programme C-sharp
+### School-based programming research project
+Problem: animation of sprites in a window through a platform game
 
-## Problématique : animation de sprites dans une fenêtre à travers un jeu de plateforme
+- [x] Display part of multiple images in picturebox.
 
-- [x] Afficher une partie de plusieurs images dans des picturebox.
+- [ ] Move the sprite by 10 pixels in the direction of the arrow pressed on the keyboard.
 
-- [ ] Faire l'animation du sprite à l'écran, au moyen d'un timer.
+- [ ] Make the walking animation
 
-- [ ] Déplacer le sprite de 10 pixels dans la direction de la flèche pressée sur le clavier.
+- [ ] Implement a gravity so that the sprite falls from the platform
 
-- [ ] Implémenter une gravité pour que le sprite tombe de la plate-forme
+- [ ] Implement the jump animation when the user presses space bar
 
-- [ ] Implémenter l'animation de saut lorsque l'utilisateur appuie sur la barre d'espace
+- [ ] Set edge limits to prevent the sprite from leaving the screen.
 
-- [ ] Définir des limites de bord pour éviter que le sprite sorte de l'écran.
+- [ ] Implement attack animation
 
-- [ ] Implémenter l'animation d'attaque
+- [ ] Implement the enemy and its animations using a loop and a random-
 
-- [ ] Implémenter l'ennemi et ses animations au moyen d'une boucle et d'un random
+- [ ] Implement the push effect when hitting the enemy and when being hit
 
-- [ ] Implémenter l'effet de poussée quand on frappe l'ennemi et quand on est touché
+- [ ] Implement the end of the game when one of the two players fell off the platform
 
-- [ ] Implémenter la fin du jeu lorsqu'un des deux joueurs est tombé de la plate-forme
-
-- [ ] Tester le bon fonctionnement et la fluidité de l'animation.
+- [ ] Test the smooth operation and fluidity of animations. 
 
 
-## Tests unitaires :
+### Unit tests:
 
-- [ ] Contrôle que les sprites défilent dans le bon ordre
+- [ ] Control that sprites scroll in the correct order
 
-- [ ] Contrôle que toutes les touches font le bon déplacement
+- [ ] Control that all keys make the correct move
 
-- [ ] Test si le sprite ne peut sortir de la fenêtre affichée
+- [ ] Test if the sprite cannot exit the displayed window
 
-- [ ] Test de la fluidité de l'animation
+- [ ] Animation fluidity test
 
+### References:
 
-## Références :
+Source (in French) : https://sources-codes.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
 
-Source : https://codes-sources.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
+"You have to draw all the stages of your character’s animation but instead of having several images we load a single one in memory that contains all its steps in a precise order. 
+(What is then called a «sprite-sheet»).
+The color magenta or lime or any other single color (no jpeg compression for sprites), which is not used by sprites will be the background color, which allows to not display it at the time of rendering.
 
-« Il faut bien dessiner toutes les étapes de l'animation de ton personnage mais au lieu d'avoir plusieurs images on en charge une seule en mémoire qui contient toutes ses étapes dans un ordre précis. 
-(Ce qu’on appelle alors, une « sprite-sheet »).
-La couleur magenta ou lime ou n'importe quelle autre couleur unique (pas de compression jpeg pour les sprites), qui n'est pas utilisée par les sprites sera la couleur de fond, ce qui permet de ne pas l'afficher au moment du rendu.
+In a real game everything happens in a main loop, we test the user inputs ( keyboard, joystick .. ) but we can also code it with events or with a timer. 
 
-Dans un vrai jeu tout se passe dans une boucle principale, on teste les entrées utilisateurs ( clavier, joystick .. ) mais on peut aussi coder ça avec les événements ou avec un timer. 
+At the time of rendering, it is enough to display the sprite with the DrawImage method which takes as parameter a source rectangle that corresponds to the location of the sprite on the image and a destination rectangle that corresponds to the place on the screen where we will draw the sprite. 
+By playing with its 2 rectangles, you can vary the movements of the character and his position.”
 
-Au moment du rendu, il suffit d'afficher le sprite avec la méthode DrawImage qui prend en paramètre un rectangle source qui correspond à l'emplacement du sprite sur l'image et un rectangle destination qui correspond à l'endroit sur l'écran ou l'on va dessiner le sprite. 
-En jouant avec ses 2 rectangles on peut varier les mouvements du personnage et sa position. »
+The DrawImage method is derived from GDI+, which is a library already integrated in all projects.
+This avoids having to use an external framework, such as XNA or DirectX. 
 
-### Références pour la solution :
+### The three basic steps, discussed:
+source: https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
 
-La méthode DrawImage est issue de GDI+, qui est une librairie déjà intégrée à tous les projets.
-Ceci évite de devoir recourir à un framework externe, tel que XNA ou DirectX. 
+### Royalty-free resources:
 
-### Les trois étapes de base, commentées :
-source : https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
-
-### Ressources, libres de droit :
-
-- [x] « tileset », pour jeu de plateforme : 
+- [x] «tileset», for platforming: 
 https://www.gameart2d.com/free-platformer-game-tileset.html 
 
-- [x] « sprite » de chevalier :
+- [x] Knight “sprite”:
 https://www.gameart2d.com/the-knight-free-sprites.html
-(« spritesheets » réalisées par moi-même).
-
-- [x] « sprites » de guerrier sombre et chef suprême :
-https://opengameart.org/content/dark-soldier-rework 
+(«spritesheets» made by myself). 
