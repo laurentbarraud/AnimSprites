@@ -60,18 +60,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -93,25 +93,70 @@
     <None Include="Resources\nature-objects.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-idle-sprites.jpg" />
+    <None Include="Resources\knight-walk-sprites-left.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-walk-sprites.jpg" />
+    <None Include="Resources\knight-walk-sprites-right.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-attack-sprites.jpg" />
+    <None Include="Resources\walk01-left.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-dead-sprites.jpg" />
+    <None Include="Resources\walk01-right.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-jump-attack-sprites.jpg" />
+    <None Include="Resources\walk02-left.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-jump-sprites.jpg" />
+    <None Include="Resources\walk02-right.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\knight-run-sprites.jpg" />
+    <None Include="Resources\walk03-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk03-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk04-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk04-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk05-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk05-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk06-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk06-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk07-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk07-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk08-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk08-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk09-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk09-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk10-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk10-right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
