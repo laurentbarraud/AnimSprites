@@ -3,32 +3,30 @@ Problem: animation of sprites in a window through a platform game
 
 - [x] Display part of multiple images in picturebox.
 
-- [ ] Move the sprite by 10 pixels in the direction of the arrow pressed on the keyboard.
+- [x] Move the sprite by 5 pixels in the direction of the arrow pressed on the keyboard.
 
-- [ ] Make the walking animation
+- [x] Make the walking animation
 
 - [ ] Implement a gravity so that the sprite falls from the platform
 
-- [ ] Implement the jump animation when the user presses space bar
-
 - [ ] Set edge limits to prevent the sprite from leaving the screen.
+
+- [ ] Implement the jump animation when the user presses space bar
 
 - [ ] Implement attack animation
 
-- [ ] Implement the enemy and its animations using a loop and a random-
+- [ ] Implement the enemy and its animations using a loop and random
 
 - [ ] Implement the push effect when hitting the enemy and when being hit
 
-- [ ] Implement the end of the game when one of the two players fell off the platform
+- [ ] Implement the end of the game when one of the two players goes out of the screen
 
 - [ ] Test the smooth operation and fluidity of animations. 
 
 
 ### Unit tests:
 
-- [ ] Control that sprites scroll in the correct order
-
-- [ ] Control that all keys make the correct move
+- [ ] Control that sprites scroll correct and that all keys make the correct move
 
 - [ ] Test if the sprite cannot exit the displayed window
 
