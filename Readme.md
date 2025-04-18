@@ -41,11 +41,12 @@ In a real game everything happens in a main loop, we test the user inputs ( keyb
 At the time of rendering, it is enough to display the sprite with the DrawImage method which takes as parameter a source rectangle that corresponds to the location of the sprite on the image and a destination rectangle that corresponds to the place on the screen where we will draw the sprite. 
 By playing with its 2 rectangles, you can vary the movements of the character and his position.”
 
+
+### The three basic steps of using DrawImage discussed:
+source: https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
+
 The DrawImage method is derived from GDI+, which is a library already integrated in all projects.
 This avoids having to use an external framework, such as XNA or DirectX. 
-
-### The three basic steps, discussed:
-source: https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
 
 ### Royalty-free resources:
 
@@ -54,4 +55,3 @@ https://www.gameart2d.com/free-platformer-game-tileset.html
 
 - [x] Knight “sprite”:
 https://www.gameart2d.com/the-knight-free-sprites.html
-(«spritesheets» made by myself). 
