@@ -50,7 +50,7 @@
             // 
             this.picKnight.BackColor = System.Drawing.Color.Transparent;
             this.picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picKnight.Location = new System.Drawing.Point(250, 318);
+            this.picKnight.Location = new System.Drawing.Point(250, 316);
             this.picKnight.Name = "picKnight";
             this.picKnight.Size = new System.Drawing.Size(52, 60);
             this.picKnight.TabIndex = 1;
@@ -70,8 +70,12 @@
             this.Controls.Add(this.picKnight);
             this.Controls.Add(this.picPlateforme);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Animation de sprites";
             this.Load += new System.EventHandler(this.frmAnimSprites_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picPlateforme)).EndInit();

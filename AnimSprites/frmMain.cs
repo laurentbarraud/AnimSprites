@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.1</version>
-/// <date>April 17th, 2025</date>
+/// <date>April 19th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -25,6 +25,14 @@ namespace AnimSprites
         private bool isMovingRight = false;
         private List<Bitmap> knightWalkLeft = new List<Bitmap>();
         private List<Bitmap> knightWalkRight = new List<Bitmap>();
+        private bool isFalling = false;
+        private int gravity = 5;
+        private int groundLevel = 360;
+       
+        private int PlatformLeftEdge => picPlateforme.Left;
+        private int PlatformRightEdge => picPlateforme.Right;
+
+
 
         public frmMain()
         {
@@ -44,6 +52,10 @@ namespace AnimSprites
 
             // Set initial motionless image (first frame facing right)
             picKnight.BackgroundImage = knightWalkRight[0];
+
+            // Place the sprite on the platform at startup
+            picKnight.Top = picPlateforme.Top - picKnight.Height; 
+
 
             // Load the tileset image
             Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
@@ -89,6 +101,38 @@ namespace AnimSprites
             picPlateforme.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
+        private void animTimer_Tick(object sender, EventArgs e)
+        {
+            // Vérifier si le sprite doit commencer à tomber
+            if (!isFalling && (picKnight.Right <= PlatformLeftEdge || picKnight.Left >= PlatformRightEdge))
+            {
+                isFalling = true;
+            }
+
+            // Appliquer la gravité si le sprite est en chute libre
+            if (isFalling)
+            {
+                picKnight.Top += gravity;
+
+                // Arrêter la chute lorsqu'il touche le sol
+                if (picKnight.Top >= groundLevel)
+                {
+                    picKnight.Top = groundLevel;
+                    isFalling = false;
+                }
+            }
+
+            // Permettre le déplacement horizontal à tout moment, même après la chute
+            if (isMovingLeft || isMovingRight)
+            {
+                List<Bitmap> animationFrames = isMovingLeft ? knightWalkLeft : knightWalkRight;
+                picKnight.BackgroundImage = animationFrames[currentFrame];
+                picKnight.Left += isMovingRight ? 5 : -5;
+                currentFrame = (currentFrame + 1) % animationFrames.Count;
+            }
+        }
+
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
@@ -103,20 +147,14 @@ namespace AnimSprites
                 isMovingLeft = false;
                 animTimer.Start();
             }
-        }
 
-        private void animTimer_Tick(object sender, EventArgs e)
-        {
-            if (isMovingLeft || isMovingRight)
+            // Si le sprite est au sol, relancer la possibilité de bouger
+            if (picKnight.Top == groundLevel)
             {
-                List<Bitmap> animationFrames = isMovingLeft ? knightWalkLeft : knightWalkRight;
-
-                picKnight.BackgroundImage = animationFrames[currentFrame];
-                picKnight.Left += isMovingRight ? 5 : -5;
-
-                currentFrame = (currentFrame + 1) % animationFrames.Count;
+                isFalling = false;  // Assurer que la chute est bien arrêtée
             }
         }
+
 
         protected override void OnKeyUp(KeyEventArgs e)
         {
@@ -124,7 +162,11 @@ namespace AnimSprites
             {
                 isMovingLeft = false;
                 isMovingRight = false;
-                animTimer.Stop();
+                // Ne stopper le timer que si le sprite n'est PAS en chute.
+                if (!isFalling)
+                {
+                    animTimer.Stop();
+                }
             }
         }
     }
