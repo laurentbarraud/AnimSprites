@@ -1,25 +1,21 @@
 ### School-based programming research project
 Problem: animation of sprites in a window through a platform game
 
-- [x] Display part of multiple images in picturebox.
+- [x] Display multiple parts of a spreadsheet in a picturebox.
 
-- [x] Move the sprite by 5 pixels in the direction of the arrow pressed on the keyboard.
+- [x] Move the sprite by 5 pixels in the direction of the arrow pressed on the keyboard with a walking animation.
 
-- [x] Make the walking animation
-
-- [ ] Implement a gravity so that the sprite falls from the platform
+- [x] Implement a gravity so that the sprite falls from the platform
 
 - [ ] Set edge limits to prevent the sprite from leaving the screen.
 
 - [ ] Implement the jump animation when the user presses space bar
 
-- [ ] Implement attack animation
+- [ ] Implement the attack animation when the user presses Ctrl key
 
-- [ ] Implement the enemy and its animations using a loop and random
+- [ ] Implement the jump + attack animation when the user presses space bar and then Ctrl key
 
-- [ ] Implement the push effect when hitting the enemy and when being hit
-
-- [ ] Implement the end of the game when one of the two players goes out of the screen
+- [ ] Implement basic collision detection when the user hits an object
 
 - [ ] Test the smooth operation and fluidity of animations. 
 
