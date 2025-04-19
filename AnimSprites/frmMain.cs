@@ -147,7 +147,6 @@ namespace AnimSprites
             // ---------------------------
             // Vertical Movement (Gravity)
             // ---------------------------
-            // Create a rectangle representing the area the sprite will occupy after falling.
             Rectangle nextFallRect = new Rectangle(picKnight.Left, picKnight.Bottom + gravity, picKnight.Width, gravity);
             bool collisionBelow = false;
 
@@ -166,10 +165,10 @@ namespace AnimSprites
                 }
             }
 
-            // If no collision, apply gravity to let the sprite fall.
+            // Apply gravity if no solid object is below
             if (!collisionBelow)
             {
-                if (!((PlayerPictureBox)picKnight).isGrounded) 
+                if (!((PlayerPictureBox)picKnight).isGrounded)
                 {
                     ((PlayerPictureBox)picKnight).Top += gravity;
                 }
@@ -181,10 +180,8 @@ namespace AnimSprites
                 ((PlayerPictureBox)picKnight).isGrounded = true;
             }
 
-
-
             // ---------------------------
-            // Horizontal Movement with Animation
+            // Horizontal Movement with Animation & Window Borders Collision
             // ---------------------------
             if (movingLeft || movingRight)
             {
@@ -202,21 +199,35 @@ namespace AnimSprites
                     }
                 }
 
+                // Limit sprite position at screen borders without blocking movement
+                if (nextPos < 0)
+                {
+                    nextPos = 0; // Stop at left edge but allow movement
+                    canMove = false;
+                }
+
+                if (nextPos > this.ClientSize.Width - picKnight.Width)
+                {
+                    nextPos = this.ClientSize.Width - picKnight.Width; // Stop at right edge but allow movement
+                    canMove = false;
+                }
+
                 // Animation setup
                 List<Bitmap> animationFrames = movingLeft ? knightWalkLeft : knightWalkRight;
 
-                // If movement is allowed, update position
+                // Move sprite if allowed
                 if (canMove)
                 {
-                    picKnight.Left += movingRight ? moveSpeed : -moveSpeed;
+                    picKnight.Left = nextPos;
                 }
 
-                // Update animation regardless of collision
+                // Keep animation playing even if blocked
                 picKnight.BackgroundImage = animationFrames[currentFrame];
                 currentFrame = (currentFrame + 1) % animationFrames.Count;
             }
-
         }
+
+
 
         // KeyDown event: start the appropriate horizontal movement.
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
