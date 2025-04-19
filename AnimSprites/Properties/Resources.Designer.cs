@@ -83,6 +83,16 @@ namespace AnimSprites.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap texture_sol_forestier {
+            get {
+                object obj = ResourceManager.GetObject("texture_sol_forestier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap walk01_left {
             get {
                 object obj = ResourceManager.GetObject("walk01_left", resourceCulture);
