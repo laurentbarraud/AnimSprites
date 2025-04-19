@@ -27,12 +27,16 @@ namespace AnimSprites
         private List<Bitmap> knightWalkRight = new List<Bitmap>();
         private bool isFalling = false;
         private int gravity = 5;
-        private int groundLevel = 360;
-       
-        private int PlatformLeftEdge => picPlateforme.Left;
-        private int PlatformRightEdge => picPlateforme.Right;
+        private int groundLevel = 340;
 
+        private int PlatformLeftEdge => picPlateforme?.Left ?? 0;
+        private int PlatformRightEdge => picPlateforme?.Right ?? 0;
 
+        // Define two solid objects: a platform and a left-side wall
+        private SolidPictureBox picPlateforme;
+        private SolidPictureBox picWall;
+
+        private bool isGrounded = false;
 
         public frmMain()
         {
@@ -41,6 +45,7 @@ namespace AnimSprites
 
         private void frmAnimSprites_Load(object sender, EventArgs e)
         {
+            // Load sprite animations
             for (int i = 1; i <= 10; i++)
             {
                 Bitmap bmpLeft = (Bitmap)Properties.Resources.ResourceManager.GetObject($"walk{(i < 10 ? "0" : "")}{i}_left");
@@ -50,108 +55,206 @@ namespace AnimSprites
                 knightWalkRight.Add(bmpRight);
             }
 
-            // Set initial motionless image (first frame facing right)
+            // Set initial idle image (first frame facing right)
             picKnight.BackgroundImage = knightWalkRight[0];
 
-            // Place the sprite on the platform at startup
-            picKnight.Top = picPlateforme.Top - picKnight.Height; 
-
-
-            // Load the tileset image
+            // Load the tileset for platform rendering
             Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
 
-            // Define the actual dimensions of each tile and the spacing between tiles
-            int tileWidth = 30;  // Standard width of the tiles (middle tiles)
-            int tileHeight = 31; // Height of all tiles
-            int tileSpacing = 2; // Space between tiles in the tileset
+            // Platform tile properties
+            int tileWidth = 30;
+            int tileHeight = 31;
+            int tileSpacing = 2;
 
-            // Define source rectangles with adjusted cropping
-            Rectangle srcRectLeftPlatform = new Rectangle(4, 2, tileWidth - 2, tileHeight);  // Left tile: 2 pixels less on the left
-            Rectangle srcRectMiddlePlatform = new Rectangle(34 + tileSpacing, 2, tileWidth, tileHeight); // Middle tile remains the same
-            Rectangle srcRectRightPlatform = new Rectangle(66 + 2 * tileSpacing, 2, tileWidth - 4, tileHeight); // Right tile: 2 pixels less on the right
+            // Define cropped tile sections
+            Rectangle srcRectLeftPlatform = new Rectangle(4, 2, tileWidth - 2, tileHeight);
+            Rectangle srcRectMiddlePlatform = new Rectangle(34 + tileSpacing, 2, tileWidth, tileHeight);
+            Rectangle srcRectRightPlatform = new Rectangle(66 + 2 * tileSpacing, 2, tileWidth - 4, tileHeight);
 
-            // Create a new bitmap to represent the full platform (8 tiles wide)
-            int totalWidth = (tileWidth - 2) + (6 * tileWidth) + (tileWidth - 4); // Calculate total width precisely
+            // Create the full platform texture (8 tiles wide)
+            int totalWidth = (tileWidth - 2) + (6 * tileWidth) + (tileWidth - 4);
             Bitmap platformBitmap = new Bitmap(totalWidth, tileHeight);
 
-            // Create a Graphics object to draw on the new bitmap
             using (Graphics g = Graphics.FromImage(platformBitmap))
             {
                 GraphicsUnit units = GraphicsUnit.Pixel;
 
-                // Draw the left end of the platform
+                // Draw left end of the platform
                 g.DrawImage(bmpTileSet, new Rectangle(0, 0, tileWidth - 2, tileHeight), srcRectLeftPlatform, units);
 
-                // Draw the 6 middle sections of the platform
+                // Draw 6 middle sections
                 for (int i = 0; i < 6; i++)
                 {
                     int xPosition = (tileWidth - 2) + (i * tileWidth);
                     g.DrawImage(bmpTileSet, new Rectangle(xPosition, 0, tileWidth, tileHeight), srcRectMiddlePlatform, units);
                 }
 
-                // Draw the right end of the platform
+                // Draw right end of the platform
                 int rightXPosition = (tileWidth - 2) + (6 * tileWidth);
                 g.DrawImage(bmpTileSet, new Rectangle(rightXPosition, 0, tileWidth - 4, tileHeight), srcRectRightPlatform, units);
             }
 
-            // Set the background image of the PictureBox
-            picPlateforme.BackgroundImage = platformBitmap;
+            // Create the solid platform
+            picPlateforme = new SolidPictureBox
+            {
+                Left = 200,
+                Top = 300, 
+                Width = totalWidth,
+                Height = tileHeight,
+                BackgroundImage = platformBitmap,
+                BackgroundImageLayout = ImageLayout.Stretch
+            };
+            this.Controls.Add(picPlateforme);
 
-            // Make the background image stretch to fill the PictureBox
-            picPlateforme.BackgroundImageLayout = ImageLayout.Stretch;
+            // Place the sprite correctly at the start
+            picKnight.Top = picPlateforme.Top - picKnight.Height;
         }
 
         private void animTimer_Tick(object sender, EventArgs e)
         {
-            // Vérifier si le sprite doit commencer à tomber
-            if (!isFalling && (picKnight.Right <= PlatformLeftEdge || picKnight.Left >= PlatformRightEdge))
-            {
-                isFalling = true;
-            }
+            isGrounded = false; // Assume the sprite is in the air unless proven otherwise
 
-            // Appliquer la gravité si le sprite est en chute libre
-            if (isFalling)
+            // Check if the sprite is standing on a solid object (prevent falling through, allow passing below)
+            foreach (Control ctrl in this.Controls)
             {
-                picKnight.Top += gravity;
-
-                // Arrêter la chute lorsqu'il touche le sol
-                if (picKnight.Top >= groundLevel)
+                if (ctrl is SolidPictureBox solidObj)
                 {
-                    picKnight.Top = groundLevel;
-                    isFalling = false;
+                    // Block only if the sprite is falling onto the platform
+                    if (picKnight.Bottom >= solidObj.Top && picKnight.Bottom - gravity < solidObj.Top &&
+                        picKnight.Right > solidObj.Left && picKnight.Left < solidObj.Right &&
+                        picKnight.Top < solidObj.Top) // Block only if coming from above
+                    {
+                        picKnight.Top = solidObj.Top - picKnight.Height; // Place the sprite correctly on top
+                        isGrounded = true;
+                        break;
+                    }
                 }
             }
 
-            // Permettre le déplacement horizontal à tout moment, même après la chute
+            // Ensure the sprite does not fall below groundLevel
+            if (picKnight.Top >= groundLevel)
+            {
+                picKnight.Top = groundLevel;
+                isGrounded = true;
+            }
+
+            // Apply gravity only if the sprite is not grounded
+            isFalling = !isGrounded;
+            if (isFalling)
+            {
+                picKnight.Top += gravity;
+            }
+
+            // Allow horizontal movement while preventing unwanted blocking
             if (isMovingLeft || isMovingRight)
             {
-                List<Bitmap> animationFrames = isMovingLeft ? knightWalkLeft : knightWalkRight;
-                picKnight.BackgroundImage = animationFrames[currentFrame];
-                picKnight.Left += isMovingRight ? 5 : -5;
-                currentFrame = (currentFrame + 1) % animationFrames.Count;
+                int nextPosition = isMovingRight ? picKnight.Left + 5 : picKnight.Left - 5;
+                bool canMove = true;
+
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl is SolidPictureBox solidObj)
+                    {
+                        // Prevent horizontal collision only if sprite is not fully below the platform
+                        if (picKnight.Top < solidObj.Top && nextPosition + picKnight.Width > solidObj.Left && nextPosition < solidObj.Right &&
+                            picKnight.Bottom > solidObj.Top) // Allow passing below the platform!
+                        {
+                            canMove = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (canMove)
+                {
+                    List<Bitmap> animationFrames = isMovingLeft ? knightWalkLeft : knightWalkRight;
+                    picKnight.BackgroundImage = animationFrames[currentFrame];
+                    picKnight.Left += isMovingRight ? 5 : -5;
+                    currentFrame = (currentFrame + 1) % animationFrames.Count;
+                }
             }
         }
 
-
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            int nextPositionRight = picKnight.Left + 5;
+            int nextPositionLeft = picKnight.Left - 5;
+            bool canMoveRight = true;
+            bool canMoveLeft = true;
+
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is SolidPictureBox solidObj)
+                {
+                    // Block right movement if an obstacle is to the right of the sprite or if edge is reached
+                    if (nextPositionRight + picKnight.Width > solidObj.Left &&
+                        picKnight.Top < solidObj.Bottom && picKnight.Bottom > solidObj.Top)
+                    {
+                        canMoveRight = false;
+                    }
+
+                    // Block the movement to left if an obstacle is to the left of the sprite or if edge reached
+                    if (nextPositionLeft < solidObj.Right &&
+                        picKnight.Top < solidObj.Bottom && picKnight.Bottom > solidObj.Top)
+                    {
+                        canMoveLeft = false;
+                    }
+
+                    // Detect if the sprite is on a platform
+                    if (picKnight.Bottom >= solidObj.Top && picKnight.Bottom <= solidObj.Top + 5 &&
+                        picKnight.Left + picKnight.Width > solidObj.Left && picKnight.Left < solidObj.Right)
+                    {
+                        isGrounded = true; // Placed on a solid element
+                    }
+                    else if (picKnight.Bottom < solidObj.Top)
+                    {
+                        isGrounded = false; // In free fall
+                    }
+                }
+            }
+
+            // Check the edges before running the move
+            if (picKnight.Left <= 0)
+            {
+                canMoveLeft = false;
+            }
+            if (picKnight.Right >= this.ClientSize.Width)
+            {
+                canMoveRight = false;
+            }
+
+            // If the sprite is in the air, it should fall even if no key is pressed
+            if (!isGrounded)
+            {
+                picKnight.Top += gravity; // Adds a downward motion to simulate gravity
+            }
+
+            // Execute move only if allowed
             if (e.KeyCode == Keys.Left)
             {
-                isMovingLeft = true;
-                isMovingRight = false;
-                animTimer.Start();
+                if (canMoveLeft)
+                {
+                    isMovingLeft = true;
+                    isMovingRight = false;
+                    animTimer.Start();
+                }
+                else
+                {
+                    animTimer.Stop();
+                }
             }
             else if (e.KeyCode == Keys.Right)
             {
-                isMovingRight = true;
-                isMovingLeft = false;
-                animTimer.Start();
-            }
-
-            // Si le sprite est au sol, relancer la possibilité de bouger
-            if (picKnight.Top == groundLevel)
-            {
-                isFalling = false;  // Assurer que la chute est bien arrêtée
+                if (canMoveRight)
+                {
+                    isMovingRight = true;
+                    isMovingLeft = false;
+                    animTimer.Start();
+                }
+                else
+                {
+                    animTimer.Stop();
+                }
             }
         }
 
@@ -162,7 +265,7 @@ namespace AnimSprites
             {
                 isMovingLeft = false;
                 isMovingRight = false;
-                // Ne stopper le timer que si le sprite n'est PAS en chute.
+                // Only stop the timer if the sprite is not falling.
                 if (!isFalling)
                 {
                     animTimer.Stop();

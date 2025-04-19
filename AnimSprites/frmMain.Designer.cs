@@ -29,28 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picPlateforme = new System.Windows.Forms.PictureBox();
             this.picKnight = new System.Windows.Forms.PictureBox();
             this.animTimer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.picPlateforme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picKnight)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picPlateforme
-            // 
-            this.picPlateforme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPlateforme.Location = new System.Drawing.Point(221, 376);
-            this.picPlateforme.Margin = new System.Windows.Forms.Padding(4);
-            this.picPlateforme.Name = "picPlateforme";
-            this.picPlateforme.Size = new System.Drawing.Size(387, 62);
-            this.picPlateforme.TabIndex = 0;
-            this.picPlateforme.TabStop = false;
             // 
             // picKnight
             // 
             this.picKnight.BackColor = System.Drawing.Color.Transparent;
             this.picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picKnight.Location = new System.Drawing.Point(250, 316);
+            this.picKnight.Location = new System.Drawing.Point(260, 316);
             this.picKnight.Name = "picKnight";
             this.picKnight.Size = new System.Drawing.Size(52, 60);
             this.picKnight.TabIndex = 1;
@@ -68,7 +56,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(861, 501);
             this.Controls.Add(this.picKnight);
-            this.Controls.Add(this.picPlateforme);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -78,15 +65,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Animation de sprites";
             this.Load += new System.EventHandler(this.frmAnimSprites_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picPlateforme)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picKnight)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picPlateforme;
         private System.Windows.Forms.PictureBox picKnight;
         private System.Windows.Forms.Timer animTimer;
     }
