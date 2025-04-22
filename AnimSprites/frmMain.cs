@@ -121,7 +121,7 @@ namespace AnimSprites
             // -----------------------------
             // Vertical Movement (Gravity)
             // -----------------------------
-            Rectangle nextFallRect = new Rectangle(picKnight.Left, picKnight.Bottom + gravity, picKnight.Width, gravity);
+            Rectangle nextFallRect = new Rectangle(picKnight.Left, picKnight.Bottom + picKnight.Gravity, picKnight.Width, picKnight.Gravity);
             bool collisionBelow = false;
 
             // Check collision with all solid objects (platform and ground). 
