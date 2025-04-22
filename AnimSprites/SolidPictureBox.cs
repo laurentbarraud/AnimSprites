@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/// <file>SolidPictureBox.cs</file>
+/// <author>Laurent Barraud</author>
+/// <version>0.1</version>
+/// <date>April 22th, 2025</date>
+
 using System.Windows.Forms;
 
 namespace AnimSprites

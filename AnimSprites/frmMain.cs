@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.1</version>
-/// <date>April 19th, 2025</date>
+/// <date>April 22th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -12,19 +12,6 @@ namespace AnimSprites
 {
     public partial class frmMain : Form
     {
-        private int currentFrame = 0;
-        private Bitmap spriteSheetLeft, spriteSheetRight;
-        private bool isMovingLeft = false;
-        private bool isMovingRight = false;
-        private List<Bitmap> knightWalkLeft = new List<Bitmap>();
-        private List<Bitmap> knightWalkRight = new List<Bitmap>();
-
-        private bool isGrounded = false;  // True means the sprite is on a solid object
-        private int gravity = 5;          // Gravity strength (pixels per tick)
-        private int moveSpeed = 5;        // Horizontal movement speed (pixels per tick)
-        private bool movingLeft = false;  // True when left arrow is held down
-        private bool movingRight = false; // True when right arrow is held down
-
         public frmMain()
         {
             InitializeComponent();
@@ -32,17 +19,8 @@ namespace AnimSprites
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            for (int i = 1; i <= 10; i++)
-            {
-                Bitmap bmpLeft = (Bitmap)Properties.Resources.ResourceManager.GetObject($"walk{(i < 10 ? "0" : "")}{i}_left");
-                knightWalkLeft.Add(bmpLeft);
-
-                Bitmap bmpRight = (Bitmap)Properties.Resources.ResourceManager.GetObject($"walk{(i < 10 ? "0" : "")}{i}_right");
-                knightWalkRight.Add(bmpRight);
-            }
-
             // Set initial motionless image (first frame facing right)
-            picKnight.BackgroundImage = knightWalkRight[0];
+            picKnight.BackgroundImage = picKnight.walkRight[0];
 
             // Load the tileset image
             Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
@@ -84,9 +62,6 @@ namespace AnimSprites
             // Set the background image of the PictureBox
             picPlateforme.BackgroundImage = platformBitmap;
 
-            // Make the background image stretch to fill the PictureBox
-            picPlateforme.BackgroundImageLayout = ImageLayout.Stretch;
-       
             // Convert designer PictureBoxes to SolidPictureBox for collisions.
             ConvertToSolidPictureBox(ref picPlateforme);
             ConvertToSolidPictureBox(ref picGround);

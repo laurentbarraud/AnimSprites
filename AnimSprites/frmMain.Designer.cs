@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picKnight = new PlayerPictureBox();
+            this.picKnight = new AnimSprites.PlayerPictureBox();
             this.animTimer = new System.Windows.Forms.Timer(this.components);
             this.picPlateforme = new System.Windows.Forms.PictureBox();
             this.picGround = new System.Windows.Forms.PictureBox();
@@ -56,7 +56,7 @@
             // 
             // picPlateforme
             // 
-            this.picPlateforme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.picPlateforme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picPlateforme.Location = new System.Drawing.Point(260, 341);
             this.picPlateforme.Name = "picPlateforme";
             this.picPlateforme.Size = new System.Drawing.Size(320, 43);
