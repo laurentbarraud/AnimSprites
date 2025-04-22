@@ -36,7 +36,6 @@ namespace AnimSprites
         // Walking speed of the player (pixels per tick)
         public int WalkingSpeed { get; set; } = 5; // Default walking speed
 
-
         // Initial jump force applied when the player starts jumping
         public int InitialJumpSpeed { get; set; } = 10;
 

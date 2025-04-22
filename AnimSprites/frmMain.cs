@@ -61,10 +61,10 @@ namespace AnimSprites
             }
 
             // Set the background image of the PictureBox
-            picPlateforme.BackgroundImage = platformBitmap;
+            picPlatform.BackgroundImage = platformBitmap;
 
             // Convert designer PictureBoxes to SolidPictureBox for collisions.
-            ConvertToSolidPictureBox(ref picPlateforme);
+            ConvertToSolidPictureBox(ref picPlatform);
             ConvertToSolidPictureBox(ref picGround);
         }
 
@@ -119,12 +119,63 @@ namespace AnimSprites
         private void UpdateGame()
         {
             // -----------------------------
+            // Jumping Logic
+            // -----------------------------
+            if (picKnight.Status == PlayerStatus.IsJumping)
+            {
+                // Move the player upwards by the current jump speed
+                picKnight.Top -= picKnight.JumpSpeed;
+
+                // Decrease the jump speed gradually to simulate deceleration
+                picKnight.JumpSpeed--;
+
+                // When jump speed reaches zero, transition to falling
+                if (picKnight.JumpSpeed <= 0)
+                {
+                    picKnight.Status = PlayerStatus.IsFalling;
+                }
+
+                // Return early to prevent gravity or collisionBelow from interfering
+                return;
+            }
+
+
+            // -----------------------------
+            // Collision Detection Above
+            // -----------------------------
+            bool collisionAbove = false;
+
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is SolidPictureBox spb)
+                {
+                    // Define the area where collision is checked above the player
+                    Rectangle nextJumpRect = new Rectangle(picKnight.Left, picKnight.Top - picKnight.JumpSpeed, picKnight.Width, picKnight.JumpSpeed);
+
+                    // Check if the player's next upward movement intersects with a solid object
+                    if (spb.Bounds.IntersectsWith(nextJumpRect))
+                    {
+                        collisionAbove = true;
+                        break; // Stop checking further collisions once one is found
+                    }
+                }
+            }
+
+            // Block jump if the player collides with a ceiling/platform
+            if (collisionAbove && picKnight.Status == PlayerStatus.IsJumping)
+            {
+                // Transition directly to falling after hitting a ceiling
+                picKnight.Status = PlayerStatus.IsFalling;
+                picKnight.JumpSpeed = 0; // Reset jump speed as the player stops ascending
+            }
+
+            // -----------------------------
             // Vertical Movement (Gravity)
             // -----------------------------
             Rectangle nextFallRect = new Rectangle(picKnight.Left, picKnight.Bottom + picKnight.Gravity, picKnight.Width, picKnight.Gravity);
             bool collisionBelow = false;
 
-            // Check collision with all solid objects (platform and ground). 
+            // Check collision with all solid objects (platform and ground).
             foreach (Control ctrl in this.Controls)
             {
                 if (ctrl is SolidPictureBox spb)
@@ -140,35 +191,35 @@ namespace AnimSprites
             }
 
             // Apply gravity if no solid object is below --------------------
-            if (!collisionBelow)
+            if (collisionBelow)
             {
-                if (!(picKnight.Status == PlayerStatus.IsGrounded))
-                {
-                    picKnight.Top += picKnight.Gravity;
-                }
-
-                picKnight.Status = PlayerStatus.IsFalling;
-            }
-            else
-            {
+                // Stop falling and set the player as grounded
                 picKnight.Status = PlayerStatus.IsGrounded;
-            }
- 
-            if (picKnight.Status == PlayerStatus.IsJumping)
-            {
-                // Move the player upwards during the jump
-                picKnight.Top -= picKnight.JumpSpeed;
 
-                // Gradually decrease the jump force to simulate gravity
-                picKnight.JumpSpeed -= picKnight.Gravity;
+                // Reset the jump speed since the player is now grounded
+                picKnight.JumpSpeed = 0;
 
-                // Transition to falling when the jump force reaches zero (peak of jump)
-                if (picKnight.JumpSpeed <= 0)
+                // Align the player precisely with the platform
+                foreach (Control ctrl in this.Controls)
                 {
-                    picKnight.Status = PlayerStatus.IsFalling;
+                    if (ctrl is SolidPictureBox spb)
+                    {
+                        // Check if the solid object is directly below the player
+                        Rectangle platformRect = new Rectangle(spb.Left, spb.Top, spb.Width, spb.Height);
+                        if (platformRect.IntersectsWith(nextFallRect))
+                        {
+                            picKnight.Top = spb.Top - picKnight.Height;
+                            break; // Stop once the correct platform is found
+                        }
+                    }
                 }
             }
-
+            else if (picKnight.Status != PlayerStatus.IsJumping)
+            {
+                // Apply gravity if the player is not jumping
+                picKnight.Status = PlayerStatus.IsFalling;
+                picKnight.Top += picKnight.Gravity; // Move the player downward due to gravity
+            }
 
             // -----------------------------------------------------------------
             // Horizontal Movement with Animation & Window Borders Collision
@@ -231,16 +282,15 @@ namespace AnimSprites
                 picKnight.IsMovingRight = true;
             }
 
-            if (e.KeyCode == Keys.Space)
+            else if (e.KeyCode == Keys.Space)
             {
                 // Trigger jump if the player is grounded
                 if (picKnight.Status == PlayerStatus.IsGrounded)
                 {
                     picKnight.Status = PlayerStatus.IsJumping;
-                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Reset the jump force for the player
+                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Reset the jump force
                 }
             }
-
 
             animTimer.Start();
         }
