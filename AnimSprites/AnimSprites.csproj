@@ -168,5 +168,65 @@
   <ItemGroup>
     <None Include="Resources\texture-sol-forestier.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump01-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump01-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump02-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump02-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump03-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump03-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump04-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump04-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump05-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump05-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump06-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump06-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump07-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump07-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump08-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump08-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump09-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump09-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump10-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump10-right.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

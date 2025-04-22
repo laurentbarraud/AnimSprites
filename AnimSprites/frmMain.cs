@@ -90,8 +90,6 @@ namespace AnimSprites
             // Convert designer PictureBoxes to SolidPictureBox for collisions.
             ConvertToSolidPictureBox(ref picPlateforme);
             ConvertToSolidPictureBox(ref picGround);
-            ConvertToPlayerPictureBox(ref picKnight);
-            PlayerPictureBox playerKnight = (PlayerPictureBox)picKnight;
         }
 
         // Utility method: convert a PictureBox to a SolidPictureBox.

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picKnight = new System.Windows.Forms.PictureBox();
+            this.picKnight = new PlayerPictureBox();
             this.animTimer = new System.Windows.Forms.Timer(this.components);
             this.picPlateforme = new System.Windows.Forms.PictureBox();
             this.picGround = new System.Windows.Forms.PictureBox();
@@ -101,7 +101,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox picKnight;
+        private PlayerPictureBox picKnight;
         private System.Windows.Forms.Timer animTimer;
         private System.Windows.Forms.PictureBox picPlateforme;
         private System.Windows.Forms.PictureBox picGround;
