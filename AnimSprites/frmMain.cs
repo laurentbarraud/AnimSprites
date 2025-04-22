@@ -153,6 +153,22 @@ namespace AnimSprites
             {
                 picKnight.Status = PlayerStatus.IsGrounded;
             }
+ 
+            if (picKnight.Status == PlayerStatus.IsJumping)
+            {
+                // Move the player upwards during the jump
+                picKnight.Top -= picKnight.JumpSpeed;
+
+                // Gradually decrease the jump force to simulate gravity
+                picKnight.JumpSpeed -= picKnight.Gravity;
+
+                // Transition to falling when the jump force reaches zero (peak of jump)
+                if (picKnight.JumpSpeed <= 0)
+                {
+                    picKnight.Status = PlayerStatus.IsFalling;
+                }
+            }
+
 
             // -----------------------------------------------------------------
             // Horizontal Movement with Animation & Window Borders Collision
