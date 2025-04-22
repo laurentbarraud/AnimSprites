@@ -15,12 +15,12 @@ namespace AnimSprites
         // Enum defining the player's states (grounded, jumping, falling)
         public enum PlayerStatus
         {
-            isGrounded, // The player is standing on a solid object
-            isJumping,  // The player is actively jumping
-            isFalling   // The player is in the air, falling due to gravity
+            IsGrounded, // The player is standing on a solid object
+            IsJumping,  // The player is actively jumping
+            IsFalling   // The player is in the air, falling due to gravity
         }
 
-        public PlayerStatus Status { get; set; } = PlayerStatus.isFalling;
+        public PlayerStatus Status { get; set; } = PlayerStatus.IsFalling;
 
         // Lists storing animations for walking and jumping
         public List<Bitmap> walkLeft { get; private set; }
@@ -28,11 +28,21 @@ namespace AnimSprites
         public List<Bitmap> jumpLeft { get; private set; }
         public List<Bitmap> jumpRight { get; private set; }
 
-        public int CurrentFrame { get; private set; } = 0;
+        // Current animation frame for the player
+        public int CurrentFrame { get; set; } = 0;
 
         public int Gravity { get; set; } = 5; // Default gravity value
 
-        public int MoveSpeed { get; set; } = 5; // Default movement speed
+        // Walking speed of the player (pixels per tick)
+        public int WalkingSpeed { get; set; } = 5; // Default walking speed
+
+
+        // Initial jump force applied when the player starts jumping
+        public int InitialJumpSpeed { get; set; } = 10;
+
+        // Dynamic jump speed updated during the jump
+        public int JumpSpeed { get; set; } = 0;
+
 
         public bool IsMovingLeft { get; set; } = false;
         public bool IsMovingRight { get; set; } = false;

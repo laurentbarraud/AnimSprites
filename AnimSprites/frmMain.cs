@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using static AnimSprites.PlayerPictureBox;
 
 namespace AnimSprites
 {
@@ -117,13 +118,13 @@ namespace AnimSprites
         // - Updates horizontal movement only if no collision is detected (animation may still play).
         private void UpdateGame()
         {
-            // ---------------------------
+            // -----------------------------
             // Vertical Movement (Gravity)
-            // ---------------------------
+            // -----------------------------
             Rectangle nextFallRect = new Rectangle(picKnight.Left, picKnight.Bottom + gravity, picKnight.Width, gravity);
             bool collisionBelow = false;
 
-            // Check collision with all solid objects (platform and ground).
+            // Check collision with all solid objects (platform and ground). 
             foreach (Control ctrl in this.Controls)
             {
                 if (ctrl is SolidPictureBox spb)
@@ -138,27 +139,27 @@ namespace AnimSprites
                 }
             }
 
-            // Apply gravity if no solid object is below
+            // Apply gravity if no solid object is below --------------------
             if (!collisionBelow)
             {
-                if (!((PlayerPictureBox)picKnight).isGrounded)
+                if (!(picKnight.Status == PlayerStatus.IsGrounded))
                 {
-                    ((PlayerPictureBox)picKnight).Top += gravity;
+                    picKnight.Top += picKnight.Gravity;
                 }
 
-                ((PlayerPictureBox)picKnight).isGrounded = false;
+                picKnight.Status = PlayerStatus.IsFalling;
             }
             else
             {
-                ((PlayerPictureBox)picKnight).isGrounded = true;
+                picKnight.Status = PlayerStatus.IsGrounded;
             }
 
-            // ---------------------------
+            // -----------------------------------------------------------------
             // Horizontal Movement with Animation & Window Borders Collision
-            // ---------------------------
-            if (movingLeft || movingRight)
+            // -----------------------------------------------------------------
+            if (picKnight.IsMovingLeft || picKnight.IsMovingRight)
             {
-                int nextPos = picKnight.Left + (movingRight ? moveSpeed : -moveSpeed);
+                int nextPos = picKnight.Left + (picKnight.IsMovingRight ? picKnight.WalkingSpeed : -picKnight.WalkingSpeed);
                 Rectangle nextRect = new Rectangle(nextPos, picKnight.Top, picKnight.Width, picKnight.Height);
                 bool canMove = true;
 
@@ -186,7 +187,7 @@ namespace AnimSprites
                 }
 
                 // Animation setup
-                List<Bitmap> animationFrames = movingLeft ? knightWalkLeft : knightWalkRight;
+                List<Bitmap> animationFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
 
                 // Move sprite if allowed
                 if (canMove)
@@ -195,8 +196,8 @@ namespace AnimSprites
                 }
 
                 // Keep animation playing even if blocked
-                picKnight.BackgroundImage = animationFrames[currentFrame];
-                currentFrame = (currentFrame + 1) % animationFrames.Count;
+                picKnight.BackgroundImage = animationFrames[picKnight.CurrentFrame];
+                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % animationFrames.Count;
             }
         }
 
@@ -206,10 +207,25 @@ namespace AnimSprites
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
-                movingLeft = true;
+            {
+                picKnight.IsMovingLeft = true;
+            }
             else if (e.KeyCode == Keys.Right)
-                movingRight = true;
-            
+            {
+                picKnight.IsMovingRight = true;
+            }
+
+            if (e.KeyCode == Keys.Space)
+            {
+                // Trigger jump if the player is grounded
+                if (picKnight.Status == PlayerStatus.IsGrounded)
+                {
+                    picKnight.Status = PlayerStatus.IsJumping;
+                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Reset the jump force for the player
+                }
+            }
+
+
             animTimer.Start();
         }
 
@@ -217,9 +233,13 @@ namespace AnimSprites
         private void frmMain_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
-                movingLeft = false;
+            {
+                picKnight.IsMovingLeft = false;
+            }
             else if (e.KeyCode == Keys.Right)
-                movingRight = false;
+            {
+                picKnight.IsMovingRight = false;
+            }
         }
     }
 }
