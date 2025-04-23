@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.1</version>
-/// <date>April 22th, 2025</date>
+/// <date>April 23th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -85,188 +85,169 @@ namespace AnimSprites
             pb.SendToBack(); // Ensure solid objects remain in the background.
         }
 
-        private void ConvertToPlayerPictureBox(ref PictureBox picKnight)
-        {
-            // Create a new instance of PlayerPictureBox
-            PlayerPictureBox player = new PlayerPictureBox();
-
-            // Copy properties from old PictureBox
-            player.Location = picKnight.Location;
-            player.Size = picKnight.Size;
-            player.BackgroundImage = picKnight.BackgroundImage;
-            player.BackgroundImageLayout = picKnight.BackgroundImageLayout;
-            player.BackColor = picKnight.BackColor;
-            player.Name = picKnight.Name;
-
-            // Remove old PictureBox and replace it with PlayerPictureBox
-            this.Controls.Remove(picKnight);
-            picKnight.Dispose();
-            picKnight = player;
-            this.Controls.Add(picKnight);
-        }
-
-
+     
         // Game loop tick: update the game logic.
         private void AnimTimer_Tick(object sender, EventArgs e)
         {
             UpdateGame();
         }
 
-        // UpdateGame method:
-        // - Applies gravity for vertical movement (the knight falls if not grounded).
-        // - Checks collisions with all SolidPictureBox objects.
-        // - Updates horizontal movement only if no collision is detected (animation may still play).
         private void UpdateGame()
         {
+            // -----------------------------
+            // Horizontal Movement with Animation & Window Borders Collision
+            // -----------------------------
+            if (picKnight.IsMovingLeft || picKnight.IsMovingRight)
+            {
+                // Calculate the next horizontal position based on the walking speed
+                int nextHorizontalPosition = picKnight.Left + (picKnight.IsMovingRight ? picKnight.WalkingSpeed : -picKnight.WalkingSpeed);
+
+                // Define the area to check for horizontal collisions
+                Rectangle horizontalCollisionArea = new Rectangle(nextHorizontalPosition, picKnight.Top, picKnight.Width, picKnight.Height);
+                bool isHorizontalMovementAllowed = true;
+
+                // Check for collisions with solid objects
+                foreach (Control gameObject in this.Controls)
+                {
+                    if (gameObject is SolidPictureBox solidObject && solidObject.Bounds.IntersectsWith(horizontalCollisionArea))
+                    {
+                        isHorizontalMovementAllowed = false;
+                        break;
+                    }
+                }
+
+                // Handle window borders to keep the sprite within bounds
+                if (nextHorizontalPosition < 0)
+                {
+                    nextHorizontalPosition = 0; // Stop at the left edge
+                    isHorizontalMovementAllowed = false;
+                }
+                else if (nextHorizontalPosition > this.ClientSize.Width - picKnight.Width)
+                {
+                    nextHorizontalPosition = this.ClientSize.Width - picKnight.Width; // Stop at the right edge
+                    isHorizontalMovementAllowed = false;
+                }
+
+                // Update sprite position if no obstacle is detected
+                if (isHorizontalMovementAllowed)
+                {
+                    picKnight.Left = nextHorizontalPosition;
+                }
+
+                // Handle walking animation
+                List<Bitmap> walkingFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
+                picKnight.BackgroundImage = walkingFrames[picKnight.CurrentFrame];
+                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % walkingFrames.Count;
+            }
+
             // -----------------------------
             // Jumping Logic
             // -----------------------------
             if (picKnight.Status == PlayerStatus.IsJumping)
             {
-                // Move the player upwards by the current jump speed
-                picKnight.Top -= picKnight.JumpSpeed;
+                // Amplify the jump speed using the multiplier for higher jump
+                picKnight.Top -= (int)(picKnight.JumpSpeed * picKnight.JumpMultiplier);
 
-                // Decrease the jump speed gradually to simulate deceleration
+                // Gradually decrease the jump speed
                 picKnight.JumpSpeed--;
 
-                // When jump speed reaches zero, transition to falling
+                // Transition to falling when jump speed reaches zero
                 if (picKnight.JumpSpeed <= 0)
                 {
                     picKnight.Status = PlayerStatus.IsFalling;
                 }
-
-                // Return early to prevent gravity or collisionBelow from interfering
-                return;
             }
+            else if (picKnight.Status == PlayerStatus.IsFalling)
+            {
+                // Apply gravity to move the sprite downward
+                picKnight.Top += picKnight.Gravity;
 
+                // Check if the sprite collides with a platform or the ground
+                bool isGroundCollisionDetected = false;
+                foreach (Control gameObject in this.Controls)
+                {
+                    if (gameObject is SolidPictureBox platformBelow)
+                    {
+                        // Define the area to check for collisions below the sprite
+                        Rectangle verticalCollisionArea = new Rectangle(picKnight.Left, picKnight.Bottom, picKnight.Width, picKnight.Gravity);
+                        if (platformBelow.Bounds.IntersectsWith(verticalCollisionArea))
+                        {
+                            isGroundCollisionDetected = true;
+                            picKnight.Top = platformBelow.Top - picKnight.Height; // Align with the top of the platform
+                            break;
+                        }
+                    }
+                }
+
+                // Handle landing or continue falling
+                if (isGroundCollisionDetected)
+                {
+                    picKnight.Status = PlayerStatus.IsGrounded;
+                    picKnight.JumpSpeed = 0; // Reset jump speed
+                }
+            }
 
             // -----------------------------
             // Collision Detection Above
             // -----------------------------
-            bool collisionAbove = false;
+            bool isCeilingCollisionDetected = false;
 
-            foreach (Control ctrl in this.Controls)
+            foreach (Control gameObject in this.Controls)
             {
-                if (ctrl is SolidPictureBox spb)
+                if (gameObject is SolidPictureBox ceilingPlatform)
                 {
-                    // Define the area where collision is checked above the player
-                    Rectangle nextJumpRect = new Rectangle(picKnight.Left, picKnight.Top - picKnight.JumpSpeed, picKnight.Width, picKnight.JumpSpeed);
+                    // Define the area to check for collisions above the sprite
+                    Rectangle upwardCollisionArea = new Rectangle(picKnight.Left, picKnight.Top - picKnight.JumpSpeed, picKnight.Width, picKnight.JumpSpeed);
 
-                    // Check if the player's next upward movement intersects with a solid object
-                    if (spb.Bounds.IntersectsWith(nextJumpRect))
+                    // Check for collisions with solid objects above
+                    if (ceilingPlatform.Bounds.IntersectsWith(upwardCollisionArea))
                     {
-                        collisionAbove = true;
-                        break; // Stop checking further collisions once one is found
+                        isCeilingCollisionDetected = true;
+                        break;
                     }
                 }
             }
 
-            // Block jump if the player collides with a ceiling/platform
-            if (collisionAbove && picKnight.Status == PlayerStatus.IsJumping)
+            // Interrupt the jump if a ceiling collision is detected
+            if (isCeilingCollisionDetected && picKnight.Status == PlayerStatus.IsJumping)
             {
-                // Transition directly to falling after hitting a ceiling
                 picKnight.Status = PlayerStatus.IsFalling;
-                picKnight.JumpSpeed = 0; // Reset jump speed as the player stops ascending
+                picKnight.JumpSpeed = 0; // Reset jump speed
             }
 
             // -----------------------------
             // Vertical Movement (Gravity)
             // -----------------------------
-            Rectangle nextFallRect = new Rectangle(picKnight.Left, picKnight.Bottom + picKnight.Gravity, picKnight.Width, picKnight.Gravity);
-            bool collisionBelow = false;
+            Rectangle fallingCollisionArea = new Rectangle(picKnight.Left, picKnight.Bottom + picKnight.Gravity, picKnight.Width, picKnight.Gravity);
+            bool isFallingCollisionDetected = false;
 
-            // Check collision with all solid objects (platform and ground).
-            foreach (Control ctrl in this.Controls)
+            // Check for collisions with solid objects during falling
+            foreach (Control gameObject in this.Controls)
             {
-                if (ctrl is SolidPictureBox spb)
+                if (gameObject is SolidPictureBox platformOnFall)
                 {
-                    if (spb.Bounds.IntersectsWith(nextFallRect))
+                    if (platformOnFall.Bounds.IntersectsWith(fallingCollisionArea))
                     {
-                        collisionBelow = true;
-                        // Snap the sprite to the top of the object.
-                        picKnight.Top = spb.Top - picKnight.Height;
+                        isFallingCollisionDetected = true;
+                        picKnight.Top = platformOnFall.Top - picKnight.Height; // Align the sprite with the top of the platform
                         break;
                     }
                 }
             }
 
-            // Apply gravity if no solid object is below --------------------
-            if (collisionBelow)
+            // Apply gravity or stop falling upon collision with the ground
+            if (isFallingCollisionDetected)
             {
-                // Stop falling and set the player as grounded
                 picKnight.Status = PlayerStatus.IsGrounded;
-
-                // Reset the jump speed since the player is now grounded
-                picKnight.JumpSpeed = 0;
-
-                // Align the player precisely with the platform
-                foreach (Control ctrl in this.Controls)
-                {
-                    if (ctrl is SolidPictureBox spb)
-                    {
-                        // Check if the solid object is directly below the player
-                        Rectangle platformRect = new Rectangle(spb.Left, spb.Top, spb.Width, spb.Height);
-                        if (platformRect.IntersectsWith(nextFallRect))
-                        {
-                            picKnight.Top = spb.Top - picKnight.Height;
-                            break; // Stop once the correct platform is found
-                        }
-                    }
-                }
+                picKnight.JumpSpeed = 0; // Reset jump speed
             }
             else if (picKnight.Status != PlayerStatus.IsJumping)
             {
-                // Apply gravity if the player is not jumping
                 picKnight.Status = PlayerStatus.IsFalling;
-                picKnight.Top += picKnight.Gravity; // Move the player downward due to gravity
-            }
-
-            // -----------------------------------------------------------------
-            // Horizontal Movement with Animation & Window Borders Collision
-            // -----------------------------------------------------------------
-            if (picKnight.IsMovingLeft || picKnight.IsMovingRight)
-            {
-                int nextPos = picKnight.Left + (picKnight.IsMovingRight ? picKnight.WalkingSpeed : -picKnight.WalkingSpeed);
-                Rectangle nextRect = new Rectangle(nextPos, picKnight.Top, picKnight.Width, picKnight.Height);
-                bool canMove = true;
-
-                // Collision detection with solid objects
-                foreach (Control ctrl in this.Controls)
-                {
-                    if (ctrl is SolidPictureBox spb && spb.Bounds.IntersectsWith(nextRect))
-                    {
-                        canMove = false;
-                        break;
-                    }
-                }
-
-                // Limit sprite position at screen borders without blocking movement
-                if (nextPos < 0)
-                {
-                    nextPos = 0; // Stop at left edge but allow movement
-                    canMove = false;
-                }
-
-                if (nextPos > this.ClientSize.Width - picKnight.Width)
-                {
-                    nextPos = this.ClientSize.Width - picKnight.Width; // Stop at right edge but allow movement
-                    canMove = false;
-                }
-
-                // Animation setup
-                List<Bitmap> animationFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
-
-                // Move sprite if allowed
-                if (canMove)
-                {
-                    picKnight.Left = nextPos;
-                }
-
-                // Keep animation playing even if blocked
-                picKnight.BackgroundImage = animationFrames[picKnight.CurrentFrame];
-                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % animationFrames.Count;
+                picKnight.Top += picKnight.Gravity; // Move the sprite downward
             }
         }
+
 
 
 

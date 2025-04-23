@@ -29,32 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picKnight = new AnimSprites.PlayerPictureBox();
             this.animTimer = new System.Windows.Forms.Timer(this.components);
             this.picPlatform = new System.Windows.Forms.PictureBox();
             this.picGround = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picKnight)).BeginInit();
+            this.picKnight = new AnimSprites.PlayerPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picPlatform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGround)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picKnight)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picKnight
-            // 
-            this.picKnight.BackColor = System.Drawing.Color.Transparent;
-            this.picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picKnight.CurrentFrame = 0;
-            this.picKnight.Gravity = 5;
-            this.picKnight.InitialJumpSpeed = 10;
-            this.picKnight.IsMovingLeft = false;
-            this.picKnight.IsMovingRight = false;
-            this.picKnight.JumpSpeed = 0;
-            this.picKnight.Location = new System.Drawing.Point(260, 281);
-            this.picKnight.Name = "picKnight";
-            this.picKnight.Size = new System.Drawing.Size(52, 60);
-            this.picKnight.Status = AnimSprites.PlayerPictureBox.PlayerStatus.IsFalling;
-            this.picKnight.TabIndex = 1;
-            this.picKnight.TabStop = false;
-            this.picKnight.WalkingSpeed = 5;
             // 
             // animTimer
             // 
@@ -65,7 +47,7 @@
             // picPlatform
             // 
             this.picPlatform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPlatform.Location = new System.Drawing.Point(260, 341);
+            this.picPlatform.Location = new System.Drawing.Point(260, 368);
             this.picPlatform.Name = "picPlatform";
             this.picPlatform.Size = new System.Drawing.Size(320, 43);
             this.picPlatform.TabIndex = 2;
@@ -79,6 +61,24 @@
             this.picGround.Size = new System.Drawing.Size(860, 25);
             this.picGround.TabIndex = 3;
             this.picGround.TabStop = false;
+            // 
+            // picKnight
+            // 
+            this.picKnight.BackColor = System.Drawing.Color.Transparent;
+            this.picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picKnight.CurrentFrame = 0;
+            this.picKnight.Gravity = 5;
+            this.picKnight.InitialJumpSpeed = 10;
+            this.picKnight.IsMovingLeft = false;
+            this.picKnight.IsMovingRight = false;
+            this.picKnight.JumpSpeed = 0;
+            this.picKnight.Location = new System.Drawing.Point(260, 308);
+            this.picKnight.Name = "picKnight";
+            this.picKnight.Size = new System.Drawing.Size(52, 60);
+            this.picKnight.Status = AnimSprites.PlayerPictureBox.PlayerStatus.IsFalling;
+            this.picKnight.TabIndex = 1;
+            this.picKnight.TabStop = false;
+            this.picKnight.WalkingSpeed = 5;
             // 
             // frmMain
             // 
@@ -101,9 +101,9 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.picKnight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlatform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGround)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picKnight)).EndInit();
             this.ResumeLayout(false);
 
         }

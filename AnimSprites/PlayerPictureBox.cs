@@ -1,7 +1,7 @@
 ﻿/// <file>PlayerPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.1</version>
-/// <date>April 22th, 2025</date>
+/// <date>April 23th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -29,18 +29,21 @@ namespace AnimSprites
         public List<Bitmap> jumpRight { get; private set; }
 
         // Current animation frame for the player
-        public int CurrentFrame { get; set; } = 0;
-
-        public int Gravity { get; set; } = 5; // Default gravity value
+        public int CurrentFrame { get; set; } = 0;    
 
         // Walking speed of the player (pixels per tick)
-        public int WalkingSpeed { get; set; } = 5; // Default walking speed
+        public int WalkingSpeed { get; set; } = 1; // Default walking speed
 
         // Initial jump force applied when the player starts jumping
-        public int InitialJumpSpeed { get; set; } = 10;
+        public int InitialJumpSpeed { get; set; } = 20;
 
         // Dynamic jump speed updated during the jump
         public int JumpSpeed { get; set; } = 0;
+        
+        // Controls jump height amplification
+        public double JumpMultiplier { get; set; } = 2;
+
+        public int Gravity { get; set; } = 5; // Default gravity value
 
 
         public bool IsMovingLeft { get; set; } = false;
