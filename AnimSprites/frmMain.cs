@@ -246,10 +246,35 @@ namespace AnimSprites
                 picKnight.Status = PlayerStatus.IsFalling;
                 picKnight.Top += picKnight.Gravity; // Move the sprite downward
             }
+
+            // -----------------------------
+            // Attack Animation Logic
+            // -----------------------------
+            if (picKnight.IsAttacking)
+            {
+                List<Bitmap> attackFrames;
+
+                // Determine the correct animation frames
+                if (picKnight.Status == PlayerStatus.IsJumping)
+                {
+                    attackFrames = picKnight.FacingLeft ? picKnight.jumpAttackLeft : picKnight.jumpAttackRight;
+                }
+                else
+                {
+                    attackFrames = picKnight.FacingLeft ? picKnight.attackLeft : picKnight.attackRight;
+                }
+
+                // Update the sprite's image with the current frame
+                picKnight.BackgroundImage = attackFrames[picKnight.CurrentFrame];
+                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % attackFrames.Count;
+
+                // Stop the attack animation when all frames are played
+                if (picKnight.CurrentFrame == 0)
+                {
+                    picKnight.IsAttacking = false; // Reset attacking state
+                }
+            }
         }
-
-
-
 
         // KeyDown event: start the appropriate horizontal movement.
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
@@ -257,26 +282,45 @@ namespace AnimSprites
             if (e.KeyCode == Keys.Left)
             {
                 picKnight.IsMovingLeft = true;
+                picKnight.FacingLeft = true;
             }
             else if (e.KeyCode == Keys.Right)
             {
                 picKnight.IsMovingRight = true;
+                picKnight.FacingLeft = false;
             }
 
             else if (e.KeyCode == Keys.Space)
             {
-                // Trigger jump if the player is grounded
+                // Triggers jump if the player is grounded
                 if (picKnight.Status == PlayerStatus.IsGrounded)
                 {
                     picKnight.Status = PlayerStatus.IsJumping;
-                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Reset the jump force
+                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Resets the jump force
                 }
             }
+
+            else if (e.KeyCode == Keys.ControlKey)
+            {
+                if (picKnight.Status != PlayerStatus.IsJumping && !picKnight.IsAttacking)
+                {
+                    // Starts ground attack animation
+                    picKnight.IsAttacking = true;
+                    picKnight.CurrentFrame = 0; // Resets animation to the first frame
+                }
+                else if (picKnight.Status == PlayerStatus.IsJumping && !picKnight.IsAttacking)
+                {
+                    // Starts jump-attack animation
+                    picKnight.IsAttacking = true;
+                    picKnight.CurrentFrame = 0; // Reset animation to the first frame
+                }
+            }
+
 
             animTimer.Start();
         }
 
-        // KeyUp event: stop the horizontal movement when key is released.
+        // KeyUp event: stops the horizontal movement when key is released.
         private void frmMain_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)

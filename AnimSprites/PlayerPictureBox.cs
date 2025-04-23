@@ -28,6 +28,15 @@ namespace AnimSprites
         public List<Bitmap> jumpLeft { get; private set; }
         public List<Bitmap> jumpRight { get; private set; }
 
+        // Lists storing animations for attack and jump-attack
+        public List<Bitmap> attackLeft { get; set; } 
+        public List<Bitmap> attackRight { get; set; }
+        public List<Bitmap> jumpAttackLeft { get; set; }
+        public List<Bitmap> jumpAttackRight { get; set; }
+
+        // Property to track whether the character is currently attacking
+        public bool IsAttacking { get; set; } = false;
+
         // Current animation frame for the player
         public int CurrentFrame { get; set; } = 0;    
 
@@ -48,6 +57,8 @@ namespace AnimSprites
 
         public bool IsMovingLeft { get; set; } = false;
         public bool IsMovingRight { get; set; } = false;
+        public bool FacingLeft { get; set; } = true;
+
 
 
         public PlayerPictureBox()
@@ -116,7 +127,64 @@ namespace AnimSprites
                 Properties.Resources.jump09_right,
                 Properties.Resources.jump10_right
             };
-        }
 
+            // Attack animations (Left & Right)
+            attackLeft = new List<Bitmap>
+            {
+                Properties.Resources.attack01_left,
+                Properties.Resources.attack02_left,
+                Properties.Resources.attack03_left,
+                Properties.Resources.attack04_left,
+                Properties.Resources.attack05_left,
+                Properties.Resources.attack06_left,
+                Properties.Resources.attack07_left,
+                Properties.Resources.attack08_left,
+                Properties.Resources.attack09_left,
+                Properties.Resources.attack10_left
+            };
+
+            attackRight = new List<Bitmap>
+            {
+                Properties.Resources.attack01_right,
+                Properties.Resources.attack02_right,
+                Properties.Resources.attack03_right,
+                Properties.Resources.attack04_right,
+                Properties.Resources.attack05_right,
+                Properties.Resources.attack06_right,
+                Properties.Resources.attack07_right,
+                Properties.Resources.attack08_right,
+                Properties.Resources.attack09_right,
+                Properties.Resources.attack10_right
+            };
+
+            // Jump-attack animations (Left & Right)
+            jumpAttackLeft = new List<Bitmap>
+            {
+                Properties.Resources.jump_attack01_left,
+                Properties.Resources.jump_attack02_left,
+                Properties.Resources.jump_attack03_left,
+                Properties.Resources.jump_attack04_left,
+                Properties.Resources.jump_attack05_left,
+                Properties.Resources.jump_attack06_left,
+                Properties.Resources.jump_attack07_left,
+                Properties.Resources.jump_attack08_left,
+                Properties.Resources.jump_attack09_left,
+                Properties.Resources.jump_attack10_left
+            };
+
+            jumpAttackRight = new List<Bitmap>
+            {
+                Properties.Resources.jump_attack01_right,
+                Properties.Resources.jump_attack02_right,
+                Properties.Resources.jump_attack03_right,
+                Properties.Resources.jump_attack04_right,
+                Properties.Resources.jump_attack05_right,
+                Properties.Resources.jump_attack06_right,
+                Properties.Resources.jump_attack07_right,
+                Properties.Resources.jump_attack08_right,
+                Properties.Resources.jump_attack09_right,
+                Properties.Resources.jump_attack10_right
+            };
+        }
     }
 }
