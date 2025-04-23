@@ -3,17 +3,17 @@ Problem: animation of sprites in a window through a platform game
 
 - [x] Display multiple parts of a spreadsheet in a picturebox.
 
-- [x] Move the sprite by 5 pixels in the direction of the arrow pressed on the keyboard with a walking animation.
+- [x] Move the sprite in the direction of the arrow pressed on the keyboard with a walking animation.
 
-- [x] Implement a gravity so that the sprite falls from the platform
+- [x] Implement a gravity so that the sprite falls from the platform.
 
 - [x] Set edge limits to prevent the sprite from leaving the screen.
 
-- [x] Implement the jump animation when the user presses space bar
+- [x] Implement the jump animation when the user presses space bar.
 
-- [x] Implement the attack animation when the user presses Ctrl key
+- [x] Implement the attack animation when the user presses Ctrl key.
 
-- [x] Implement the jump and attack animation when the user presses the space bar and then Ctrl key
+- [x] Implement the jump and attack animation when the user presses the space bar and then Ctrl key.
 
 - [x] Test the smooth operation and fluidity of animations. 
 
