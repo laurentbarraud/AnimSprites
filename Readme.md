@@ -1,6 +1,11 @@
 ### School-based programming research project
 Problem: animation of sprites in a window through a platform game
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the main form" >
+</p>
+
+
 - [x] Display multiple parts of a spreadsheet in a picturebox.
 
 - [x] Move the sprite in the direction of the arrow pressed on the keyboard with a walking animation.
