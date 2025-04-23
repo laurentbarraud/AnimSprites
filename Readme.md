@@ -7,9 +7,9 @@ Problem: animation of sprites in a window through a platform game
 
 - [x] Implement a gravity so that the sprite falls from the platform
 
-- [ ] Set edge limits to prevent the sprite from leaving the screen.
+- [x] Set edge limits to prevent the sprite from leaving the screen.
 
-- [ ] Implement the jump animation when the user presses space bar
+- [x] Implement the jump animation when the user presses space bar
 
 - [ ] Implement the attack animation when the user presses Ctrl key
 
