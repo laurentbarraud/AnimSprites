@@ -1,6 +1,6 @@
 ﻿/// <file>PlayerPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.1</version>
+/// <version>0.2</version>
 /// <date>April 23th, 2025</date>
 
 using System;

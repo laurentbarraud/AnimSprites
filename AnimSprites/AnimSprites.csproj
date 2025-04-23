@@ -228,5 +228,125 @@
   <ItemGroup>
     <None Include="Resources\jump10-right.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack01-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack01-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack02-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack02-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack03-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack03-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack04-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack04-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack05-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack05-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack06-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack06-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack07-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack07-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack08-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack08-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack09-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack09-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack10-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack10-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack01-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack01-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack02-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack02-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack03-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack03-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack04-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack04-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack05-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack05-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack06-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack06-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack07-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack07-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack08-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack08-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack09-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack09-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack10-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump-attack10-right.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
