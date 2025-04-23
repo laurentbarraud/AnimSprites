@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.animTimer = new System.Windows.Forms.Timer(this.components);
             this.picPlatform = new System.Windows.Forms.PictureBox();
             this.picGround = new System.Windows.Forms.PictureBox();
@@ -64,13 +65,20 @@
             // 
             // picKnight
             // 
+            this.picKnight.attackLeft = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.attackLeft")));
+            this.picKnight.attackRight = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.attackRight")));
             this.picKnight.BackColor = System.Drawing.Color.Transparent;
             this.picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picKnight.CurrentFrame = 0;
+            this.picKnight.FacingLeft = true;
             this.picKnight.Gravity = 5;
             this.picKnight.InitialJumpSpeed = 10;
+            this.picKnight.IsAttacking = false;
             this.picKnight.IsMovingLeft = false;
             this.picKnight.IsMovingRight = false;
+            this.picKnight.jumpAttackLeft = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.jumpAttackLeft")));
+            this.picKnight.jumpAttackRight = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.jumpAttackRight")));
+            this.picKnight.JumpMultiplier = 2D;
             this.picKnight.JumpSpeed = 0;
             this.picKnight.Location = new System.Drawing.Point(260, 308);
             this.picKnight.Name = "picKnight";
@@ -97,7 +105,7 @@
             this.MinimizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Animation de sprites";
+            this.Text = "Sprites animation";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
