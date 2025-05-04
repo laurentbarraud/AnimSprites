@@ -5,7 +5,6 @@ Problem: animation of sprites in a window through a platform game
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
 
-
 - [x] Display multiple parts of a spreadsheet in a picturebox.
 
 - [x] Implement a SolidPictureBox, which inherits all PictureBox properties
@@ -13,10 +12,12 @@ Problem: animation of sprites in a window through a platform game
 - [x] Move the sprite in the direction of the arrow pressed on the keyboard with a walking animation.
 
 - [x] Implement a gravity so that the sprite falls from the platform.
-
+      
 - [x] Implement a solid ground to avoid the sprite falling through the bottom of the window
-
+      
 - [x] Set edge limits to prevent the sprite from leaving the screen using a 1px width wall.
+      
+- [x] Implement a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take the enum isJumping, isGrounded or isFalling. 
 
 - [x] Implement the jump animation when the user presses space bar.
 
