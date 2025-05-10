@@ -94,7 +94,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::AnimSprites.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(861, 501);
+            this.ClientSize = new System.Drawing.Size(860, 501);
             this.Controls.Add(this.picGround);
             this.Controls.Add(this.picPlatform);
             this.Controls.Add(this.picKnight);

@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.2</version>
-/// <date>April 24th, 2025</date>
+/// <version>0.3</version>
+/// <date>May 10th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,12 @@ namespace AnimSprites
 {
     public partial class frmMain : Form
     {
+        // Global viewport offset which indicates how far the "camera" has scrolled
+        private int viewportHorizontalOffset = 0;
+
+        // Define the total width of the level
+        private int levelWidth = 5000;
+
         public frmMain()
         {
             InitializeComponent();
@@ -89,7 +95,18 @@ namespace AnimSprites
         // Game loop tick: update the game logic.
         private void AnimTimer_Tick(object sender, EventArgs e)
         {
-            UpdateGame();
+            UpdateSpriteWalkingAnimation(); // Handles only sprite animation
+            UpdateGame(); // Handles movement and scrolling
+        }
+
+        private void UpdateSpriteWalkingAnimation()
+        {
+            if (picKnight.IsMovingLeft || picKnight.IsMovingRight)
+            {
+                List<Bitmap> walkingFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
+                picKnight.BackgroundImage = walkingFrames[picKnight.CurrentFrame];
+                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % walkingFrames.Count;
+            }
         }
 
         private void UpdateGame()
@@ -138,6 +155,45 @@ namespace AnimSprites
                 List<Bitmap> walkingFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
                 picKnight.BackgroundImage = walkingFrames[picKnight.CurrentFrame];
                 picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % walkingFrames.Count;
+
+                // -----------------------------
+                // Scrolling Logic
+                // -----------------------------
+
+                // Define scrolling boundaries based on the client width:
+                int rightBoundary = (int)(this.ClientSize.Width * 0.8); // 4/5 of the width
+                int leftBoundary = (int)(this.ClientSize.Width * 0.2);  // 1/5 of the width
+
+                // Scroll right when the sprite reaches 4/5 of the screen, but stop at levelWidth
+                if (picKnight.Left > rightBoundary && viewportHorizontalOffset + this.ClientSize.Width < levelWidth)
+                {
+                    int scrollAmount = picKnight.Left - rightBoundary;
+                    viewportHorizontalOffset += scrollAmount;
+                    ScrollLevel(-scrollAmount);
+                    picKnight.Left = rightBoundary; // Keep the character at the right boundary
+                }
+
+                // Prevent scrolling beyond the rightmost boundary (keep the "wall" at levelWidth)
+                if (viewportHorizontalOffset + this.ClientSize.Width > levelWidth)
+                {
+                    viewportHorizontalOffset = levelWidth - this.ClientSize.Width;
+                }
+
+                // Scroll left when the sprite moves past 1/5 of the screen, but stop at position 0
+                if (picKnight.Left < leftBoundary && viewportHorizontalOffset > 0)
+                {
+                    int scrollAmount = leftBoundary - picKnight.Left;
+                    viewportHorizontalOffset -= scrollAmount;
+                    ScrollLevel(scrollAmount);
+                    picKnight.Left = leftBoundary; // Keep the character at the left boundary
+                }
+
+                // Prevent scrolling beyond the leftmost boundary (keep the "wall" at x = 0)
+                if (viewportHorizontalOffset < 0)
+                {
+                    viewportHorizontalOffset = 0;
+                }
+
             }
 
             // -----------------------------
@@ -273,6 +329,48 @@ namespace AnimSprites
                 {
                     picKnight.IsAttacking = false; // Reset attacking state
                 }
+            }
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            if (this.BackgroundImage != null)
+            {
+                // Retrieve background image dimensions
+                int backgroundImageWidth = this.BackgroundImage.Width;
+
+                // Calculate the scrolling offset for the background image
+                int backgroundScrollOffset = (int)(viewportHorizontalOffset * 0.5) % backgroundImageWidth;
+
+                // Draw the background image multiple times to ensure continuous scrolling
+                for (int positionX = -backgroundScrollOffset; positionX < this.ClientSize.Width; positionX += backgroundImageWidth)
+                {
+                    e.Graphics.DrawImage(this.BackgroundImage, positionX, 0, backgroundImageWidth, this.ClientSize.Height);
+                }
+            }
+
+            base.OnPaint(e);
+        }
+
+
+        /// <summary>
+        /// Applies a horizontal scrolling offset to all game elements.
+        /// </summary>
+        /// <param name="scrollAmount">The horizontal amount to move the level.</param>
+        private void ScrollLevel(int scrollAmount)
+        {
+            foreach (Control gameObject in this.Controls)
+            {
+                if (gameObject is SolidPictureBox)
+                {
+                    gameObject.Left += scrollAmount;
+                }
+            }
+
+            // Refresh only if necessary to reduce rendering lag
+            if (scrollAmount != 0)
+            {
+                this.Invalidate();
             }
         }
 
