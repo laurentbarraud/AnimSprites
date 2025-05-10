@@ -17,7 +17,7 @@ namespace AnimSprites
         private int viewportHorizontalOffset = 0;
 
         // Define the total width of the level
-        private int levelWidth = 5000;
+        private int levelWidth = 1000;
 
         public frmMain()
         {
@@ -28,6 +28,8 @@ namespace AnimSprites
         {
             // Set initial motionless image (first frame facing right)
             picKnight.BackgroundImage = picKnight.walkRight[0];
+
+            picGround.Width = levelWidth;
 
             // Load the tileset image
             Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
@@ -150,11 +152,6 @@ namespace AnimSprites
                 {
                     picKnight.Left = nextHorizontalPosition;
                 }
-
-                // Handle walking animation
-                List<Bitmap> walkingFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
-                picKnight.BackgroundImage = walkingFrames[picKnight.CurrentFrame];
-                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % walkingFrames.Count;
 
                 // -----------------------------
                 // Scrolling Logic
