@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.3</version>
-/// <date>May 10th, 2025</date>
+/// <date>May 13th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -379,6 +379,7 @@ namespace AnimSprites
                 picKnight.IsMovingLeft = true;
                 picKnight.FacingLeft = true;
             }
+
             else if (e.KeyCode == Keys.Right)
             {
                 picKnight.IsMovingRight = true;
@@ -411,6 +412,17 @@ namespace AnimSprites
                 }
             }
 
+            else if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
+            {
+                viewportHorizontalOffset -= 20; // Déplace la caméra à gauche
+                ScrollLevel(20);
+            }
+
+            else if (e.KeyCode == Keys.D && viewportHorizontalOffset + this.ClientSize.Width < levelWidth)
+            {
+                viewportHorizontalOffset += 20; // Déplace la caméra à droite
+                ScrollLevel(-20);
+            }
 
             animTimer.Start();
         }
