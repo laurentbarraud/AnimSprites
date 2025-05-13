@@ -27,6 +27,14 @@ Problem: animation of sprites in a window through a platform game
 
 - [x] Test the smooth operation and fluidity of animations.
 
+- [x] Implement scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
+
+- [x] The player can freely explore the level by moving the camera left or right with the A and D keys.
+
+- [x] Implement a hidden build menu (user can press B key to activate/desactivate it).
+
+- [x] With the open menu, the player can add platforms, choose their size in blocks and delete a selected one.
+       
 - [ ] Implement objects or enemies to hit
 
 - [ ] Implement basic collision detection when the user hits an object or enemy
