@@ -154,8 +154,29 @@ namespace AnimSprites
             // Makes initial platform selectable
             // ----------------------------------
 
-            picPlatform.Click += SelectPlatform; 
-            
+            picPlatform.Click += SelectPlatform;
+
+            // ---------------------------------------------------
+            // Makes initial platform movable if the menu is open
+            // ---------------------------------------------------
+
+            picPlatform.MouseDown += (aSender, aEvent) =>
+            {
+                if (levelEditorPanel.Visible)
+                {
+                    picPlatform.Tag = aEvent.Location;
+                }
+            };
+
+            picPlatform.MouseMove += (aSender, aEvent) =>
+            {
+                if (levelEditorPanel.Visible && aEvent.Button == MouseButtons.Left && picPlatform.Tag is Point initialPos)
+                {
+                    picPlatform.Left += aEvent.X - initialPos.X;
+                    picPlatform.Top += aEvent.Y - initialPos.Y;
+                }
+            };
+
             // -----------------------------
             // Set initial motionless images
             // -----------------------------
