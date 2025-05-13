@@ -56,7 +56,7 @@
             // 
             // picGround
             // 
-            this.picGround.BackgroundImage = global::AnimSprites.Properties.Resources.texture_sol_forestier;
+            this.picGround.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGround.BackgroundImage")));
             this.picGround.Location = new System.Drawing.Point(0, 475);
             this.picGround.Name = "picGround";
             this.picGround.Size = new System.Drawing.Size(860, 25);
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::AnimSprites.Properties.Resources.background;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(860, 501);
             this.Controls.Add(this.picGround);
@@ -100,6 +100,7 @@
             this.Controls.Add(this.picKnight);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

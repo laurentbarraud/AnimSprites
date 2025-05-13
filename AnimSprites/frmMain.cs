@@ -1,13 +1,16 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.3</version>
+/// <version>0.3.1</version>
 /// <date>May 13th, 2025</date>
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AnimSprites.PlayerPictureBox;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AnimSprites
 {
@@ -19,6 +22,11 @@ namespace AnimSprites
         // Define the total width of the level
         private int levelWidth = 1000;
 
+        private Panel levelEditorPanel;
+        private bool isMenuVisible = false;
+        private SolidPictureBox selectedPlatform = null;
+
+
         public frmMain()
         {
             InitializeComponent();
@@ -26,52 +34,86 @@ namespace AnimSprites
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            // ------------------------------------------------
+            // Create the Level Editor Menu (Initially Hidden)
+            // ------------------------------------------------
+            levelEditorPanel = new Panel
+            {
+                Left = 10, // Position relative to the main form
+                Top = 10, // Place it at the top left
+                Width = 250, // Menu width
+                Height = 100, // Menu height
+                BackColor = Color.LightGray, 
+                BorderStyle = BorderStyle.FixedSingle,
+                Visible = false
+            };
+
+            // -----------------------------
+            // Create "Add Platform" Button
+            // -----------------------------
+            Button addPlatformButton = new Button
+            {
+                Text = "Ajouter une plateforme", // Display text
+                Width = 220,
+                Height = 30,
+                Top = 10,
+                Left = 10
+            };
+            addPlatformButton.Click += AddPlatform; // Assign action when clicked
+            levelEditorPanel.Controls.Add(addPlatformButton); // Add button to the panel
+
+            // -----------------------------
+            // Create "Delete Object" Button
+            // -----------------------------
+            Button deletePlatformButton = new Button
+            {
+                Text = "Supprimer l'objet sélectionné", // Display text
+                Width = 220,
+                Height = 30,
+                Top = 50,
+                Left = 10
+            };
+            deletePlatformButton.Click += DeleteSelectedObject; // Assign action when clicked
+            levelEditorPanel.Controls.Add(deletePlatformButton); // Add button to the panel
+
+            // -----------------------------
+            // Add the Menu Panel to the Form
+            // -----------------------------
+            this.Controls.Add(levelEditorPanel);
+
             // Set initial motionless image (first frame facing right)
             picKnight.BackgroundImage = picKnight.walkRight[0];
 
             picGround.Width = levelWidth;
 
+            // -----------------------------
+            // Loads the initial platform
+            // -----------------------------
+
             // Load the tileset image
             Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
 
-            // Define the actual dimensions of each tile and the spacing between tiles
-            int tileWidth = 30;  // Standard width of the tiles (middle tiles)
-            int tileHeight = 31; // Height of all tiles
-            int tileSpacing = 2; // Space between tiles in the tileset
+            // Define source rectangles for left, middle, and right tiles
+            Rectangle srcRectLeftPlatform = new Rectangle(4, 2, 28, 31);  // Left tile
+            Rectangle srcRectMiddlePlatform = new Rectangle(36, 2, 30, 31); // Middle tile
+            Rectangle srcRectRightPlatform = new Rectangle(68, 2, 26, 31); // Right tile
 
-            // Define source rectangles with adjusted cropping
-            Rectangle srcRectLeftPlatform = new Rectangle(4, 2, tileWidth - 2, tileHeight);  // Left tile: 2 pixels less on the left
-            Rectangle srcRectMiddlePlatform = new Rectangle(34 + tileSpacing, 2, tileWidth, tileHeight); // Middle tile remains the same
-            Rectangle srcRectRightPlatform = new Rectangle(66 + 2 * tileSpacing, 2, tileWidth - 4, tileHeight); // Right tile: 2 pixels less on the right
+            // Define number of middle blocks
+            int middleBlockCount = 6; // Adjust platform size dynamically
 
-            // Create a new bitmap to represent the full platform (8 tiles wide)
-            int totalWidth = (tileWidth - 2) + (6 * tileWidth) + (tileWidth - 4); // Calculate total width precisely
-            Bitmap platformBitmap = new Bitmap(totalWidth, tileHeight);
+            // Generate platform texture using the method
+            Bitmap platformBitmap = FillPlatformWithTextures(middleBlockCount, srcRectLeftPlatform, srcRectMiddlePlatform, srcRectRightPlatform, bmpTileSet);
 
-            // Create a Graphics object to draw on the new bitmap
-            using (Graphics g = Graphics.FromImage(platformBitmap))
-            {
-                GraphicsUnit units = GraphicsUnit.Pixel;
-
-                // Draw the left end of the platform
-                g.DrawImage(bmpTileSet, new Rectangle(0, 0, tileWidth - 2, tileHeight), srcRectLeftPlatform, units);
-
-                // Draw the 6 middle sections of the platform
-                for (int i = 0; i < 6; i++)
-                {
-                    int xPosition = (tileWidth - 2) + (i * tileWidth);
-                    g.DrawImage(bmpTileSet, new Rectangle(xPosition, 0, tileWidth, tileHeight), srcRectMiddlePlatform, units);
-                }
-
-                // Draw the right end of the platform
-                int rightXPosition = (tileWidth - 2) + (6 * tileWidth);
-                g.DrawImage(bmpTileSet, new Rectangle(rightXPosition, 0, tileWidth - 4, tileHeight), srcRectRightPlatform, units);
-            }
-
-            // Set the background image of the PictureBox
+            // Assign the generated image to picPlateforme
             picPlatform.BackgroundImage = platformBitmap;
+            picPlatform.Width = platformBitmap.Width;
+            picPlatform.Height = platformBitmap.Height;
+            picPlatform.BackColor = Color.Transparent; // Ensure transparent background
 
-            // Convert designer PictureBoxes to SolidPictureBox for collisions.
+            // ----------------------------------------------------------------
+            // Converts designer PictureBoxes to SolipictureBox for collisions
+            // ----------------------------------------------------------------
+
             ConvertToSolidPictureBox(ref picPlatform);
             ConvertToSolidPictureBox(ref picGround);
         }
@@ -93,7 +135,52 @@ namespace AnimSprites
             pb.SendToBack(); // Ensure solid objects remain in the background.
         }
 
-     
+        private void AddPlatform(object sender, EventArgs e)
+        {
+            // Load the tileset image
+            Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
+
+            // Define source rectangles for left, middle, and right tiles
+            Rectangle srcRectLeft = new Rectangle(4, 2, 28, 31);
+            Rectangle srcRectMiddle = new Rectangle(36, 2, 30, 31);
+            Rectangle srcRectRight = new Rectangle(68, 2, 26, 31);
+
+            // Define the number of middle blocks for this platform
+            int middleBlockCount = 4; // Change this value if needed
+
+            // Generate the platform texture using FillPlatformWithTextures
+            Bitmap platformBitmap = FillPlatformWithTextures(middleBlockCount, srcRectLeft, srcRectMiddle, srcRectRight, bmpTileSet);
+
+            // Create the new platform with the generated texture
+            SolidPictureBox newPlatform = new SolidPictureBox
+            {
+                Left = viewportHorizontalOffset + 200, // Position X relative to camera
+                Top = 350, // Position Y
+                Width = platformBitmap.Width,
+                Height = platformBitmap.Height,
+                BackgroundImage = platformBitmap,
+                BackColor = Color.Transparent // Ensure transparency
+            };
+
+            // Allow the platform to be moved with the mouse
+            newPlatform.MouseDown += (aSender, aEvent) => { newPlatform.Tag = aEvent.Location; };
+            newPlatform.MouseMove += (aSender, aEvent) =>
+            {
+                if (aEvent.Button == MouseButtons.Left && newPlatform.Tag is Point initialPos)
+                {
+                    newPlatform.Left += aEvent.X - initialPos.X;
+                    newPlatform.Top += aEvent.Y - initialPos.Y;
+                }
+            };
+
+            newPlatform.Click += SelectPlatform; // Ensures that each new platform created can be
+                                                 // selected when the user clicks on it.
+
+            // Add the new platform to the form
+            this.Controls.Add(newPlatform);
+        }
+
+
         // Game loop tick: update the game logic.
         private void AnimTimer_Tick(object sender, EventArgs e)
         {
@@ -101,13 +188,240 @@ namespace AnimSprites
             UpdateGame(); // Handles movement and scrolling
         }
 
-        private void UpdateSpriteWalkingAnimation()
+        private async void BlinkSelectedPlatform()
         {
-            if (picKnight.IsMovingLeft || picKnight.IsMovingRight)
+            if (selectedPlatform != null && levelEditorPanel.Visible)
             {
-                List<Bitmap> walkingFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
-                picKnight.BackgroundImage = walkingFrames[picKnight.CurrentFrame];
-                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % walkingFrames.Count;
+                Bitmap originalImage = (Bitmap)selectedPlatform.BackgroundImage;
+                Bitmap invertedImage = InvertBitmapColors(originalImage);
+
+                // Swap to inverted image
+                selectedPlatform.BackgroundImage = invertedImage;
+
+                // Wait for half second
+                await Task.Delay(500);
+
+                // Restore original image
+                selectedPlatform.BackgroundImage = originalImage;
+            }
+        }
+
+
+        private void DeleteSelectedObject(object sender, EventArgs e)
+        {
+            if (selectedPlatform != null)
+            {
+                this.Controls.Remove(selectedPlatform); // Remove platform from the form
+                selectedPlatform = null; // Reset selection after deletion
+            }
+        }
+
+
+        /// <summary>
+        /// Creates a composite platform image using left, middle, and right textures.
+        /// </summary>
+        /// <param name="middleBlockCount">Number of middle blocks to repeat.</param>
+        /// <param name="srcRectLeft">Source rectangle for the left end.</param>
+        /// <param name="srcRectMiddle">Source rectangle for the middle block.</param>
+        /// <param name="srcRectRight">Source rectangle for the right end.</param>
+        /// <param name="tileSet">The tileset bitmap to use for textures.</param>
+        /// <returns>A Bitmap representing the full platform image.</returns>
+        private Bitmap FillPlatformWithTextures(int middleBlockCount, Rectangle srcRectLeft, Rectangle srcRectMiddle, Rectangle srcRectRight, Bitmap tileSet)
+        {
+            // Determine each part's width from the source rectangle.
+            int leftWidth = srcRectLeft.Width;
+            int middleWidth = srcRectMiddle.Width;
+            int rightWidth = srcRectRight.Width;
+
+            // Assume all parts have the same height (e.g. the height of the left block).
+            int tileHeight = srcRectLeft.Height;
+
+            // Calculate the complete width of the platform.
+            int totalWidth = leftWidth + (middleBlockCount * middleWidth) + rightWidth;
+
+            // Create a new bitmap with the calculated dimensions.
+            Bitmap platformBitmap = new Bitmap(totalWidth, tileHeight);
+
+            // Use Graphics to draw the platform parts onto the new bitmap.
+            using (Graphics g = Graphics.FromImage(platformBitmap))
+            {
+                GraphicsUnit units = GraphicsUnit.Pixel;
+
+                // Draw the left end at the start of the platform.
+                g.DrawImage(tileSet, new Rectangle(0, 0, leftWidth, tileHeight), srcRectLeft, units);
+
+                // Draw the middle blocks sequentially.
+                for (int i = 0; i < middleBlockCount; i++)
+                {
+                    int xPosition = leftWidth + (i * middleWidth);
+                    g.DrawImage(tileSet, new Rectangle(xPosition, 0, middleWidth, tileHeight), srcRectMiddle, units);
+                }
+
+                // Draw the right end at the end of the platform.
+                int rightXPosition = leftWidth + (middleBlockCount * middleWidth);
+                g.DrawImage(tileSet, new Rectangle(rightXPosition, 0, rightWidth, tileHeight), srcRectRight, units);
+            }
+
+            return platformBitmap;
+        }
+
+
+        // KeyDown event: start the appropriate horizontal movement.
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                picKnight.IsMovingLeft = true;
+                picKnight.FacingLeft = true;
+            }
+
+            else if (e.KeyCode == Keys.Right)
+            {
+                picKnight.IsMovingRight = true;
+                picKnight.FacingLeft = false;
+            }
+
+            else if (e.KeyCode == Keys.Space)
+            {
+                // Triggers jump if the player is grounded
+                if (picKnight.Status == PlayerStatus.IsGrounded)
+                {
+                    picKnight.Status = PlayerStatus.IsJumping;
+                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Resets the jump force
+                }
+            }
+
+            else if (e.KeyCode == Keys.ControlKey)
+            {
+                if (picKnight.Status != PlayerStatus.IsJumping && !picKnight.IsAttacking)
+                {
+                    // Starts ground attack animation
+                    picKnight.IsAttacking = true;
+                    picKnight.CurrentFrame = 0; // Resets animation to the first frame
+                }
+                else if (picKnight.Status == PlayerStatus.IsJumping && !picKnight.IsAttacking)
+                {
+                    // Starts jump-attack animation
+                    picKnight.IsAttacking = true;
+                    picKnight.CurrentFrame = 0; // Reset animation to the first frame
+                }
+            }
+
+            else if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
+            {
+                viewportHorizontalOffset -= 20; // Déplace la caméra à gauche
+                ScrollLevel(20);
+            }
+
+            else if (e.KeyCode == Keys.D && viewportHorizontalOffset + this.ClientSize.Width < levelWidth)
+            {
+                viewportHorizontalOffset += 20; // Déplace la caméra à droite
+                ScrollLevel(-20);
+            }
+
+            else if (e.KeyCode == Keys.B)
+            {
+                levelEditorPanel.Visible = !levelEditorPanel.Visible;
+            }
+
+            animTimer.Start();
+        }
+
+        // KeyUp event: stops the horizontal movement when key is released.
+        private void frmMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                picKnight.IsMovingLeft = false;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                picKnight.IsMovingRight = false;
+            }
+        }
+
+        /// <summary>
+        /// Creates a clone of the image and applies an inverted color filter. 
+        /// Each channel (Red, Green, Blue) is reversed, giving a negative effect.
+        /// The final image is returned to be used as a temporary image.
+        /// </summary>
+        /// <param name="original">The original bitmap</param>
+        /// <returns>The inverted bitmap</returns>
+        private Bitmap InvertBitmapColors(Bitmap original)
+        {
+            Bitmap invertedBitmap = new Bitmap(original.Width, original.Height);
+
+            using (Graphics g = Graphics.FromImage(invertedBitmap))
+            {
+                // Use color matrix to invert colors
+                ColorMatrix colorMatrix = new ColorMatrix(new float[][]
+                {
+            new float[] {-1,  0,  0, 0, 0},
+            new float[] { 0, -1,  0, 0, 0},
+            new float[] { 0,  0, -1, 0, 0},
+            new float[] { 0,  0,  0, 1, 0},
+            new float[] { 1,  1,  1, 0, 1}
+                });
+
+                ImageAttributes attributes = new ImageAttributes();
+                attributes.SetColorMatrix(colorMatrix);
+
+                g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+                            0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+            }
+
+            return invertedBitmap;
+        }
+
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            if (this.BackgroundImage != null)
+            {
+                // Retrieve background image dimensions
+                int backgroundImageWidth = this.BackgroundImage.Width;
+
+                // Calculate the scrolling offset for the background image
+                int backgroundScrollOffset = (int)(viewportHorizontalOffset * 0.5) % backgroundImageWidth;
+
+                // Draw the background image multiple times to ensure continuous scrolling
+                for (int positionX = -backgroundScrollOffset; positionX < this.ClientSize.Width; positionX += backgroundImageWidth)
+                {
+                    e.Graphics.DrawImage(this.BackgroundImage, positionX, 0, backgroundImageWidth, this.ClientSize.Height);
+                }
+            }
+
+            base.OnPaint(e);
+        }
+
+        private void SelectPlatform(object sender, EventArgs e)
+        {
+            if (sender is SolidPictureBox platform)
+            {
+                selectedPlatform = platform; // Store the selected platform
+                BlinkSelectedPlatform(); // Start blinking effect
+            }
+        }
+
+
+        /// <summary>
+        /// Applies a horizontal scrolling offset to all game elements.
+        /// </summary>
+        /// <param name="scrollAmount">The horizontal amount to move the level.</param>
+        private void ScrollLevel(int scrollAmount)
+        {
+            foreach (Control gameObject in this.Controls)
+            {
+                if (gameObject is SolidPictureBox)
+                {
+                    gameObject.Left += scrollAmount;
+                }
+            }
+
+            // Refresh only if necessary to reduce rendering lag
+            if (scrollAmount != 0)
+            {
+                this.Invalidate();
             }
         }
 
@@ -329,114 +643,13 @@ namespace AnimSprites
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void UpdateSpriteWalkingAnimation()
         {
-            if (this.BackgroundImage != null)
+            if (picKnight.IsMovingLeft || picKnight.IsMovingRight)
             {
-                // Retrieve background image dimensions
-                int backgroundImageWidth = this.BackgroundImage.Width;
-
-                // Calculate the scrolling offset for the background image
-                int backgroundScrollOffset = (int)(viewportHorizontalOffset * 0.5) % backgroundImageWidth;
-
-                // Draw the background image multiple times to ensure continuous scrolling
-                for (int positionX = -backgroundScrollOffset; positionX < this.ClientSize.Width; positionX += backgroundImageWidth)
-                {
-                    e.Graphics.DrawImage(this.BackgroundImage, positionX, 0, backgroundImageWidth, this.ClientSize.Height);
-                }
-            }
-
-            base.OnPaint(e);
-        }
-
-
-        /// <summary>
-        /// Applies a horizontal scrolling offset to all game elements.
-        /// </summary>
-        /// <param name="scrollAmount">The horizontal amount to move the level.</param>
-        private void ScrollLevel(int scrollAmount)
-        {
-            foreach (Control gameObject in this.Controls)
-            {
-                if (gameObject is SolidPictureBox)
-                {
-                    gameObject.Left += scrollAmount;
-                }
-            }
-
-            // Refresh only if necessary to reduce rendering lag
-            if (scrollAmount != 0)
-            {
-                this.Invalidate();
-            }
-        }
-
-        // KeyDown event: start the appropriate horizontal movement.
-        private void frmMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Left)
-            {
-                picKnight.IsMovingLeft = true;
-                picKnight.FacingLeft = true;
-            }
-
-            else if (e.KeyCode == Keys.Right)
-            {
-                picKnight.IsMovingRight = true;
-                picKnight.FacingLeft = false;
-            }
-
-            else if (e.KeyCode == Keys.Space)
-            {
-                // Triggers jump if the player is grounded
-                if (picKnight.Status == PlayerStatus.IsGrounded)
-                {
-                    picKnight.Status = PlayerStatus.IsJumping;
-                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Resets the jump force
-                }
-            }
-
-            else if (e.KeyCode == Keys.ControlKey)
-            {
-                if (picKnight.Status != PlayerStatus.IsJumping && !picKnight.IsAttacking)
-                {
-                    // Starts ground attack animation
-                    picKnight.IsAttacking = true;
-                    picKnight.CurrentFrame = 0; // Resets animation to the first frame
-                }
-                else if (picKnight.Status == PlayerStatus.IsJumping && !picKnight.IsAttacking)
-                {
-                    // Starts jump-attack animation
-                    picKnight.IsAttacking = true;
-                    picKnight.CurrentFrame = 0; // Reset animation to the first frame
-                }
-            }
-
-            else if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
-            {
-                viewportHorizontalOffset -= 20; // Déplace la caméra à gauche
-                ScrollLevel(20);
-            }
-
-            else if (e.KeyCode == Keys.D && viewportHorizontalOffset + this.ClientSize.Width < levelWidth)
-            {
-                viewportHorizontalOffset += 20; // Déplace la caméra à droite
-                ScrollLevel(-20);
-            }
-
-            animTimer.Start();
-        }
-
-        // KeyUp event: stops the horizontal movement when key is released.
-        private void frmMain_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Left)
-            {
-                picKnight.IsMovingLeft = false;
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                picKnight.IsMovingRight = false;
+                List<Bitmap> walkingFrames = picKnight.IsMovingLeft ? picKnight.walkLeft : picKnight.walkRight;
+                picKnight.BackgroundImage = walkingFrames[picKnight.CurrentFrame];
+                picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % walkingFrames.Count;
             }
         }
     }

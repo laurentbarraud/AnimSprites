@@ -1,7 +1,7 @@
 ﻿/// <file>SolidPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.2</version>
-/// <date>April 24th, 2025</date>
+/// <version>0.3.1</version>
+/// <date>May 13th, 2025</date>
 
 using System.Windows.Forms;
 
