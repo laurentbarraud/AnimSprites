@@ -25,7 +25,8 @@ namespace AnimSprites
         private Panel levelEditorPanel;
         private bool isMenuVisible = false;
         private SolidPictureBox selectedPlatform = null;
-
+        private TrackBar trkBlockCount; // Stores the slider instance globally
+        private Label lblBlockCount; // Displays the current block count selected
 
         public frmMain()
         {
@@ -34,57 +35,88 @@ namespace AnimSprites
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // ------------------------------------------------
-            // Create the Level Editor Menu (Initially Hidden)
-            // ------------------------------------------------
+            // -----------------------------------------
+            // Create the Menu Panel (initially hidden)
+            // -----------------------------------------
             levelEditorPanel = new Panel
             {
-                Left = 10, // Position relative to the main form
-                Top = 10, // Place it at the top left
-                Width = 250, // Menu width
-                Height = 100, // Menu height
-                BackColor = Color.LightGray, 
+                Left = 10,
+                Top = 10,
+                Width = 250,
+                Height = 160, // Optimized size to fit everything
+                BackColor = Color.LightGray,
                 BorderStyle = BorderStyle.FixedSingle,
                 Visible = false
             };
 
             // -----------------------------
-            // Create "Add Platform" Button
+            // "Add Platform" Button (Top)
             // -----------------------------
             Button addPlatformButton = new Button
             {
-                Text = "Ajouter une plateforme", // Display text
+                Text = "Add a platform",
                 Width = 220,
                 Height = 30,
                 Top = 10,
                 Left = 10
             };
-            addPlatformButton.Click += AddPlatform; // Assign action when clicked
-            levelEditorPanel.Controls.Add(addPlatformButton); // Add button to the panel
+            addPlatformButton.Click += AddPlatform;
+            levelEditorPanel.Controls.Add(addPlatformButton);
 
             // -----------------------------
-            // Create "Delete Object" Button
+            // Label "Number of blocs" (Dynamic)
+            // -----------------------------
+            lblBlockCount = new Label
+            {
+                Text = $"Number of blocs to add : {trkBlockCount?.Value ?? 6}", // Shows initial value if TrackBar is not yet set
+                Left = 10,
+                Top = 50, // Positioned below the button
+                Width = 220,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            levelEditorPanel.Controls.Add(lblBlockCount);
+
+            // -----------------------------
+            // TrackBar for block count
+            // -----------------------------
+            trkBlockCount = new TrackBar
+            {
+                Minimum = 1,
+                Maximum = 18,
+                Value = 6,
+                Left = 10,
+                Top = 80, // Positioned below the label
+                Width = 220,
+                TickFrequency = 1,
+                SmallChange = 1,
+                LargeChange = 2
+            };
+            levelEditorPanel.Controls.Add(trkBlockCount);
+
+            // Updates the label dynamically based on slider movement
+            trkBlockCount.Scroll += (aSender, aEvent) =>
+            {
+                lblBlockCount.Text = $"Number of blocs to add : {trkBlockCount.Value}";
+            };
+
+            // -----------------------------
+            // "Delete Object" Button (Bottom)
             // -----------------------------
             Button deletePlatformButton = new Button
             {
-                Text = "Supprimer l'objet sélectionné", // Display text
+                Text = "Delete selected object",
                 Width = 220,
                 Height = 30,
-                Top = 50,
+                Top = 125, // Positioned below the slider
                 Left = 10
             };
-            deletePlatformButton.Click += DeleteSelectedObject; // Assign action when clicked
-            levelEditorPanel.Controls.Add(deletePlatformButton); // Add button to the panel
+            deletePlatformButton.Click += DeleteSelectedObject;
+            levelEditorPanel.Controls.Add(deletePlatformButton);
 
             // -----------------------------
             // Add the Menu Panel to the Form
             // -----------------------------
             this.Controls.Add(levelEditorPanel);
-
-            // Set initial motionless image (first frame facing right)
-            picKnight.BackgroundImage = picKnight.walkRight[0];
-
-            picGround.Width = levelWidth;
 
             // -----------------------------
             // Loads the initial platform
@@ -111,11 +143,17 @@ namespace AnimSprites
             picPlatform.BackColor = Color.Transparent; // Ensure transparent background
 
             // ----------------------------------------------------------------
-            // Converts designer PictureBoxes to SolipictureBox for collisions
+            // Converts designer PictureBoxes to SolidPictureBox for collisions
             // ----------------------------------------------------------------
 
             ConvertToSolidPictureBox(ref picPlatform);
             ConvertToSolidPictureBox(ref picGround);
+
+            // -----------------------------
+            // Set initial motionless images
+            // -----------------------------
+            picKnight.BackgroundImage = picKnight.walkRight[0];
+            picGround.Width = levelWidth;
         }
 
         // Utility method: convert a PictureBox to a SolidPictureBox.
@@ -145,8 +183,8 @@ namespace AnimSprites
             Rectangle srcRectMiddle = new Rectangle(36, 2, 30, 31);
             Rectangle srcRectRight = new Rectangle(68, 2, 26, 31);
 
-            // Define the number of middle blocks for this platform
-            int middleBlockCount = 4; // Change this value if needed
+            // Retrieve the selected number of middle blocks from the slider
+            int middleBlockCount = trkBlockCount.Value; // Dynamically adjust platform size
 
             // Generate the platform texture using FillPlatformWithTextures
             Bitmap platformBitmap = FillPlatformWithTextures(middleBlockCount, srcRectLeft, srcRectMiddle, srcRectRight, bmpTileSet);
@@ -228,42 +266,49 @@ namespace AnimSprites
         /// <returns>A Bitmap representing the full platform image.</returns>
         private Bitmap FillPlatformWithTextures(int middleBlockCount, Rectangle srcRectLeft, Rectangle srcRectMiddle, Rectangle srcRectRight, Bitmap tileSet)
         {
-            // Determine each part's width from the source rectangle.
-            int leftWidth = srcRectLeft.Width;
-            int middleWidth = srcRectMiddle.Width;
-            int rightWidth = srcRectRight.Width;
+            int tileHeight = srcRectMiddle.Height;
+            int totalWidth = middleBlockCount * srcRectMiddle.Width; // Default: only middle blocks
 
-            // Assume all parts have the same height (e.g. the height of the left block).
-            int tileHeight = srcRectLeft.Height;
+            // Check if platform includes left and right blocks
+            bool includeSides = middleBlockCount >= 3;
 
-            // Calculate the complete width of the platform.
-            int totalWidth = leftWidth + (middleBlockCount * middleWidth) + rightWidth;
+            if (includeSides)
+            {
+                totalWidth += srcRectLeft.Width + srcRectRight.Width; // Add left and right widths
+            }
 
-            // Create a new bitmap with the calculated dimensions.
+            // Create the platform image
             Bitmap platformBitmap = new Bitmap(totalWidth, tileHeight);
 
-            // Use Graphics to draw the platform parts onto the new bitmap.
             using (Graphics g = Graphics.FromImage(platformBitmap))
             {
                 GraphicsUnit units = GraphicsUnit.Pixel;
+                int xPosition = 0;
 
-                // Draw the left end at the start of the platform.
-                g.DrawImage(tileSet, new Rectangle(0, 0, leftWidth, tileHeight), srcRectLeft, units);
-
-                // Draw the middle blocks sequentially.
-                for (int i = 0; i < middleBlockCount; i++)
+                // Draw left block if included
+                if (includeSides)
                 {
-                    int xPosition = leftWidth + (i * middleWidth);
-                    g.DrawImage(tileSet, new Rectangle(xPosition, 0, middleWidth, tileHeight), srcRectMiddle, units);
+                    g.DrawImage(tileSet, new Rectangle(xPosition, 0, srcRectLeft.Width, tileHeight), srcRectLeft, units);
+                    xPosition += srcRectLeft.Width;
                 }
 
-                // Draw the right end at the end of the platform.
-                int rightXPosition = leftWidth + (middleBlockCount * middleWidth);
-                g.DrawImage(tileSet, new Rectangle(rightXPosition, 0, rightWidth, tileHeight), srcRectRight, units);
+                // Draw middle blocks
+                for (int i = 0; i < middleBlockCount; i++)
+                {
+                    g.DrawImage(tileSet, new Rectangle(xPosition, 0, srcRectMiddle.Width, tileHeight), srcRectMiddle, units);
+                    xPosition += srcRectMiddle.Width;
+                }
+
+                // Draw right block if included
+                if (includeSides)
+                {
+                    g.DrawImage(tileSet, new Rectangle(xPosition, 0, srcRectRight.Width, tileHeight), srcRectRight, units);
+                }
             }
 
             return platformBitmap;
         }
+
 
 
         // KeyDown event: start the appropriate horizontal movement.
