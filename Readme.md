@@ -50,6 +50,8 @@ Problem: animation of sprites in a window through a platform game
 
 - [x] Animation fluidity test
 
+- [x] Created platforms of 1, 2 and 3 blocks, moved by selecting them, then deleted all including the initial. 
+
 ### References:
 
 Source (in French) : https://sources-codes.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
