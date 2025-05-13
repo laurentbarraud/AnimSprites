@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AnimSprites.PlayerPictureBox;
@@ -100,7 +101,7 @@ namespace AnimSprites
             };
 
             // -----------------------------
-            // "Delete Object" Button (Bottom)
+            // "Delete Object" Button
             // -----------------------------
             Button deletePlatformButton = new Button
             {
@@ -149,6 +150,12 @@ namespace AnimSprites
             ConvertToSolidPictureBox(ref picPlatform);
             ConvertToSolidPictureBox(ref picGround);
 
+            // ----------------------------------
+            // Makes initial platform selectable
+            // ----------------------------------
+
+            picPlatform.Click += SelectPlatform; 
+            
             // -----------------------------
             // Set initial motionless images
             // -----------------------------
@@ -243,7 +250,6 @@ namespace AnimSprites
                 selectedPlatform.BackgroundImage = originalImage;
             }
         }
-
 
         private void DeleteSelectedObject(object sender, EventArgs e)
         {
