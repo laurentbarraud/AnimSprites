@@ -28,92 +28,96 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.animTimer = new System.Windows.Forms.Timer(this.components);
-            this.picPlatform = new System.Windows.Forms.PictureBox();
-            this.picGround = new System.Windows.Forms.PictureBox();
-            this.picKnight = new AnimSprites.PlayerPictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlatform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGround)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picKnight)).BeginInit();
-            this.SuspendLayout();
+            animTimer = new System.Windows.Forms.Timer(components);
+            picPlatform = new System.Windows.Forms.PictureBox();
+            picGround = new System.Windows.Forms.PictureBox();
+            picKnight = new PlayerPictureBox();
+            ((System.ComponentModel.ISupportInitialize)picPlatform).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picGround).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picKnight).BeginInit();
+            SuspendLayout();
             // 
             // animTimer
             // 
-            this.animTimer.Enabled = true;
-            this.animTimer.Interval = 50;
-            this.animTimer.Tick += new System.EventHandler(this.AnimTimer_Tick);
+            animTimer.Enabled = true;
+            animTimer.Interval = 50;
+            animTimer.Tick += AnimTimer_Tick;
             // 
             // picPlatform
             // 
-            this.picPlatform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPlatform.Location = new System.Drawing.Point(260, 368);
-            this.picPlatform.Name = "picPlatform";
-            this.picPlatform.Size = new System.Drawing.Size(320, 43);
-            this.picPlatform.TabIndex = 2;
-            this.picPlatform.TabStop = false;
+            picPlatform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            picPlatform.Location = new System.Drawing.Point(260, 460);
+            picPlatform.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            picPlatform.Name = "picPlatform";
+            picPlatform.Size = new System.Drawing.Size(320, 54);
+            picPlatform.TabIndex = 2;
+            picPlatform.TabStop = false;
             // 
             // picGround
             // 
-            this.picGround.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGround.BackgroundImage")));
-            this.picGround.Location = new System.Drawing.Point(0, 475);
-            this.picGround.Name = "picGround";
-            this.picGround.Size = new System.Drawing.Size(860, 25);
-            this.picGround.TabIndex = 3;
-            this.picGround.TabStop = false;
+            picGround.BackgroundImage = (System.Drawing.Image)resources.GetObject("picGround.BackgroundImage");
+            picGround.Location = new System.Drawing.Point(0, 594);
+            picGround.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            picGround.Name = "picGround";
+            picGround.Size = new System.Drawing.Size(860, 31);
+            picGround.TabIndex = 3;
+            picGround.TabStop = false;
             // 
             // picKnight
             // 
-            this.picKnight.attackLeft = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.attackLeft")));
-            this.picKnight.attackRight = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.attackRight")));
-            this.picKnight.BackColor = System.Drawing.Color.Transparent;
-            this.picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picKnight.CurrentFrame = 0;
-            this.picKnight.FacingLeft = true;
-            this.picKnight.Gravity = 5;
-            this.picKnight.InitialJumpSpeed = 10;
-            this.picKnight.IsAttacking = false;
-            this.picKnight.IsMovingLeft = false;
-            this.picKnight.IsMovingRight = false;
-            this.picKnight.jumpAttackLeft = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.jumpAttackLeft")));
-            this.picKnight.jumpAttackRight = ((System.Collections.Generic.List<System.Drawing.Bitmap>)(resources.GetObject("picKnight.jumpAttackRight")));
-            this.picKnight.JumpMultiplier = 2D;
-            this.picKnight.JumpSpeed = 0;
-            this.picKnight.Location = new System.Drawing.Point(260, 308);
-            this.picKnight.Name = "picKnight";
-            this.picKnight.Size = new System.Drawing.Size(52, 60);
-            this.picKnight.Status = AnimSprites.PlayerPictureBox.PlayerStatus.IsFalling;
-            this.picKnight.TabIndex = 1;
-            this.picKnight.TabStop = false;
-            this.picKnight.WalkingSpeed = 5;
+            picKnight.attackLeft = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.attackLeft");
+            picKnight.attackRight = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.attackRight");
+            picKnight.BackColor = System.Drawing.Color.Transparent;
+            picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            picKnight.CurrentFrame = 0;
+            picKnight.FacingLeft = true;
+            picKnight.Gravity = 5;
+            picKnight.InitialJumpSpeed = 10;
+            picKnight.IsAttacking = false;
+            picKnight.IsMovingLeft = false;
+            picKnight.IsMovingRight = false;
+            picKnight.jumpAttackLeft = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.jumpAttackLeft");
+            picKnight.jumpAttackRight = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.jumpAttackRight");
+            picKnight.JumpMultiplier = 2D;
+            picKnight.JumpSpeed = 0;
+            picKnight.Location = new System.Drawing.Point(260, 385);
+            picKnight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            picKnight.Name = "picKnight";
+            picKnight.Size = new System.Drawing.Size(52, 75);
+            picKnight.Status = PlayerPictureBox.PlayerStatus.IsFalling;
+            picKnight.TabIndex = 1;
+            picKnight.TabStop = false;
+            picKnight.WalkingSpeed = 5;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(860, 501);
-            this.Controls.Add(this.picGround);
-            this.Controls.Add(this.picPlatform);
-            this.Controls.Add(this.picKnight);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sprites animation";
-            this.Load += new System.EventHandler(this.frmMain_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.picPlatform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGround)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picKnight)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize = new System.Drawing.Size(860, 626);
+            Controls.Add(picGround);
+            Controls.Add(picPlatform);
+            Controls.Add(picKnight);
+            DoubleBuffered = true;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
+            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "frmMain";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Sprites animation";
+            Load += frmMain_Load;
+            KeyDown += frmMain_KeyDown;
+            KeyUp += frmMain_KeyUp;
+            ((System.ComponentModel.ISupportInitialize)picPlatform).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picGround).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picKnight).EndInit();
+            ResumeLayout(false);
 
         }
 

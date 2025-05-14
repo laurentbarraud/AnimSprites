@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.3.1</version>
-/// <date>May 13th, 2025</date>
+/// <date>May 14th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -291,7 +291,7 @@ namespace AnimSprites
         /// <param name="srcRectRight">Source rectangle for the right end.</param>
         /// <param name="tileSet">The tileset bitmap to use for textures.</param>
         /// <returns>A Bitmap representing the full platform image.</returns>
-        private Bitmap FillPlatformWithTextures(int middleBlockCount, Rectangle srcRectLeft, Rectangle srcRectMiddle, Rectangle srcRectRight, Bitmap tileSet)
+        private static Bitmap FillPlatformWithTextures(int middleBlockCount, Rectangle srcRectLeft, Rectangle srcRectMiddle, Rectangle srcRectRight, Bitmap tileSet)
         {
             int tileHeight = srcRectMiddle.Height;
             int totalWidth = middleBlockCount * srcRectMiddle.Width; // Default: only middle blocks
@@ -419,7 +419,7 @@ namespace AnimSprites
         /// </summary>
         /// <param name="original">The original bitmap</param>
         /// <returns>The inverted bitmap</returns>
-        private Bitmap InvertBitmapColors(Bitmap original)
+        private static Bitmap InvertBitmapColors(Bitmap original)
         {
             Bitmap invertedBitmap = new Bitmap(original.Width, original.Height);
 

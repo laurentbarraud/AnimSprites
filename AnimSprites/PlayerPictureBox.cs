@@ -1,12 +1,13 @@
 ﻿/// <file>PlayerPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.3.1</version>
-/// <date>May 13th, 2025</date>
+/// <date>May 14th, 2025</date>
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace AnimSprites
 {
@@ -20,43 +21,61 @@ namespace AnimSprites
             IsFalling   // The player is in the air, falling due to gravity
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public PlayerStatus Status { get; set; } = PlayerStatus.IsFalling;
 
-        // Lists storing animations for walking and jumping
+         // Lists storing animations for walking and jumping
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> walkLeft { get; private set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> walkRight { get; private set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> jumpLeft { get; private set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> jumpRight { get; private set; }
 
         // Lists storing animations for attack and jump-attack
-        public List<Bitmap> attackLeft { get; set; } 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Bitmap> attackLeft { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> attackRight { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> jumpAttackLeft { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Bitmap> jumpAttackRight { get; set; }
 
         // Property to track whether the character is currently attacking
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsAttacking { get; set; } = false;
 
         // Current animation frame for the player
-        public int CurrentFrame { get; set; } = 0;    
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int CurrentFrame { get; set; } = 0;
 
         // Walking speed of the player (pixels per tick)
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int WalkingSpeed { get; set; } = 1; // Default walking speed
 
         // Initial jump force applied when the player starts jumping
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int InitialJumpSpeed { get; set; } = 20;
 
         // Dynamic jump speed updated during the jump
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int JumpSpeed { get; set; } = 0;
-        
+
         // Controls jump height amplification
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double JumpMultiplier { get; set; } = 2;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int Gravity { get; set; } = 5; // Default gravity value
 
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsMovingLeft { get; set; } = false;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsMovingRight { get; set; } = false;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool FacingLeft { get; set; } = true;
 
 
