@@ -4,7 +4,7 @@ Problem: animation of sprites in a window through a platform game
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
-#Roadmap :
+### Features roadmap
 - [x] Displays multiple parts of a spreadsheet to shape a platform
 - [x] The sprite moves in the direction of the arrow pressed on the keyboard with a walking animation.
 - [x] Implemented a SolidPictureBox, which inherits all PictureBox properties and is considered solid in code by simply checking its type.
