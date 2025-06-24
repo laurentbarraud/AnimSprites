@@ -4,6 +4,7 @@ Problem: animation of sprites in a window through a platform game
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
+
 ### Features roadmap
 - [x] Displays multiple parts of a spreadsheet to shape a platform
 - [x] The sprite moves in the direction of the arrow pressed on the keyboard with a walking animation.
@@ -14,20 +15,19 @@ Problem: animation of sprites in a window through a platform game
 - [x] Implemented the jump animation when the user presses space bar.
 - [x] Implement the attack animation when the user presses Ctrl key.
 - [x] Implemented the jump and attack animation when the user presses the space bar and then Ctrl key.
-- [x] Tested the smooth operation and fluidity of animations.
-- [x] Implement scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
 - [x] The player can freely explore the level by moving the camera left or right with the A and D keys.
 - [x] Implement a hidden build menu (user can press B key to activate/desactivate it).
-- [x] With the open menu, the player can add platforms, choose their size in blocks and delete a selected one.
+- [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
 - [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
-
+- [x] Implemented a scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
+      
 ### Unit tests:
 
 - [x] Control that sprites scroll correct and that all keys make the correct move
 - [x] Test if the sprite can't go through the platform, by walking over it and jumping below it
 - [x] Test if the sprite cannot exit the displayed window by the left or by the right
-- [x] Animation fluidity test
-- [x] Created platforms of 1, 2 and 3 blocks, moved by selecting them, then deleted all including the initial. 
+- [x] Animation fluidity test by jumping and attacking while in air
+- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all, including the initial one. 
 
 ### References:
 
