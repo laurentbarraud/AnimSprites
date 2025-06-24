@@ -16,14 +16,18 @@ v0.2 addings :
 - [x] Set edge limits to prevent the sprite from leaving the screen on border left and right using a 1px width wall.
 - [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take the enum isJumping, isGrounded or isFalling. 
 - [x] Implemented a jump animation when the user presses space bar.
+
+v0.3 addings :
 - [x] Implemented the attack animation when the player presses Ctrl key.
 - [x] Implemented a jump and attack animation when the player presses the space bar and then Ctrl key.
-v0.3 addings :
+- [x] Implemented a scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
+      
+v0.3.1 addings :
 - [x] The player can freely explore the level by moving the camera left or right with the A and D keys.
 - [x] Implement a hidden build menu (user can press B key to activate/desactivate it).
 - [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
 - [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
-- [x] Implemented a scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
+
       
 ### Unit tests:
 
