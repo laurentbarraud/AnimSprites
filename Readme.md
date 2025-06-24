@@ -4,52 +4,29 @@ Problem: animation of sprites in a window through a platform game
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
-
-- [x] Display multiple parts of a spreadsheet in a picturebox.
-
-- [x] Implement a SolidPictureBox, which inherits all PictureBox properties
-
-- [x] Move the sprite in the direction of the arrow pressed on the keyboard with a walking animation.
-
-- [x] Implement a gravity so that the sprite falls from the platform.
-      
-- [x] Implement a solid ground to avoid the sprite falling through the bottom of the window
-      
-- [x] Set edge limits to prevent the sprite from leaving the screen using a 1px width wall.
-      
-- [x] Implement a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take the enum isJumping, isGrounded or isFalling. 
-
-- [x] Implement the jump animation when the user presses space bar.
-
+#Roadmap :
+- [x] Displays multiple parts of a spreadsheet to shape a platform
+- [x] The sprite moves in the direction of the arrow pressed on the keyboard with a walking animation.
+- [x] Implemented a SolidPictureBox, which inherits all PictureBox properties and is considered solid in code by simply checking its type.
+- [x] Implemented a gravity so that the sprite falls from the platform.
+- [x] Set edge limits to prevent the sprite from leaving the screen on border left and right using a 1px width wall.
+- [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take the enum isJumping, isGrounded or isFalling. 
+- [x] Implemented the jump animation when the user presses space bar.
 - [x] Implement the attack animation when the user presses Ctrl key.
-
-- [x] Implement the jump and attack animation when the user presses the space bar and then Ctrl key.
-
-- [x] Test the smooth operation and fluidity of animations.
-
+- [x] Implemented the jump and attack animation when the user presses the space bar and then Ctrl key.
+- [x] Tested the smooth operation and fluidity of animations.
 - [x] Implement scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
-
 - [x] The player can freely explore the level by moving the camera left or right with the A and D keys.
-
 - [x] Implement a hidden build menu (user can press B key to activate/desactivate it).
-
 - [x] With the open menu, the player can add platforms, choose their size in blocks and delete a selected one.
-       
-- [ ] Implement objects or enemies to hit
-
-- [ ] Implement basic collision detection when the user hits an object or enemy
-
+- [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
 
 ### Unit tests:
 
 - [x] Control that sprites scroll correct and that all keys make the correct move
-
 - [x] Test if the sprite can't go through the platform, by walking over it and jumping below it
-
 - [x] Test if the sprite cannot exit the displayed window by the left or by the right
-
 - [x] Animation fluidity test
-
 - [x] Created platforms of 1, 2 and 3 blocks, moved by selecting them, then deleted all including the initial. 
 
 ### References:
