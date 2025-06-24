@@ -1,20 +1,24 @@
 ### School-based programming research project
-Problem: animation of sprites in a window through a platform game
+Problem: animation of sprites in a window illustrated with a platform game
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
 
-### Features roadmap
+### Cumulative Features roadmap
+v0.1 includes:
 - [x] Displays multiple parts of a spreadsheet to shape a platform
 - [x] The sprite moves in the direction of the arrow pressed on the keyboard with a walking animation.
+
+v0.2 addings :
 - [x] Implemented a SolidPictureBox, which inherits all PictureBox properties and is considered solid in code by simply checking its type.
-- [x] Implemented a gravity so that the sprite falls from the platform.
+- [x] Set gravity so that the sprite falls from the platform.
 - [x] Set edge limits to prevent the sprite from leaving the screen on border left and right using a 1px width wall.
 - [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take the enum isJumping, isGrounded or isFalling. 
-- [x] Implemented the jump animation when the user presses space bar.
-- [x] Implement the attack animation when the user presses Ctrl key.
-- [x] Implemented the jump and attack animation when the user presses the space bar and then Ctrl key.
+- [x] Implemented a jump animation when the user presses space bar.
+- [x] Implemented the attack animation when the player presses Ctrl key.
+- [x] Implemented a jump and attack animation when the player presses the space bar and then Ctrl key.
+v0.3 addings :
 - [x] The player can freely explore the level by moving the camera left or right with the A and D keys.
 - [x] Implement a hidden build menu (user can press B key to activate/desactivate it).
 - [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
