@@ -10,32 +10,31 @@ v0.1 includes:
 - [x] Displays multiple parts of a spreadsheet to shape a platform
 - [x] The sprite moves in the direction of the arrow pressed on the keyboard with a walking animation.
 
-v0.2 addings :
-- [x] Implemented a SolidPictureBox, which inherits all PictureBox properties and is considered solid in code by simply checking its type.
+v0.2 added features :
+- [x] Implemented a SolidPictureBox, which inherits all PictureBox properties and is considered solid in code by type-checking.
 - [x] Set gravity so that the sprite falls from the platform.
 - [x] Set edge limits to prevent the sprite from leaving the screen on border left and right using a 1px width wall.
-- [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take the enum isJumping, isGrounded or isFalling. 
+- [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take "isJumping" , "isGrounded" or "isFalling" enum values. 
 - [x] Implemented a jump animation when the user presses space bar.
 
-v0.3 addings :
-- [x] Implemented the attack animation when the player presses Ctrl key.
+v0.3 added features:
+- [x] Implemented an attack animation when the player presses Ctrl key.
 - [x] Implemented a jump and attack animation when the player presses the space bar and then Ctrl key.
 - [x] Implemented a scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
       
-v0.3.1 addings :
-- [x] The player can freely explore the level by moving the camera left or right with the A and D keys.
-- [x] Implement a hidden build menu (user can press B key to activate/desactivate it).
+v0.3.1 added features:
+- [x] The player can freely explore the level by moving the camera left or right with A and D keys.
+- [x] Implemented a hidden build menu (user can press B key to activate/desactivate it).
 - [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
 - [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
 
-      
 ### Unit tests:
 
-- [x] Control that sprites scroll correct and that all keys make the correct move
-- [x] Test if the sprite can't go through the platform, by walking over it and jumping below it
-- [x] Test if the sprite cannot exit the displayed window by the left or by the right
+- [x] Controled that sprites scroll correct and that all keys make the correct move
+- [x] Tested if the sprite can't go through the platform, by walking over it and jumping below it
+- [x] Tested if the sprite cannot exit the displayed window by the left or by the right
 - [x] Animation fluidity test by jumping and attacking while in air
-- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all, including the initial one. 
+- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one. 
 
 ### References:
 
