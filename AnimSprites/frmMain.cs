@@ -44,38 +44,59 @@ namespace AnimSprites
                 Left = 10,
                 Top = 10,
                 Width = 250,
-                Height = 160, // Optimized size to fit everything
+                Height = 200, // Laissons un peu de marge
                 BackColor = Color.LightGray,
                 BorderStyle = BorderStyle.FixedSingle,
                 Visible = false
             };
 
+            int paddingLeft = 10;
+            int spacing = 5;
+            int currentTop = 10;
+
             // -----------------------------
-            // "Add Platform" Button (Top)
+            // "Add Platform" Button
             // -----------------------------
             Button addPlatformButton = new Button
             {
                 Text = "Add a platform",
                 Width = 220,
                 Height = 30,
-                Top = 10,
-                Left = 10
+                Left = paddingLeft,
+                Top = currentTop
             };
             addPlatformButton.Click += AddPlatform;
             levelEditorPanel.Controls.Add(addPlatformButton);
+            currentTop = addPlatformButton.Bottom + spacing;
 
             // -----------------------------
-            // Label "Number of blocs" (Dynamic)
+            // "Add a bush" Button
+            // -----------------------------
+            Button addBushButton = new Button
+            {
+                Text = "Add a bush",
+                Width = 220,
+                Height = 30,
+                Left = paddingLeft,
+                Top = currentTop
+            };
+            // addBushButton.Click += AddBush;
+            levelEditorPanel.Controls.Add(addBushButton);
+            currentTop = addBushButton.Bottom + spacing;
+
+            // -----------------------------
+            // Label "Number of blocs"
             // -----------------------------
             lblBlockCount = new Label
             {
-                Text = $"Number of blocs to add : {trkBlockCount?.Value ?? 6}", // Shows initial value if TrackBar is not yet set
-                Left = 10,
-                Top = 50, // Positioned below the button
+                Text = $"Number of blocs to add : {trkBlockCount?.Value ?? 6}",
+                Left = paddingLeft,
+                Top = currentTop,
                 Width = 220,
                 TextAlign = ContentAlignment.MiddleCenter
             };
             levelEditorPanel.Controls.Add(lblBlockCount);
+            currentTop = lblBlockCount.Bottom + spacing;
 
             // -----------------------------
             // TrackBar for block count
@@ -85,16 +106,17 @@ namespace AnimSprites
                 Minimum = 1,
                 Maximum = 18,
                 Value = 6,
-                Left = 10,
-                Top = 80, // Positioned below the label
+                Left = paddingLeft,
+                Top = currentTop,
                 Width = 220,
                 TickFrequency = 1,
                 SmallChange = 1,
                 LargeChange = 2
             };
             levelEditorPanel.Controls.Add(trkBlockCount);
+            currentTop = trkBlockCount.Bottom + spacing;
 
-            // Updates the label dynamically based on slider movement
+            // Update label when slider moves
             trkBlockCount.Scroll += (aSender, aEvent) =>
             {
                 lblBlockCount.Text = $"Number of blocs to add : {trkBlockCount.Value}";
@@ -108,11 +130,12 @@ namespace AnimSprites
                 Text = "Delete selected object",
                 Width = 220,
                 Height = 30,
-                Top = 125, // Positioned below the slider
-                Left = 10
+                Left = paddingLeft,
+                Top = currentTop
             };
             deletePlatformButton.Click += DeleteSelectedObject;
             levelEditorPanel.Controls.Add(deletePlatformButton);
+            currentTop = deletePlatformButton.Bottom + spacing;
 
             // -----------------------------
             // Add the Menu Panel to the Form
