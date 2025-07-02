@@ -1,7 +1,7 @@
 ﻿/// <file>PlayerPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.3.1</version>
-/// <date>May 14th, 2025</date>
+/// <version>0.4</version>
+/// <date>July 2nd, 2025</date>
 
 using System;
 using System.Collections.Generic;
