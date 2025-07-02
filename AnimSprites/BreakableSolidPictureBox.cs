@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// <file>BreakableSolidPictureBox.cs</file>
+/// <author>Laurent Barraud</author>
+/// <version>0.4</version>
+/// <date>July 2nd, 2025</date>
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -29,11 +34,14 @@ namespace AnimSprites
         {
             if (IsDestroyed) return;
 
-            Health--;        
+            Health--;
+
+            VisualEffects.PlaySlashEffect(this);
 
             if (Health <= 0)
             {
-                IsDestroyed = true;               
+                IsDestroyed = true;
+                VisualEffects.FadeAndDisappear(this);
             }
         }
     }

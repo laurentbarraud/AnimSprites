@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// <file>IBreakable.cs</file>
+/// <author>Laurent Barraud</author>
+/// <version>0.4</version>
+/// <date>July 2nd, 2025</date>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
