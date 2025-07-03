@@ -28,13 +28,23 @@ v0.3.1 added features:
 - [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
 - [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
 
+v0.4 added features:
+- [x] Added a button in the build menu to add a bush.
+- [x] Added a BreakableSolidPictureBox with a health counter that implements the IBreakable interface.
+- [x] Added collision detection when the player attacks with CTRL key.
+- [x] Added a sword effect (slash) that is painted on a target when hit
+- [x] Added a fade-to-transparent effect called in methods of the VisualEffects class, for when the object is destroyed.
+- [x] Added the persistence of platforms and bushes, as a string stored in app.settings.
+
 ### Unit tests:
 
 - [x] Controled that sprites scroll correct and that all keys make the correct move
 - [x] Tested if the sprite can't go through the platform, by walking over it and jumping below it
 - [x] Tested if the sprite cannot exit the displayed window by the left or by the right
 - [x] Animation fluidity test by jumping and attacking while in air
-- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one. 
+- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one.
+- [x] Tested if a bush can be added, moved and deleted.
+- [x] Tested if a bush can be hit by the knight and fade to disappear. 
 
 ### References:
 
