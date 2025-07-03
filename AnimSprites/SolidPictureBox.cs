@@ -17,6 +17,30 @@ namespace AnimSprites
         private Point dragOffset;
         private Control levelEditorPanelRef; // Allows to check if the Build menu is visible
 
+
+        /// <summary>
+        /// Starts a flickering animation of the image by briefly inverting its colors.
+        /// </summary>
+        public async void BlinkIfVisible(Control editorPanel)
+        {
+            if (!Visible || editorPanel == null || !editorPanel.Visible || isBlinking)
+                return;
+
+            if (this.BackgroundImage is Bitmap original)
+            {
+                isBlinking = true;
+
+                Bitmap inverted = InvertBitmapColors(original);
+                this.BackgroundImage = inverted;
+
+                await Task.Delay(200);
+
+                this.BackgroundImage = original;
+                isBlinking = false;
+            }
+        }
+
+
         public void EnableEditorBehavior(Control editorPanel)
         {
             levelEditorPanelRef = editorPanel;
@@ -51,28 +75,6 @@ namespace AnimSprites
             if (levelEditorPanelRef != null && levelEditorPanelRef.Visible)
             {
                 BlinkIfVisible(levelEditorPanelRef);
-            }
-        }
-
-        /// <summary>
-        /// Starts a flickering animation of the image by briefly inverting its colors.
-        /// </summary>
-        public async void BlinkIfVisible(Control editorPanel)
-        {
-            if (!Visible || editorPanel == null || !editorPanel.Visible || isBlinking)
-                return;
-
-            if (this.BackgroundImage is Bitmap original)
-            {
-                isBlinking = true;
-
-                Bitmap inverted = InvertBitmapColors(original);
-                this.BackgroundImage = inverted;
-
-                await Task.Delay(500);
-
-                this.BackgroundImage = original;
-                isBlinking = false;
             }
         }
 

@@ -81,7 +81,7 @@ namespace AnimSprites
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsMovingRight { get; set; } = false;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool FacingLeft { get; set; } = true;
+        public bool FacingLeft { get; set; } = false;
 
 
 

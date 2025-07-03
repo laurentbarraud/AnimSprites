@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AnimSprites.PlayerPictureBox;
@@ -45,7 +46,8 @@ namespace AnimSprites
                 Height = 200, // Laissons un peu de marge
                 BackColor = Color.LightGray,
                 BorderStyle = BorderStyle.FixedSingle,
-                Visible = false
+                Visible = false,
+                Enabled = false
             };
 
             int paddingLeft = 10;
@@ -63,7 +65,10 @@ namespace AnimSprites
                 Left = paddingLeft,
                 Top = currentTop
             };
-            addPlatformButton.Click += AddPlatform;
+            addPlatformButton.Click += (s, e) =>
+            {
+                AddObject("Solid", viewportHorizontalOffset + 200, 350, trkBlockCount.Value);
+            };
             levelEditorPanel.Controls.Add(addPlatformButton);
             currentTop = addPlatformButton.Bottom + spacing;
 
@@ -78,9 +83,13 @@ namespace AnimSprites
                 Left = paddingLeft,
                 Top = currentTop
             };
-            addBushButton.Click += AddBush;
+            addBushButton.Click += (s, e) =>
+            {
+                AddObject("Breakable", viewportHorizontalOffset + 300, 410);
+            };
             levelEditorPanel.Controls.Add(addBushButton);
             currentTop = addBushButton.Bottom + spacing;
+
 
             // -----------------------------
             // Label "Number of blocs"
@@ -139,125 +148,71 @@ namespace AnimSprites
             // Add the Menu Panel to the Form
             // -----------------------------
             this.Controls.Add(levelEditorPanel);
-
-            // -----------------------------
-            // Loads the initial platform
-            // -----------------------------
-
-            // Load the tileset image
-            Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
-
-            // Define source rectangles for left, middle, and right tiles
-            Rectangle srcRectLeftPlatform = new Rectangle(4, 2, 28, 31);  // Left tile
-            Rectangle srcRectMiddlePlatform = new Rectangle(36, 2, 30, 31); // Middle tile
-            Rectangle srcRectRightPlatform = new Rectangle(68, 2, 26, 31); // Right tile
-
-            // Define number of middle blocks
-            int middleBlockCount = 6; // Adjust platform size dynamically
-
-            // Generate platform texture using the method
-            Bitmap platformBitmap = FillPlatformWithTextures(middleBlockCount, srcRectLeftPlatform, srcRectMiddlePlatform, srcRectRightPlatform, bmpTileSet);
-
-            // Assign the generated image to picPlateforme
-            picPlatform.BackgroundImage = platformBitmap;
-            picPlatform.Width = platformBitmap.Width;
-            picPlatform.Height = platformBitmap.Height;
-            picPlatform.BackColor = Color.Transparent; // Ensure transparent background.
-            
+          
             // ----------------------------------------------------------------
             // Converts designer PictureBoxes to SolidPictureBox for collisions
             // ----------------------------------------------------------------
-
-            ConvertToSolidPictureBox(ref picPlatform);
             ConvertToSolidPictureBox(ref picGround);
-            ConvertToBreakableSolidPictureBox(ref picBush);
-
-            // ---------------------------------------------------
-            // Makes initial platform and initial bush selectable
-            // ---------------------------------------------------
-
-            picPlatform.Click += SelectObject;
-            picBush.Click += SelectObject;
-
-            // --------------------------------------------------------------------------
-            // Makes initial platform and initial bush movable if the build menu is open
-            // --------------------------------------------------------------------------
-
-            picPlatform.MouseDown += (aSender, aEvent) =>
-            {
-                if (levelEditorPanel.Visible)
-                {
-                    picPlatform.Tag = aEvent.Location;
-                }
-            };
-
-            picPlatform.MouseMove += (aSender, aEvent) =>
-            {
-                if (levelEditorPanel.Visible && aEvent.Button == MouseButtons.Left && picPlatform.Tag is Point initialPos)
-                {
-                    picPlatform.Left += aEvent.X - initialPos.X;
-                    picPlatform.Top += aEvent.Y - initialPos.Y;
-                }
-            };
-
-            picBush.MouseDown += (aSender, aEvent) =>
-            {
-                if (levelEditorPanel.Visible)
-                {
-                    picBush.Tag = aEvent.Location;
-                }
-            };
-
-            picBush.MouseMove += (aSender, aEvent) =>
-            {
-                if (levelEditorPanel.Visible && aEvent.Button == MouseButtons.Left && picBush.Tag is Point initialPos)
-                {
-                    picBush.Left += aEvent.X - initialPos.X;
-                    picBush.Top += aEvent.Y - initialPos.Y;
-                }
-            };
-
-            // -----------------------------
+                      
             // Set initial motionless images
-            // -----------------------------
             picGround.Width = levelWidth;
+
+            // Loads level solid and breakable objects
+            LoadLevel();
         }
 
-        /// <summary>
-        /// <summary>
-        /// Adds a breakable bush at the specified screen position using a sliced region from the nature_objects tileset.
-        /// </summary> 
-        public void AddBush(object sender, EventArgs e)
+        private void AddObject(string type, int positionX, int positionY, int middleBlockCount = 3)
         {
-            try
-            {
-                Image bushImage = Properties.Resources.bush; 
+            PictureBox pb;
 
-                // Create a breakable bush control with the extracted image
-                var bush = new BreakableSolidPictureBox()
+            if (type == "Breakable")
+            {
+                pb = new BreakableSolidPictureBox
                 {
-                    Left = 60,
-                    Top = 395,
-                    Width = 72,
-                    Height = 54,
-                    BackgroundImage = bushImage
+                    Width = 40,
+                    Height = 40,
+                    BackgroundImage = Properties.Resources.bush,
+                    BackgroundImageLayout = ImageLayout.Stretch,
+                    BackColor = Color.Transparent
                 };
-
-                // Allow the bush to be moved with the mouse
-                bush.EnableEditorBehavior(levelEditorPanel);
-
-                bush.Click += SelectObject;        // Ensures that each new bush created can be
-                                                   // selected when the user clicks on it.
-
-                // Add the bush to the form so it becomes visible and interactive
-                this.Controls.Add(bush);
-                bush.BringToFront();
             }
-            catch (Exception ex)
+            else // Solid platform
             {
-                MessageBox.Show("Failed to add bush: " + ex.Message);
+                // Load the tileset image and define source rectangles
+                Bitmap tileSet = AnimSprites.Properties.Resources.nature_tileset;
+                Rectangle srcRectLeft = new Rectangle(4, 2, 28, 31);
+                Rectangle srcRectMiddle = new Rectangle(36, 2, 30, 31);
+                Rectangle srcRectRight = new Rectangle(68, 2, 26, 31);
+
+                Bitmap platformBitmap = FillPlatformWithTextures(middleBlockCount, srcRectLeft, srcRectMiddle, srcRectRight, tileSet);
+
+                pb = new SolidPictureBox
+                {
+                    Width = platformBitmap.Width,
+                    Height = platformBitmap.Height,
+                    BackgroundImage = platformBitmap,
+                    BackgroundImageLayout = ImageLayout.None,
+                    BackColor = Color.Transparent
+                };
             }
+
+            pb.Left = positionX;
+            pb.Top = positionY;
+            pb.Name = $"{type}_{positionX}_{positionY}";
+
+            if (pb is SolidPictureBox solid)
+            {
+                solid.EnableEditorBehavior(levelEditorPanel);
+            }
+
+            pb.Click += SelectObject;
+
+            this.Controls.Add(pb);
+            pb.SendToBack();
+
+            SaveLevel();
         }
+
 
 
         private void AddPlatform(object sender, EventArgs e)
@@ -298,6 +253,8 @@ namespace AnimSprites
 
             // Add the new platform to the form
             this.Controls.Add(newPlatform);
+
+            SaveLevel();
         }
 
 
@@ -376,23 +333,6 @@ namespace AnimSprites
             }
         }
 
-        // Utility method: convert a PictureBox to a BreakableSolidPictureBox.
-        private void ConvertToBreakableSolidPictureBox(ref PictureBox pb)
-        {
-            BreakableSolidPictureBox bpb = new BreakableSolidPictureBox();
-            bpb.Location = pb.Location;
-            bpb.Size = pb.Size;
-            bpb.BackgroundImage = pb.BackgroundImage;
-            bpb.BackgroundImageLayout = pb.BackgroundImageLayout;
-            bpb.BackColor = pb.BackColor;
-            bpb.Name = pb.Name;
-            this.Controls.Remove(pb);
-            pb.Dispose();
-            pb = bpb;
-            this.Controls.Add(pb);
-            pb.SendToBack(); // Ensure breakable objects remain in the background.
-        }
-
 
         // Utility method: convert a PictureBox to a SolidPictureBox.
         private void ConvertToSolidPictureBox(ref PictureBox pb)
@@ -417,6 +357,8 @@ namespace AnimSprites
             {
                 this.Controls.Remove(selectedObject); // Remove platform from the form
                 selectedObject = null; // Reset selection after deletion
+
+                SaveLevel();
             }
         }
 
@@ -476,7 +418,6 @@ namespace AnimSprites
         }
 
 
-
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             bool shouldAnimate = false;
@@ -524,7 +465,20 @@ namespace AnimSprites
             else if (e.KeyCode == Keys.B)
             {
                 levelEditorPanel.Visible = !levelEditorPanel.Visible;
+                levelEditorPanel.Enabled = !levelEditorPanel.Enabled;
             }
+
+            else if (e.KeyCode == Keys.Escape && levelEditorPanel.Visible)
+            {
+                levelEditorPanel.Visible = false;
+                levelEditorPanel.Enabled = false;
+            }
+
+            else if (e.KeyCode == Keys.Delete && levelEditorPanel.Visible)
+            {
+                DeleteSelectedObject(sender, e);
+            }
+
 
             if (shouldAnimate)
             {
@@ -552,6 +506,79 @@ namespace AnimSprites
             }
         }
 
+        /// <summary>
+        /// Load platforms and bushes with default textures based on type
+        /// </summary>
+        private void LoadLevel()
+        {
+            string json = Properties.Settings.Default.LevelData;
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+
+            try
+            {
+                List<SimpleLevelObject> savedObjects = JsonSerializer.Deserialize<List<SimpleLevelObject>>(json);
+
+                foreach (SimpleLevelObject data in savedObjects)
+                {
+                    PictureBox pb;
+
+                    // Create object based on type
+                    if (data.ObjectType == "Breakable")
+                        pb = new BreakableSolidPictureBox();
+                    else
+                        pb = new SolidPictureBox();
+
+                    // Restore position and size
+                    pb.Location = new Point(data.PositionX, data.PositionY);
+                    pb.Size = new Size(data.Width, data.Height);
+                    pb.BackgroundImageLayout = ImageLayout.Stretch;
+
+                    // Apply default visuals based on object type
+                    if (data.ObjectType == "Breakable")
+                    {
+                        pb.BackgroundImage = Properties.Resources.bush;
+                    }
+                    else
+                    {
+                        // Reconstruct platform texture dynamically from tileset
+                        Bitmap tileSet = Properties.Resources.nature_tileset;
+
+                        // Define the rectangles inside the tileset image
+                        Rectangle srcRectLeft = new Rectangle(4, 2, 28, 31);
+                        Rectangle srcRectMiddle = new Rectangle(36, 2, 30, 31);
+                        Rectangle srcRectRight = new Rectangle(68, 2, 26, 31);
+
+                        // Estimate the number of middle blocks based on total width
+                        int totalEdgeWidth = srcRectLeft.Width + srcRectRight.Width;
+                        int availableMiddleWidth = Math.Max(0, data.Width - totalEdgeWidth);
+                        int middleBlockCount = availableMiddleWidth / srcRectMiddle.Width;
+
+                        // Build the final composite image
+                        pb.BackgroundImage = FillPlatformWithTextures(middleBlockCount, srcRectLeft, srcRectMiddle, srcRectRight, tileSet);
+                        pb.BackgroundImageLayout = ImageLayout.None;
+                    }
+
+                    // Assign name and enable interactivity
+                    pb.Name = $"{data.ObjectType}_{data.PositionX}_{data.PositionY}";
+
+                    if (pb is SolidPictureBox solid)
+                        solid.EnableEditorBehavior(levelEditorPanel);
+
+                    pb.Click += SelectObject;
+
+                    this.Controls.Add(pb);
+                    pb.SendToBack();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Could not load saved level.");
+            }
+        }
+
+
+
         protected override void OnPaint(PaintEventArgs e)
         {
             if (this.BackgroundImage != null)
@@ -571,6 +598,40 @@ namespace AnimSprites
 
             base.OnPaint(e);
         }
+
+        /// <summary>
+        /// Saves all Solid and Breakable objects into a JSON string in app settings.
+        /// </summary>
+        private void SaveLevel()
+        {
+            List<SimpleLevelObject> allObjects = new List<SimpleLevelObject>();
+
+            foreach (Control control in this.Controls)
+            {
+                // Only save SolidPictureBox or BreakableSolidPictureBox
+                if (control is SolidPictureBox)
+                {
+                    string type = control is BreakableSolidPictureBox ? "Breakable" : "Solid";
+
+                    SimpleLevelObject obj = new SimpleLevelObject
+                    {
+                        ObjectType = type,
+                        PositionX = control.Left,
+                        PositionY = control.Top,
+                        Width = control.Width,
+                        Height = control.Height
+                    };
+
+                    allObjects.Add(obj);
+                }
+            }
+
+            // Convert list to JSON and save it
+            string json = JsonSerializer.Serialize(allObjects);
+            Properties.Settings.Default.LevelData = json;
+            Properties.Settings.Default.Save();
+        }
+
 
         private void SelectObject(object sender, EventArgs e)
         {
@@ -697,6 +758,20 @@ namespace AnimSprites
 
                 // Gradually decrease the jump speed
                 picKnight.JumpSpeed--;
+
+                // Select appropriate animation frame
+                List<Bitmap> jumpFrames = picKnight.FacingLeft ? picKnight.jumpLeft : picKnight.jumpRight;
+
+                // Prevent index overflow
+                int totalFrames = jumpFrames.Count;
+                int frameIndex = Math.Min(picKnight.CurrentFrame, totalFrames - 1);
+
+                // Set the current sprite image
+                picKnight.BackgroundImage = jumpFrames[frameIndex];
+
+                // Advance the frame counter
+                if (picKnight.CurrentFrame < totalFrames - 1)
+                    picKnight.CurrentFrame++;
 
                 // Transition to falling when jump speed reaches zero
                 if (picKnight.JumpSpeed <= 0)

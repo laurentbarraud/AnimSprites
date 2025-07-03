@@ -31,13 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             animTimer = new System.Windows.Forms.Timer(components);
-            picPlatform = new System.Windows.Forms.PictureBox();
             picKnight = new PlayerPictureBox();
-            picBush = new System.Windows.Forms.PictureBox();
             picGround = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picPlatform).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picKnight).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picBush).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picGround).BeginInit();
             SuspendLayout();
             // 
@@ -47,38 +43,17 @@
             animTimer.Interval = 50;
             animTimer.Tick += AnimTimer_Tick;
             // 
-            // picPlatform
-            // 
-            picPlatform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            picPlatform.Location = new System.Drawing.Point(260, 460);
-            picPlatform.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            picPlatform.Name = "picPlatform";
-            picPlatform.Size = new System.Drawing.Size(320, 54);
-            picPlatform.TabIndex = 2;
-            picPlatform.TabStop = false;
-            // 
             // picKnight
             // 
             picKnight.BackColor = System.Drawing.Color.Transparent;
             picKnight.BackgroundImage = Properties.Resources.walk01_right;
             picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            picKnight.Location = new System.Drawing.Point(260, 385);
+            picKnight.Location = new System.Drawing.Point(260, 518);
             picKnight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             picKnight.Name = "picKnight";
             picKnight.Size = new System.Drawing.Size(52, 75);
             picKnight.TabIndex = 1;
             picKnight.TabStop = false;
-            // 
-            // picBush
-            // 
-            picBush.BackColor = System.Drawing.Color.Transparent;
-            picBush.BackgroundImage = Properties.Resources.bush;
-            picBush.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            picBush.Location = new System.Drawing.Point(669, 534);
-            picBush.Name = "picBush";
-            picBush.Size = new System.Drawing.Size(125, 62);
-            picBush.TabIndex = 4;
-            picBush.TabStop = false;
             // 
             // picGround
             // 
@@ -97,9 +72,7 @@
             BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(860, 626);
-            Controls.Add(picBush);
             Controls.Add(picGround);
-            Controls.Add(picPlatform);
             Controls.Add(picKnight);
             DoubleBuffered = true;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -114,9 +87,7 @@
             Load += frmMain_Load;
             KeyDown += frmMain_KeyDown;
             KeyUp += frmMain_KeyUp;
-            ((System.ComponentModel.ISupportInitialize)picPlatform).EndInit();
             ((System.ComponentModel.ISupportInitialize)picKnight).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picBush).EndInit();
             ((System.ComponentModel.ISupportInitialize)picGround).EndInit();
             ResumeLayout(false);
 
@@ -125,8 +96,6 @@
         #endregion
         private PlayerPictureBox picKnight;
         private System.Windows.Forms.Timer animTimer;
-        private System.Windows.Forms.PictureBox picPlatform;
-        private System.Windows.Forms.PictureBox picBush;
         private System.Windows.Forms.PictureBox picGround;
     }
 }
