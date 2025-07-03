@@ -48,6 +48,11 @@ namespace AnimSprites
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsAttacking { get; set; } = false;
 
+        // Indicates whether the player has already dealt damage during the current attack animation.
+        // This prevents multiple hits from being registered in a single attack cycle.
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool HasDealtDamageThisAttack { get; set; } = false;
+
         // Current animation frame for the player
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int CurrentFrame { get; set; } = 0;
@@ -205,5 +210,17 @@ namespace AnimSprites
                 Properties.Resources.jump_attack10_right
             };
         }
+
+
+        public void StartAttack()
+        {
+            if (!IsAttacking)
+            {
+                IsAttacking = true;
+                HasDealtDamageThisAttack = false;
+                CurrentFrame = 0;
+            }
+        }
+
     }
 }

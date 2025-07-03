@@ -289,6 +289,76 @@ namespace AnimSprites
             UpdateGame(); // Handles movement and scrolling
         }
 
+        /// Checks for nearby breakable objects within the player's attack hitbox,
+        /// and applies damage to the closest one — only once per attack.
+        private void CheckBreakableCollisionsWithPlayer()
+        {
+            // If the player already dealt damage during this attack, skip collision check
+            if (picKnight.HasDealtDamageThisAttack)
+                return;
+
+            // Define the player's weapon hitbox based on facing direction
+            Rectangle playerWeaponHitbox = picKnight.FacingLeft
+                ? new Rectangle(
+                    picKnight.Left - 20,           // area to the left of the player
+                    picKnight.Top + 10,            // slight vertical offset
+                    20,                            // narrow horizontal range
+                    picKnight.Height - 20          // avoids touching feet/head
+                )
+                : new Rectangle(
+                    picKnight.Right,              // area to the right of the player
+                    picKnight.Top + 10,
+                    20,
+                    picKnight.Height - 20
+                );
+
+            // Create a larger area around the weapon hitbox to limit the search space
+            Rectangle collisionSearchZone = Rectangle.Inflate(playerWeaponHitbox, 40, 20);
+
+            BreakableSolidPictureBox closestBreakableObject = null;
+            int closestObjectDistanceSquared = int.MaxValue;
+
+            // Loop through all scene controls to find nearby breakable objects
+            foreach (Control control in this.Controls)
+            {
+                if (control is BreakableSolidPictureBox breakableObject &&
+                    breakableObject.Visible &&
+                    collisionSearchZone.IntersectsWith(breakableObject.Bounds))
+                {
+                    // Make sure the object actually intersects the precise weapon hitbox
+                    if (!playerWeaponHitbox.IntersectsWith(breakableObject.Bounds))
+                        continue;
+
+                    // Calculate squared distance from player center to object center
+                    int playerCenterX = picKnight.Left + picKnight.Width / 2;
+                    int playerCenterY = picKnight.Top + picKnight.Height / 2;
+
+                    int objectCenterX = breakableObject.Left + breakableObject.Width / 2;
+                    int objectCenterY = breakableObject.Top + breakableObject.Height / 2;
+
+                    int deltaX = objectCenterX - playerCenterX;
+                    int deltaY = objectCenterY - playerCenterY;
+                    int distanceSquared = deltaX * deltaX + deltaY * deltaY;
+
+                    // Update if this object is the closest so far
+                    if (distanceSquared < closestObjectDistanceSquared)
+                    {
+                        closestObjectDistanceSquared = distanceSquared;
+                        closestBreakableObject = breakableObject;
+                    }
+                }
+            }
+
+            // If a valid target was found, apply damage and lock attack state
+            if (closestBreakableObject != null)
+            {
+                closestBreakableObject.Hit();
+                picKnight.HasDealtDamageThisAttack = true;
+            }
+        }
+
+
+
         // Utility method: convert a PictureBox to a SolidPictureBox.
         private void ConvertToSolidPictureBox(ref PictureBox pb)
         {
@@ -401,11 +471,11 @@ namespace AnimSprites
             {
                 if (!picKnight.IsAttacking)
                 {
-                    picKnight.IsAttacking = true;
-                    picKnight.CurrentFrame = 0;
-                    shouldAnimate = true;
+                    picKnight.StartAttack();
+                    shouldAnimate = true; 
                 }
             }
+
             else if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
             {
                 viewportHorizontalOffset -= 20;
@@ -688,7 +758,6 @@ namespace AnimSprites
                 picKnight.Status = PlayerStatus.IsFalling;
                 picKnight.Top += picKnight.Gravity; // Move the sprite downward
             }
-
             // -----------------------------
             // Attack Animation Logic
             // -----------------------------
@@ -708,6 +777,14 @@ namespace AnimSprites
 
                 // Update the sprite's image with the current frame
                 picKnight.BackgroundImage = attackFrames[picKnight.CurrentFrame];
+
+                // Deal damage on frame 1 if it hasn't been done yet
+                if (picKnight.CurrentFrame == 1 && !picKnight.HasDealtDamageThisAttack)
+                {
+                    CheckBreakableCollisionsWithPlayer();          // Only one hit possible per attack
+                    picKnight.HasDealtDamageThisAttack = true;        
+                }
+
                 picKnight.CurrentFrame = (picKnight.CurrentFrame + 1) % attackFrames.Count;
 
                 // Stop the attack animation when all frames are played
@@ -716,6 +793,7 @@ namespace AnimSprites
                     picKnight.IsAttacking = false; // Reset attacking state
                 }
             }
+
         }
 
         private void UpdateSpriteWalkingAnimation()
