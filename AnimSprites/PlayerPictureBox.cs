@@ -1,7 +1,7 @@
 ﻿/// <file>PlayerPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.4</version>
-/// <date>July 2nd, 2025</date>
+/// <date>July 3rd, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -54,11 +54,11 @@ namespace AnimSprites
 
         // Walking speed of the player (pixels per tick)
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int WalkingSpeed { get; set; } = 1; // Default walking speed
+        public int WalkingSpeed { get; set; } = 6; // Default walking speed
 
         // Initial jump force applied when the player starts jumping
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int InitialJumpSpeed { get; set; } = 20;
+        public int InitialJumpSpeed { get; set; } = 15;
 
         // Dynamic jump speed updated during the jump
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -66,7 +66,7 @@ namespace AnimSprites
 
         // Controls jump height amplification
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public double JumpMultiplier { get; set; } = 2;
+        public double JumpMultiplier { get; set; } = 1;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int Gravity { get; set; } = 5; // Default gravity value

@@ -1,7 +1,7 @@
 ﻿/// <file>BreakableSolidPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.4</version>
-/// <date>July 2nd, 2025</date>
+/// <date>July 3rd, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -21,14 +21,17 @@ namespace AnimSprites
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDestroyed { get; protected set; } = false;
 
-        public BreakableSolidPictureBox(Image tileset, int tileX, int tileY, int tileSize)
+        /// <summary>
+        /// Creates a breakable solid object from an already prepared image.
+        /// </summary>
+        /// <param name="backgroundImage">The pre-extracted image to display</param>
+        public BreakableSolidPictureBox(Image backgroundImage)
         {
-            Width = tileSize;
-            Height = tileSize;
-            BackgroundImage = TileHelper.GetTileImage(tileset, tileX, tileY, tileSize, tileSize);
-            BackgroundImageLayout = ImageLayout.Stretch;
-            BackColor = Color.Transparent;
+            this.BackgroundImage = backgroundImage;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.BackColor = Color.Transparent;
         }
+
 
         public virtual void Hit()
         {
@@ -45,5 +48,6 @@ namespace AnimSprites
             }
         }
     }
+
 
 }

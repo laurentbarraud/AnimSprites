@@ -273,6 +273,26 @@ namespace AnimSprites.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bush {
+            get {
+                object obj = ResourceManager.GetObject("bush", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap forest_ground {
+            get {
+                object obj = ResourceManager.GetObject("forest_ground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jump_attack01_left {
             get {
                 object obj = ResourceManager.GetObject("jump_attack01_left", resourceCulture);
@@ -675,17 +695,7 @@ namespace AnimSprites.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap nature_tileset {
             get {
-                object obj = ResourceManager.GetObject("nature-tileset", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap texture_sol_forestier {
-            get {
-                object obj = ResourceManager.GetObject("texture_sol_forestier", resourceCulture);
+                object obj = ResourceManager.GetObject("nature_tileset", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

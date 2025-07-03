@@ -57,7 +57,7 @@
             // 
             // picGround
             // 
-            picGround.BackgroundImage = (System.Drawing.Image)resources.GetObject("picGround.BackgroundImage");
+            picGround.BackgroundImage = Properties.Resources.forest_ground;
             picGround.Location = new System.Drawing.Point(0, 594);
             picGround.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             picGround.Name = "picGround";
@@ -67,29 +67,14 @@
             // 
             // picKnight
             // 
-            picKnight.attackLeft = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.attackLeft");
-            picKnight.attackRight = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.attackRight");
             picKnight.BackColor = System.Drawing.Color.Transparent;
             picKnight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            picKnight.CurrentFrame = 0;
-            picKnight.FacingLeft = true;
-            picKnight.Gravity = 5;
-            picKnight.InitialJumpSpeed = 10;
-            picKnight.IsAttacking = false;
-            picKnight.IsMovingLeft = false;
-            picKnight.IsMovingRight = false;
-            picKnight.jumpAttackLeft = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.jumpAttackLeft");
-            picKnight.jumpAttackRight = (System.Collections.Generic.List<System.Drawing.Bitmap>)resources.GetObject("picKnight.jumpAttackRight");
-            picKnight.JumpMultiplier = 2D;
-            picKnight.JumpSpeed = 0;
             picKnight.Location = new System.Drawing.Point(260, 385);
             picKnight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             picKnight.Name = "picKnight";
             picKnight.Size = new System.Drawing.Size(52, 75);
-            picKnight.Status = PlayerPictureBox.PlayerStatus.IsFalling;
             picKnight.TabIndex = 1;
             picKnight.TabStop = false;
-            picKnight.WalkingSpeed = 5;
             // 
             // frmMain
             // 

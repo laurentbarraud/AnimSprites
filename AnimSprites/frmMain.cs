@@ -1,17 +1,16 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.4</version>
-/// <date>July 2nd, 2025</date>
+/// <date>July 3rd, 2025</date>
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AnimSprites.PlayerPictureBox;
-using static System.Net.Mime.MediaTypeNames;
+using Image = System.Drawing.Image;
 
 namespace AnimSprites
 {
@@ -24,8 +23,7 @@ namespace AnimSprites
         private int levelWidth = 1000;
 
         private Panel levelEditorPanel;
-        private bool isMenuVisible = false;
-        private SolidPictureBox selectedPlatform = null;
+        private SolidPictureBox selectedObject = null;
         private TrackBar trkBlockCount; // Stores the slider instance globally
         private Label lblBlockCount; // Displays the current block count selected
 
@@ -80,7 +78,7 @@ namespace AnimSprites
                 Left = paddingLeft,
                 Top = currentTop
             };
-            // addBushButton.Click += AddBush;
+            addBushButton.Click += AddBush;
             levelEditorPanel.Controls.Add(addBushButton);
             currentTop = addBushButton.Bottom + spacing;
 
@@ -177,11 +175,11 @@ namespace AnimSprites
             // Makes initial platform selectable
             // ----------------------------------
 
-            picPlatform.Click += SelectPlatform;
+            picPlatform.Click += SelectObject;
 
-            // ---------------------------------------------------
-            // Makes initial platform movable if the menu is open
-            // ---------------------------------------------------
+            // ---------------------------------------------------------
+            // Makes initial platform movable if the build menu is open
+            // ---------------------------------------------------------
 
             picPlatform.MouseDown += (aSender, aEvent) =>
             {
@@ -207,25 +205,49 @@ namespace AnimSprites
             picGround.Width = levelWidth;
         }
 
-        // Utility method: convert a PictureBox to a SolidPictureBox.
-        private void ConvertToSolidPictureBox(ref PictureBox pb)
+        /// <summary>
+        /// <summary>
+        /// Adds a breakable bush at the specified screen position using a sliced region from the nature_objects tileset.
+        /// </summary> 
+        public void AddBush(object sender, EventArgs e)
         {
-            SolidPictureBox spb = new SolidPictureBox();
-            spb.Location = pb.Location;
-            spb.Size = pb.Size;
-            spb.BackgroundImage = pb.BackgroundImage;
-            spb.BackgroundImageLayout = pb.BackgroundImageLayout;
-            spb.BackColor = pb.BackColor;
-            spb.Name = pb.Name;
-            this.Controls.Remove(pb);
-            pb.Dispose();
-            pb = spb;
-            this.Controls.Add(pb);
-            pb.SendToBack(); // Ensure solid objects remain in the background.
+            try
+            {
+                Image bushImage = Properties.Resources.bush; 
+
+                // Create a breakable bush control with the extracted image
+                var bush = new BreakableSolidPictureBox(bushImage)
+                {
+                    Left = 60,
+                    Top = 395,
+                    Width = 72,
+                    Height = 54,
+                };
+
+                // Allow the bush to be moved with the mouse
+                bush.EnableEditorBehavior(levelEditorPanel);
+
+                bush.Click += SelectObject;        // Ensures that each new bush created can be
+                                                   // selected when the user clicks on it.
+
+                // Add the bush to the form so it becomes visible and interactive
+                this.Controls.Add(bush);
+                bush.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to add bush: " + ex.Message);
+            }
         }
+
 
         private void AddPlatform(object sender, EventArgs e)
         {
+            if (!levelEditorPanel.Visible)
+            {
+                return;
+            }
+
             // Load the tileset image
             Bitmap bmpTileSet = new Bitmap(AnimSprites.Properties.Resources.nature_tileset);
 
@@ -251,19 +273,9 @@ namespace AnimSprites
                 BackColor = Color.Transparent // Ensure transparency
             };
 
-            // Allow the platform to be moved with the mouse
-            newPlatform.MouseDown += (aSender, aEvent) => { newPlatform.Tag = aEvent.Location; };
-            newPlatform.MouseMove += (aSender, aEvent) =>
-            {
-                if (aEvent.Button == MouseButtons.Left && newPlatform.Tag is Point initialPos)
-                {
-                    newPlatform.Left += aEvent.X - initialPos.X;
-                    newPlatform.Top += aEvent.Y - initialPos.Y;
-                }
-            };
+            newPlatform.EnableEditorBehavior(levelEditorPanel);
+            newPlatform.Click += SelectObject;
 
-            newPlatform.Click += SelectPlatform; // Ensures that each new platform created can be
-                                                 // selected when the user clicks on it.
 
             // Add the new platform to the form
             this.Controls.Add(newPlatform);
@@ -277,30 +289,29 @@ namespace AnimSprites
             UpdateGame(); // Handles movement and scrolling
         }
 
-        private async void BlinkSelectedPlatform()
+        // Utility method: convert a PictureBox to a SolidPictureBox.
+        private void ConvertToSolidPictureBox(ref PictureBox pb)
         {
-            if (selectedPlatform != null && levelEditorPanel.Visible)
-            {
-                Bitmap originalImage = (Bitmap)selectedPlatform.BackgroundImage;
-                Bitmap invertedImage = InvertBitmapColors(originalImage);
-
-                // Swap to inverted image
-                selectedPlatform.BackgroundImage = invertedImage;
-
-                // Wait for half second
-                await Task.Delay(500);
-
-                // Restore original image
-                selectedPlatform.BackgroundImage = originalImage;
-            }
+            SolidPictureBox spb = new SolidPictureBox();
+            spb.Location = pb.Location;
+            spb.Size = pb.Size;
+            spb.BackgroundImage = pb.BackgroundImage;
+            spb.BackgroundImageLayout = pb.BackgroundImageLayout;
+            spb.BackColor = pb.BackColor;
+            spb.Name = pb.Name;
+            this.Controls.Remove(pb);
+            pb.Dispose();
+            pb = spb;
+            this.Controls.Add(pb);
+            pb.SendToBack(); // Ensure solid objects remain in the background.
         }
 
         private void DeleteSelectedObject(object sender, EventArgs e)
         {
-            if (selectedPlatform != null)
+            if (selectedObject != null)
             {
-                this.Controls.Remove(selectedPlatform); // Remove platform from the form
-                selectedPlatform = null; // Reset selection after deletion
+                this.Controls.Remove(selectedObject); // Remove platform from the form
+                selectedObject = null; // Reset selection after deletion
             }
         }
 
@@ -361,66 +372,61 @@ namespace AnimSprites
 
 
 
-        // KeyDown event: start the appropriate horizontal movement.
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            bool shouldAnimate = false;
+
+            if (e.KeyCode == Keys.Left && !levelEditorPanel.Visible)
             {
                 picKnight.IsMovingLeft = true;
                 picKnight.FacingLeft = true;
+                shouldAnimate = true;
             }
-
-            else if (e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.Right && !levelEditorPanel.Visible)
             {
                 picKnight.IsMovingRight = true;
                 picKnight.FacingLeft = false;
+                shouldAnimate = true;
             }
-
-            else if (e.KeyCode == Keys.Space)
+            else if (e.KeyCode == Keys.Space && !levelEditorPanel.Visible)
             {
-                // Triggers jump if the player is grounded
                 if (picKnight.Status == PlayerStatus.IsGrounded)
                 {
                     picKnight.Status = PlayerStatus.IsJumping;
-                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed; // Resets the jump force
+                    picKnight.JumpSpeed = picKnight.InitialJumpSpeed;
+                    shouldAnimate = true;
                 }
             }
-
-            else if (e.KeyCode == Keys.ControlKey)
+            else if (e.KeyCode == Keys.ControlKey && !levelEditorPanel.Visible)
             {
-                if (picKnight.Status != PlayerStatus.IsJumping && !picKnight.IsAttacking)
+                if (!picKnight.IsAttacking)
                 {
-                    // Starts ground attack animation
                     picKnight.IsAttacking = true;
-                    picKnight.CurrentFrame = 0; // Resets animation to the first frame
-                }
-                else if (picKnight.Status == PlayerStatus.IsJumping && !picKnight.IsAttacking)
-                {
-                    // Starts jump-attack animation
-                    picKnight.IsAttacking = true;
-                    picKnight.CurrentFrame = 0; // Reset animation to the first frame
+                    picKnight.CurrentFrame = 0;
+                    shouldAnimate = true;
                 }
             }
-
             else if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
             {
-                viewportHorizontalOffset -= 20; // Déplace la caméra à gauche
+                viewportHorizontalOffset -= 20;
                 ScrollLevel(20);
             }
-
             else if (e.KeyCode == Keys.D && viewportHorizontalOffset + this.ClientSize.Width < levelWidth)
             {
-                viewportHorizontalOffset += 20; // Déplace la caméra à droite
+                viewportHorizontalOffset += 20;
                 ScrollLevel(-20);
             }
-
             else if (e.KeyCode == Keys.B)
             {
                 levelEditorPanel.Visible = !levelEditorPanel.Visible;
             }
 
-            animTimer.Start();
+            if (shouldAnimate)
+            {
+                animTimer.Start();
+            }
         }
+
 
         // KeyUp event: stops the horizontal movement when key is released.
         private void frmMain_KeyUp(object sender, KeyEventArgs e)
@@ -433,41 +439,13 @@ namespace AnimSprites
             {
                 picKnight.IsMovingRight = false;
             }
-        }
 
-        /// <summary>
-        /// Creates a clone of the image and applies an inverted color filter. 
-        /// Each channel (Red, Green, Blue) is reversed, giving a negative effect.
-        /// The final image is returned to be used as a temporary image.
-        /// </summary>
-        /// <param name="original">The original bitmap</param>
-        /// <returns>The inverted bitmap</returns>
-        private static Bitmap InvertBitmapColors(Bitmap original)
-        {
-            Bitmap invertedBitmap = new Bitmap(original.Width, original.Height);
-
-            using (Graphics g = Graphics.FromImage(invertedBitmap))
+            // Stops animation only if the player is at full stop
+            if (!picKnight.IsMovingLeft && !picKnight.IsMovingRight && !picKnight.IsAttacking && picKnight.Status != PlayerStatus.IsJumping && picKnight.Status != PlayerStatus.IsFalling)
             {
-                // Use color matrix to invert colors
-                ColorMatrix colorMatrix = new ColorMatrix(new float[][]
-                {
-            new float[] {-1,  0,  0, 0, 0},
-            new float[] { 0, -1,  0, 0, 0},
-            new float[] { 0,  0, -1, 0, 0},
-            new float[] { 0,  0,  0, 1, 0},
-            new float[] { 1,  1,  1, 0, 1}
-                });
-
-                ImageAttributes attributes = new ImageAttributes();
-                attributes.SetColorMatrix(colorMatrix);
-
-                g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-                            0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+                animTimer.Stop();
             }
-
-            return invertedBitmap;
         }
-
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -489,12 +467,14 @@ namespace AnimSprites
             base.OnPaint(e);
         }
 
-        private void SelectPlatform(object sender, EventArgs e)
+        private void SelectObject(object sender, EventArgs e)
         {
-            if (sender is SolidPictureBox platform)
+            if (!levelEditorPanel.Visible) return;
+
+            if (sender is SolidPictureBox obj)
             {
-                selectedPlatform = platform; // Store the selected platform
-                BlinkSelectedPlatform(); // Start blinking effect
+                selectedObject = obj;
+                obj.BlinkIfVisible(levelEditorPanel);
             }
         }
 

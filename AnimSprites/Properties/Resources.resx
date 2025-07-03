@@ -119,252 +119,255 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="attack01_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack01-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack01_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack01_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack01-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack01_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack02_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack02-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack02_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack02_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack02-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack02_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack03_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack03-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack03_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack03_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack03-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack03_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack04_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack04-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack04_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack04_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack04-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack04_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack05_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack05-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack05_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack05_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack05-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack05_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack06_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack06-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack06_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack06_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack06-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack06_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack07_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack07-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack07_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack07_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack07-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack07_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack08_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack08-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack08_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack08_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack08-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack08_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack09_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack09-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack09_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack09_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack09-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack09_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack10_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack10-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack10_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="attack10_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\attack10-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\attack10_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jump01_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump01-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump01_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump01-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump02_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump02-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump02_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump02-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump03_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump03-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump03_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump03-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump04_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump04-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump04_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump04-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump05_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump05-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump05_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump05-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump06_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump06-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump06_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump06-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump07_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump07-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump07_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump07-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump08_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump08-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump08_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump08-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump09_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump09-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump09_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump09-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump10_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump10-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump10_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump10-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack01_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack01-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack01_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack01-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack02_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack02-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack02_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack02-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack03_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack03-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack03_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack03-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack04_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack04-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack04_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack04-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack05_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack05-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack05_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack05-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack06_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack06-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack06_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack06-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack07_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack07-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack07_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack07-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack08_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack08-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack08_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack08-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack09_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack09-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack09_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack09-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack10_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack10-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jump_attack10_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jump-attack10-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="nature-tileset" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nature-tileset.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bush" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bush.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="forest_ground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\forest-ground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\forest_ground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump01_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump01_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump01_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump01_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump02_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump02_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump02_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump02_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump03_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump03_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump03_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump03_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump04_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump04_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump04_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump04_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump05_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump05_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump05_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump05_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump06_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump06_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump06_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump06_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump07_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump07_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump07_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump07_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump08_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump08_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump08_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump08_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump09_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump09_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump09_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump09_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump10_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump10_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump10_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump10_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack01_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack01_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack01_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack01_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack02_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack02_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack02_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack02_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack03_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack03_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack03_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack03_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack04_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack04_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack04_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack04_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack05_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack05_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack05_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack05_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack06_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack06_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack06_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack06_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack07_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack07_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack07_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack07_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack08_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack08_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack08_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack08_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack09_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack09_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack09_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack09_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack10_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack10_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jump_attack10_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jump_attack10_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nature_tileset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nature_tileset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk01_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk01-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk01_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk01_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk01-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk01_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk02_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk02-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk02_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk02_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk02-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk02_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk03_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk03-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk03_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk03_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk03-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk03_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk04_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk04-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk04_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk04_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk04-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk04_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk05_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk05-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk05_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk05_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk05-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk05_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk06_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk06-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk06_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk06_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk06-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk06_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk07_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk07-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk07_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk07_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk07-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk07_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk08_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk08-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk08_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk08_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk08-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk08_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk09_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk09-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk09_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk09_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk09-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk09_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk10_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk10-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk10_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walk10_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walk10-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\walk10_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
