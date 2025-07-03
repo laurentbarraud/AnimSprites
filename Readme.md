@@ -32,8 +32,8 @@ v0.4 added features:
 - [x] Added a button in the build menu to add a bush.
 - [x] Added a BreakableSolidPictureBox with a health counter that implements the IBreakable interface.
 - [x] Added collision detection when the player attacks with CTRL key.
-- [x] Added a sword effect (slash) that is painted on a target when hit
-- [x] Added a fade-to-transparent effect called in methods of the VisualEffects class, for when the object is destroyed.
+- [x] Added a visual effect class, which contains a method to generate a sword effect (slash) on a target when hit
+- [x] Added a fade-to-transparent effect, for when the object is destroyed.
 - [x] Added the persistence of platforms and bushes, as a string stored in app.settings.
 
 ### Unit tests:
