@@ -24,10 +24,8 @@ namespace AnimSprites
         /// <summary>
         /// Creates a breakable solid object from an already prepared image.
         /// </summary>
-        /// <param name="backgroundImage">The pre-extracted image to display</param>
-        public BreakableSolidPictureBox(Image backgroundImage)
-        {
-            this.BackgroundImage = backgroundImage;
+        public BreakableSolidPictureBox()
+        { 
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.BackColor = Color.Transparent;
         }

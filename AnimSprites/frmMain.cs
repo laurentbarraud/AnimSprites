@@ -162,20 +162,22 @@ namespace AnimSprites
             picPlatform.BackgroundImage = platformBitmap;
             picPlatform.Width = platformBitmap.Width;
             picPlatform.Height = platformBitmap.Height;
-            picPlatform.BackColor = Color.Transparent; // Ensure transparent background
-
+            picPlatform.BackColor = Color.Transparent; // Ensure transparent background.
+            
             // ----------------------------------------------------------------
             // Converts designer PictureBoxes to SolidPictureBox for collisions
             // ----------------------------------------------------------------
 
             ConvertToSolidPictureBox(ref picPlatform);
             ConvertToSolidPictureBox(ref picGround);
+            ConvertToBreakableSolidPictureBox(ref picBush);
 
             // ----------------------------------
-            // Makes initial platform selectable
+            // Makes initial platform and initial bush selectable
             // ----------------------------------
 
             picPlatform.Click += SelectObject;
+            picBush.Click += SelectObject;
 
             // ---------------------------------------------------------
             // Makes initial platform movable if the build menu is open
@@ -216,12 +218,13 @@ namespace AnimSprites
                 Image bushImage = Properties.Resources.bush; 
 
                 // Create a breakable bush control with the extracted image
-                var bush = new BreakableSolidPictureBox(bushImage)
+                var bush = new BreakableSolidPictureBox()
                 {
                     Left = 60,
                     Top = 395,
                     Width = 72,
                     Height = 54,
+                    BackgroundImage = bushImage
                 };
 
                 // Allow the bush to be moved with the mouse
@@ -357,6 +360,22 @@ namespace AnimSprites
             }
         }
 
+        // Utility method: convert a PictureBox to a BreakableSolidPictureBox.
+        private void ConvertToBreakableSolidPictureBox(ref PictureBox pb)
+        {
+            BreakableSolidPictureBox bpb = new BreakableSolidPictureBox();
+            bpb.Location = pb.Location;
+            bpb.Size = pb.Size;
+            bpb.BackgroundImage = pb.BackgroundImage;
+            bpb.BackgroundImageLayout = pb.BackgroundImageLayout;
+            bpb.BackColor = pb.BackColor;
+            bpb.Name = pb.Name;
+            this.Controls.Remove(pb);
+            pb.Dispose();
+            pb = bpb;
+            this.Controls.Add(pb);
+            pb.SendToBack(); // Ensure breakable objects remain in the background.
+        }
 
 
         // Utility method: convert a PictureBox to a SolidPictureBox.
