@@ -172,16 +172,16 @@ namespace AnimSprites
             ConvertToSolidPictureBox(ref picGround);
             ConvertToBreakableSolidPictureBox(ref picBush);
 
-            // ----------------------------------
+            // ---------------------------------------------------
             // Makes initial platform and initial bush selectable
-            // ----------------------------------
+            // ---------------------------------------------------
 
             picPlatform.Click += SelectObject;
             picBush.Click += SelectObject;
 
-            // ---------------------------------------------------------
-            // Makes initial platform movable if the build menu is open
-            // ---------------------------------------------------------
+            // --------------------------------------------------------------------------
+            // Makes initial platform and initial bush movable if the build menu is open
+            // --------------------------------------------------------------------------
 
             picPlatform.MouseDown += (aSender, aEvent) =>
             {
@@ -200,10 +200,26 @@ namespace AnimSprites
                 }
             };
 
+            picBush.MouseDown += (aSender, aEvent) =>
+            {
+                if (levelEditorPanel.Visible)
+                {
+                    picBush.Tag = aEvent.Location;
+                }
+            };
+
+            picBush.MouseMove += (aSender, aEvent) =>
+            {
+                if (levelEditorPanel.Visible && aEvent.Button == MouseButtons.Left && picBush.Tag is Point initialPos)
+                {
+                    picBush.Left += aEvent.X - initialPos.X;
+                    picBush.Top += aEvent.Y - initialPos.Y;
+                }
+            };
+
             // -----------------------------
             // Set initial motionless images
             // -----------------------------
-            picKnight.BackgroundImage = picKnight.walkRight[0];
             picGround.Width = levelWidth;
         }
 
