@@ -8,39 +8,6 @@ This avoids having to use an external framework, such as XNA or DirectX.
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
 
-### Cumulative Features roadmap
-v0.1 includes:
-- [x] Displays multiple parts of a spreadsheet to shape a platform, using DrawImage.
-- [x] When the user press left or right arrow-key, the sprite moves with a walking animation.
-
-v0.2 added features :
-- [x] Implemented a SolidPictureBox, which inherits all PictureBox properties. It's considered solid in code by type-checking.
-- [x] Set gravity so that the sprite falls from the platform.
-- [x] Set edge limits to prevent the sprite from leaving the screen on border left and right using a 1px width wall.
-- [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a status property (isJumping, isGrounded or isFalling). 
-- [x] Implemented a jump animation when the user presses space bar.
-
-v0.3 added features:
-- [x] Implemented an attack animation when the player presses Ctrl key.
-- [x] Implemented a jump and attack animation when the player presses the spacebar and then Ctrl key.
-- [x] Implemented a scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
-      
-v0.3.1 added features:
-- [x] The player can freely explore the level by moving the camera left or right with A and D keys.
-- [x] Implemented a hidden build menu (user can press B key to activate/desactivate it).
-- [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
-- [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
-
-v0.4 added features:
-- [x] Added a button in the build menu to add a bush.
-- [x] Added a BreakableSolidPictureBox with a health counter that implements the IBreakable interface and inherits from SolidPictureBox.
-- [x] Added collision detection when the player attacks with Ctrl key.
-- [x] Added a visual effect class, which contains a method to generate a sword slash effect on a target when hit. 
-- [x] Added a fade-to-transparent effect for when the object is destroyed.
-- [x] Added the persistence of platforms and bushes. They're saved whenever a new object is created, an existing solid object is moved or has been deleted.
-- [x] A SimpleLevelObject class allows to save the solid objects of the form in app.settings.
-- [x] At startup of the app, all objects are loaded from these settings. 
-
 ### Unit tests:
 
 - [x] Controled that the sprite animation is fluid and that all keys make the correct move. 
@@ -54,14 +21,10 @@ v0.4 added features:
 ### References:
 
 Source (in French) : https://sources-codes.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
-
 "You have to draw all the stages of your character’s animation but instead of having several images we load a single one in memory that contains all its steps in a precise order. 
 (What is then called a «sprite-sheet»).
-
 The color magenta or lime or any other single color (no jpeg compression for sprites), which is not used by sprites will be the background color, which allows to not display it at the time of rendering.
-
 In a real game everything happens in a main loop, we test the user inputs ( keyboard, joystick .. ) but we can also code it with events or with a timer. 
-
 At the time of rendering, it is enough to display the sprite with the DrawImage method which takes as parameter a source rectangle that corresponds to the location of the sprite on the image and a destination rectangle that corresponds to the place on the screen where we will draw the sprite. 
 By playing with its 2 rectangles, you can vary the movements of the character and his position.”
 
