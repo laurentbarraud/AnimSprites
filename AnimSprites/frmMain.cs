@@ -1,6 +1,6 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.4</version>
+/// <version>0.4.1</version>
 /// <date>July 4th, 2025</date>
 
 using System;

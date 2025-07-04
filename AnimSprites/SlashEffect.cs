@@ -1,14 +1,10 @@
 ﻿/// <file>SlashEffect.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.4</version>
-/// <date>July 3rd, 2025</date>
+/// <version>0.4.1</version>
+/// <date>July 4th, 2025</date>
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AnimSprites
@@ -58,18 +54,27 @@ namespace AnimSprites
         }
 
         /// <summary>
-        /// Renders a diagonal slash line with current opacity level.
+        /// This method uses the GDI+ rendering system to simulate a sword stroke with
+        /// current opacity level. 
+        /// By overriding the default painting behavior, it draws a smooth,
+        /// stylized line from the top-left to the bottom-right corner of the control.
         /// </summary>
+        /// <param name="e">Provides data for the Paint event.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
+            // Create a semi-transparent white pen with rounded caps
             using var pen = new Pen(Color.FromArgb(slashOpacity, Color.WhiteSmoke), 5)
             {
                 StartCap = System.Drawing.Drawing2D.LineCap.Round,
                 EndCap = System.Drawing.Drawing2D.LineCap.Round
             };
 
+            // Enable anti-aliasing for smoother rendering
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            e.Graphics.DrawLine(pen, 0, 0, Width, Height); // Top-left to bottom-right
+
+            // Draw a diagonal line from top-left to bottom-right
+            e.Graphics.DrawLine(pen, 0, 0, Width, Height);
         }
+
     }
 }
