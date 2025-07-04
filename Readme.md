@@ -11,15 +11,15 @@ v0.1 includes:
 - [x] The sprite moves in the direction of the arrow pressed on the keyboard with a walking animation.
 
 v0.2 added features :
-- [x] Implemented a SolidPictureBox, which inherits all PictureBox properties and is considered solid in code by type-checking.
+- [x] Implemented a SolidPictureBox, which inherits all PictureBox properties. It's considered solid in code by type-checking.
 - [x] Set gravity so that the sprite falls from the platform.
 - [x] Set edge limits to prevent the sprite from leaving the screen on border left and right using a 1px width wall.
-- [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status which can take "isJumping" , "isGrounded" or "isFalling" enum values. 
+- [x] Implemented a PlayerPictureBox which also inherits all PictureBox properties and adds a Status, which can take "isJumping" , "isGrounded" or "isFalling" enum values. 
 - [x] Implemented a jump animation when the user presses space bar.
 
 v0.3 added features:
 - [x] Implemented an attack animation when the player presses Ctrl key.
-- [x] Implemented a jump and attack animation when the player presses the space bar and then Ctrl key.
+- [x] Implemented a jump and attack animation when the player presses the spacebar and then Ctrl key.
 - [x] Implemented a scrolling to the right when sprite reaches 4/5 of screen width and to the left if it reaches 1/5.
       
 v0.3.1 added features:
@@ -28,13 +28,25 @@ v0.3.1 added features:
 - [x] With the build menu opened, the player can add platforms, choose their size in blocks and delete a selected one.
 - [x] Implemented a blink effect when the user select a platform by clicking on it, while the build menu is opened.
 
+v0.4 added features:
+- [x] Added a button in the build menu to add a bush.
+- [x] Added a BreakableSolidPictureBox with a health counter that implements the IBreakable interface and inherits from SolidPictureBox.
+- [x] Added collision detection when the player attacks with Ctrl key.
+- [x] Added a visual effect class, which contains a method to generate a sword slash effect on a target when hit. 
+- [x] Added a fade-to-transparent effect for when the object is destroyed.
+- [x] Added the persistence of platforms and bushes. They're saved whenever a new object is created, an existing solid object is moved or has been deleted.
+A SimpleLevelObject class allows to save the solid objects of the form in app.settings.
+At startup of the app, all objects are loaded from these settings. 
+
 ### Unit tests:
 
-- [x] Controled that sprites scroll correct and that all keys make the correct move
+- [x] Controled that sprites scroll correct and that all keys make the correct move. 
 - [x] Tested if the sprite can't go through the platform, by walking over it and jumping below it
-- [x] Tested if the sprite cannot exit the displayed window by the left or by the right
+- [x] Tested if the sprite cannot exit the displayed window by the left or by the right. 
 - [x] Animation fluidity test by jumping and attacking while in air
-- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one. 
+- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one.
+- [x] Tested if a bush can be added, moved and deleted.
+- [x] Tested if a bush can be hit by the knight and fade to disappear. 
 
 ### References:
 
