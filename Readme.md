@@ -30,19 +30,19 @@ v0.3.1 added features:
 
 v0.4 added features:
 - [x] Added a button in the build menu to add a bush.
-- [x] Added a BreakableSolidPictureBox with a health counter that implements the IBreakable interface and herits from SolidPictureBox.
+- [x] Added a BreakableSolidPictureBox with a health counter that implements the IBreakable interface and inherits from SolidPictureBox.
 - [x] Added collision detection when the player attacks with Ctrl key.
-- [x] Added a visual effect class, which contains a method to generate a sword effect (slash) on a target when hit
-- [x] Added a fade-to-transparent effect, for when the object is destroyed.
+- [x] Added a visual effect class, which contains a method to generate a sword slash effect on a target when hit. 
+- [x] Added a fade-to-transparent effect for when the object is destroyed.
 - [x] Added the persistence of platforms and bushes. They're saved whenever a new object is created, an existing solid object is moved or has been deleted.
 A SimpleLevelObject class allows to save the solid objects of the form in app.settings.
 At startup of the app, all objects are loaded from these settings. 
 
 ### Unit tests:
 
-- [x] Controled that sprites scroll correct and that all keys make the correct move
+- [x] Controled that sprites scroll correct and that all keys make the correct move. 
 - [x] Tested if the sprite can't go through the platform, by walking over it and jumping below it
-- [x] Tested if the sprite cannot exit the displayed window by the left or by the right
+- [x] Tested if the sprite cannot exit the displayed window by the left or by the right. 
 - [x] Animation fluidity test by jumping and attacking while in air
 - [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one.
 - [x] Tested if a bush can be added, moved and deleted.
