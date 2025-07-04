@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.4</version>
-/// <date>July 3rd, 2025</date>
+/// <date>July 4th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -420,71 +420,80 @@ namespace AnimSprites
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
+            // Prevent system beep on handled keys
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+
             bool shouldAnimate = false;
 
-            if (e.KeyCode == Keys.Left && !levelEditorPanel.Visible)
+            // Player movement (left/right) — only when editor is hidden
+            if (!levelEditorPanel.Visible)
             {
-                picKnight.IsMovingLeft = true;
-                picKnight.FacingLeft = true;
-                shouldAnimate = true;
-            }
-            else if (e.KeyCode == Keys.Right && !levelEditorPanel.Visible)
-            {
-                picKnight.IsMovingRight = true;
-                picKnight.FacingLeft = false;
-                shouldAnimate = true;
-            }
-            else if (e.KeyCode == Keys.Space && !levelEditorPanel.Visible)
-            {
-                if (picKnight.Status == PlayerStatus.IsGrounded)
+                if (e.KeyCode == Keys.Left)
+                {
+                    picKnight.IsMovingLeft = true;
+                    picKnight.FacingLeft = true;
+                    shouldAnimate = true;
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    picKnight.IsMovingRight = true;
+                    picKnight.FacingLeft = false;
+                    shouldAnimate = true;
+                }
+                else if (e.KeyCode == Keys.Space && picKnight.Status == PlayerStatus.IsGrounded)
                 {
                     picKnight.Status = PlayerStatus.IsJumping;
                     picKnight.JumpSpeed = picKnight.InitialJumpSpeed;
                     shouldAnimate = true;
                 }
-            }
-            else if (e.KeyCode == Keys.ControlKey && !levelEditorPanel.Visible)
-            {
-                if (!picKnight.IsAttacking)
+                else if (e.KeyCode == Keys.ControlKey && !picKnight.IsAttacking)
                 {
                     picKnight.StartAttack();
-                    shouldAnimate = true; 
+                    shouldAnimate = true;
                 }
             }
 
-            else if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
+            // Scroll viewport left
+            if (e.KeyCode == Keys.A && viewportHorizontalOffset > 0)
             {
                 viewportHorizontalOffset -= 20;
                 ScrollLevel(20);
             }
+            // Scroll viewport right
             else if (e.KeyCode == Keys.D && viewportHorizontalOffset + this.ClientSize.Width < levelWidth)
             {
                 viewportHorizontalOffset += 20;
                 ScrollLevel(-20);
             }
+
+            // Toggle level editor panel
             else if (e.KeyCode == Keys.B)
             {
                 levelEditorPanel.Visible = !levelEditorPanel.Visible;
-                levelEditorPanel.Enabled = !levelEditorPanel.Enabled;
+                levelEditorPanel.Enabled = levelEditorPanel.Visible;
             }
 
+            // Close editor with Escape
             else if (e.KeyCode == Keys.Escape && levelEditorPanel.Visible)
             {
                 levelEditorPanel.Visible = false;
                 levelEditorPanel.Enabled = false;
             }
 
+            // Delete selected object in editor
             else if (e.KeyCode == Keys.Delete && levelEditorPanel.Visible)
             {
                 DeleteSelectedObject(sender, e);
             }
 
-
+            // Start animation if needed
             if (shouldAnimate)
             {
                 animTimer.Start();
             }
         }
+
 
 
         // KeyUp event: stops the horizontal movement when key is released.
@@ -513,7 +522,9 @@ namespace AnimSprites
         {
             string json = Properties.Settings.Default.LevelData;
             if (string.IsNullOrWhiteSpace(json))
+            {
                 return;
+            }
 
             try
             {
@@ -563,7 +574,9 @@ namespace AnimSprites
                     pb.Name = $"{data.ObjectType}_{data.PositionX}_{data.PositionY}";
 
                     if (pb is SolidPictureBox solid)
+                    {
                         solid.EnableEditorBehavior(levelEditorPanel);
+                    }
 
                     pb.Click += SelectObject;
 

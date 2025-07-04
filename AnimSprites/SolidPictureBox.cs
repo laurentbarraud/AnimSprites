@@ -12,10 +12,18 @@ namespace AnimSprites
 {
     public class SolidPictureBox : PictureBox
     {
+        // Indicates whether the object is currently blinking (e.g., for selection feedback)
         private bool isBlinking = false;
+
+        // Tracks whether the object is being dragged with the mouse
         private bool isDragging = false;
+
+        // Stores the offset between the mouse position and the top-left corner of the object during dragging
         private Point dragOffset;
-        private Control levelEditorPanelRef; // Allows to check if the Build menu is visible
+
+        // Reference to the level editor panel, used to determine if editor interactions should be active
+        private Control levelEditorPanelRef;
+
 
 
         /// <summary>
@@ -40,7 +48,11 @@ namespace AnimSprites
             }
         }
 
-
+        /// <summary>
+        /// Enables drag-and-drop and selection behavior for this object within the level editor.
+        /// Attaches mouse event handlers to allow repositioning and interaction when the editor is active.
+        /// </summary>
+        /// <param name="editorPanel">The panel representing the level editor interface.</param>
         public void EnableEditorBehavior(Control editorPanel)
         {
             levelEditorPanelRef = editorPanel;
@@ -49,7 +61,12 @@ namespace AnimSprites
             this.MouseUp += Editor_MouseUp;
             this.Click += Editor_Click;
         }
-
+        /// <summary>
+        /// Handles the start of a drag operation when the user clicks on the object.
+        /// Stores the mouse offset and brings the object to the front.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Mouse event data.</param>
         private void Editor_MouseDown(object sender, MouseEventArgs e)
         {
             if (levelEditorPanelRef == null || !levelEditorPanelRef.Visible) return;
@@ -58,6 +75,13 @@ namespace AnimSprites
             this.BringToFront();
         }
 
+
+        /// <summary>
+        /// Updates the object's position as the user drags it with the mouse.
+        /// Movement is only allowed when the editor panel is visible.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Mouse event data.</param>
         private void Editor_MouseMove(object sender, MouseEventArgs e)
         {
             if (!isDragging || levelEditorPanelRef == null || !levelEditorPanelRef.Visible) return;
@@ -65,11 +89,23 @@ namespace AnimSprites
             this.Top += e.Y - dragOffset.Y;
         }
 
+        /// <summary>
+        /// Ends the drag operation when the mouse button is released.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Mouse event data.</param>
         private void Editor_MouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
         }
 
+
+        /// <summary>
+        /// Handles click events on the object while the editor is active.
+        /// Triggers a visual blink effect to indicate selection.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event data.</param>
         private void Editor_Click(object sender, EventArgs e)
         {
             if (levelEditorPanelRef != null && levelEditorPanelRef.Visible)
@@ -77,6 +113,7 @@ namespace AnimSprites
                 BlinkIfVisible(levelEditorPanelRef);
             }
         }
+
 
         /// <summary>
         /// Inverts the colors one bitmap pixel by pixel (RGB inversion)
