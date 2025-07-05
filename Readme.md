@@ -5,8 +5,6 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 
 ![Tested](https://img.shields.io/badge/tested-no%20bugs-brightgreen)
 ![GitHub all releases](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/total?color=88aacc&style=flat)
-![GitHub all releases](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/latest/total?color=F28500&style=flat)
-
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
