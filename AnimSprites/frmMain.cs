@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.4.1</version>
-/// <date>July 4th, 2025</date>
+/// <version>0.5</version>
+/// <date>July 6th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,21 @@ namespace AnimSprites
         private SolidPictureBox selectedObject = null;
         private TrackBar trkBlockCount; // Stores the slider instance globally
         private Label lblBlockCount; // Displays the current block count selected
+
+        // -----------------------------
+        // Rain effect global variables
+        // -----------------------------
+
+        // Timer that controls the refresh rate of the rain animation
+        private Timer rainTimer;
+
+        // Stores the current positions of all visible raindrops on the screen
+        private List<Point> rainDrops = new List<Point>();
+
+        // Random number generator used to initialize and reposition raindrops
+        private Random rng = new Random();
+
+
 
         public frmMain()
         {
@@ -143,6 +158,41 @@ namespace AnimSprites
             deletePlatformButton.Click += DeleteSelectedObject;
             levelEditorPanel.Controls.Add(deletePlatformButton);
             currentTop = deletePlatformButton.Bottom + spacing;
+
+            // -----------------------------
+            // "Weather Toggle" Button
+            // -----------------------------
+            CheckBox weatherToggle = new CheckBox
+            {
+                Appearance = Appearance.Button,
+                Text = "  Rain Effect",
+                Width = 220,
+                Height = 30,
+                Left = paddingLeft,
+                Top = currentTop,
+                TextAlign = ContentAlignment.MiddleCenter,
+                ImageAlign = ContentAlignment.MiddleLeft,
+                FlatStyle = FlatStyle.Standard,
+                Checked = false,
+                Image = Properties.Resources.sunny // Default icon
+            };
+
+            weatherToggle.CheckedChanged += (s, e) =>
+            {
+                if (weatherToggle.Checked)
+                {
+                    weatherToggle.Image = Properties.Resources.rain;
+                    StartRainEffect();
+                }
+                else
+                {
+                    weatherToggle.Image = Properties.Resources.sunny;
+                    StopRainEffect();
+                }
+            };
+
+            levelEditorPanel.Controls.Add(weatherToggle);
+            currentTop = weatherToggle.Bottom + spacing;
 
             // -----------------------------
             // Add the Menu Panel to the Form
@@ -678,6 +728,65 @@ namespace AnimSprites
                 this.Invalidate();
             }
         }
+
+        /// <summary>
+        /// Initializes and starts the rain animation by generating raindrop positions
+        /// and launching a timer to update their movement.
+        /// </summary>
+        private void StartRainEffect()
+        {
+            // Clear any existing raindrops
+            rainDrops.Clear();
+
+            // Generate initial raindrop positions randomly across the screen
+            for (int i = 0; i < 100; i++)
+            {
+                int x = rng.Next(0, this.ClientSize.Width);
+                int y = rng.Next(0, this.ClientSize.Height);
+                rainDrops.Add(new Point(x, y));
+            }
+
+            // Create and configure the timer to animate the rain
+            rainTimer = new Timer();
+            rainTimer.Interval = 30; // Controls the speed of the rain animation
+            rainTimer.Tick += (s, e) =>
+            {
+                // Move each raindrop downward
+                for (int i = 0; i < rainDrops.Count; i++)
+                {
+                    Point p = rainDrops[i];
+                    p.Y += 10; // Fall speed in pixels
+
+                    // Reset raindrop to top if it falls below the screen
+                    if (p.Y > this.ClientSize.Height)
+                        p = new Point(rng.Next(0, this.ClientSize.Width), 0);
+
+                    rainDrops[i] = p;
+                }
+
+                // Request a repaint to show updated raindrop positions
+                this.Invalidate();
+            };
+
+            rainTimer.Start();
+        }
+
+        /// <summary>
+        /// Stops the rain animation and clears all raindrop data from memory.
+        /// </summary>
+        private void StopRainEffect()
+        {
+            // Stop and dispose the timer if it exists
+            rainTimer?.Stop();
+            rainTimer = null;
+
+            // Clear all raindrops from the screen
+            rainDrops.Clear();
+
+            // Force a repaint to remove any remaining visuals
+            this.Invalidate();
+        }
+
 
         private void UpdateGame()
         {

@@ -1,7 +1,7 @@
 ﻿/// <file>SlashEffect.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.4.1</version>
-/// <date>July 4th, 2025</date>
+/// <version>0.5</version>
+/// <date>July 6th, 2025</date>
 
 using System;
 using System.Drawing;
