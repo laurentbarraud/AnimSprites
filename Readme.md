@@ -20,15 +20,6 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 
 Or go to the Release section to download a zip archive, containing the compiled executable (for x64 systems, starting from Windows 7 and upwards) 
 
-How to Run
-1. Clone the repository.
-2. Open the solution in Visual Studio 2022.
-3. Build and run the project.
-
-Alternatively you can download a ZIP archive with the compiled .exe from the Releases section.
-(works on 64-bit Windows 7 or later) 
-I don't write malware, but it’s always smart to scan executables from the internet.
-
 ## Unit Tests
 - Sprite movement and animation fluidity
 - Collision with platforms from above and below
