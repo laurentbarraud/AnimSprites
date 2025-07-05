@@ -39,4 +39,4 @@ By playing with its 2 rectangles, you can vary the movements of the character an
 ### Three basic steps for using DrawImage:
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
 
-In this project only royalty-free resources have been used.
+Only royalty-free resources were used in this project.
