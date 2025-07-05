@@ -1,22 +1,39 @@
-### School-based programming research project
-Problem: animation of sprites in a window illustrated with a C# platform game.
+## 2D Platformer Prototype using WinForms and GDI+
 
-This project uses the DrawImage method from GDI+, a library already integrated in all Winforms projects.
-This avoids having to use an external framework, such as XNA or DirectX. 
+This is a lightweight 2D platformer engine developed in C#, using the built-in GDI+ graphics API within Winforms.
+The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects). 
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
 
-### Unit tests:
+## Features
+- Smooth sprite animations for movement, jumping, and attacking
+- Collision detection with platforms and screen boundaries
+- Object interaction (e.g. bushes can be added, hit and disappear)
+- Platform builder mode: create, move, and delete platforms during runtime
+  
+## How to Run
+1. Clone the repository
+2. Open in Visual Studio 2022
+3. Build and run the solution
 
-- [x] Controled that the sprite animation is fluid and that all keys make the correct move. 
-- [x] Tested if the sprite can't go through the platform, by walking over it and jumping below it
-- [x] Tested if the sprite cannot exit the displayed window by the left or by the right. 
-- [x] Animation fluidity test by jumping and attacking while in air
-- [x] Activated the build menu, then created platforms of 1, 2 and 3 blocks, moved them on the form, jumped on them, then deleted all platforms, including the initial one.
-- [x] Tested if a bush can be added, moved and deleted.
-- [x] Tested if a bush can be hit by the sprite and fade to disappear. 
+Or go to the Release section to download a zip archive, containing the compiled executable (for x64 systems, starting from Windows 7 and upwards) 
+
+How to Run
+1. Clone the repository.
+2. Open the solution in Visual Studio 2022.
+3. Build and run the project.
+
+Alternatively you can download a ZIP archive with the compiled .exe from the Releases section.
+(works on 64-bit Windows 7 or later) 
+I don't write malware, but it’s always smart to scan executables from the internet.
+
+## Unit Tests
+- Sprite movement and animation fluidity
+- Collision with platforms from above and below
+- Screen boundary checks
+- Runtime object management (platforms and bushes)
 
 ### References:
 
