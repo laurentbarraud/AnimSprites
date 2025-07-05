@@ -3,6 +3,8 @@
 This is a lightweight 2D platformer engine developed in C#, using the built-in GDI+ graphics API within Winforms.
 The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects). 
 
+![Tested](https://img.shields.io/badge/tested-no%20bugs-brightgreen)
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
 </p>
