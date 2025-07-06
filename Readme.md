@@ -1,9 +1,10 @@
 ### 2D Platformer Prototype using WinForms and GDI+
 
 This is a lightweight 2D platformer engine developed in C#, using the built-in GDI+ graphics API within Winforms.
+
 The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects). 
 
-![Tested](https://img.shields.io/badge/tested-no%20bugs-brightgreen)
+![Tested](https://img.shields.io/badge/tested-no%20bugs-1b4636)
 ![GitHub all releases](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/total?color=88aacc&style=flat)
 
 <p align="center">
