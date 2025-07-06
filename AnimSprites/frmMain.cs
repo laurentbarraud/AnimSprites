@@ -41,6 +41,7 @@ namespace AnimSprites
         // Random number generator used to initialize and reposition raindrops
         private Random rng = new Random();
 
+        private bool isRaining = false;
 
 
         public frmMain()
@@ -171,28 +172,31 @@ namespace AnimSprites
                 Left = paddingLeft,
                 Top = currentTop,
                 TextAlign = ContentAlignment.MiddleCenter,
-                ImageAlign = ContentAlignment.MiddleLeft,
+                ImageAlign = ContentAlignment.MiddleRight,
                 FlatStyle = FlatStyle.Standard,
                 Checked = false,
-                Image = Properties.Resources.sunny // Default icon
+                Image = Properties.Resources.rain // Default icon
             };
 
             weatherToggle.CheckedChanged += (s, e) =>
             {
                 if (weatherToggle.Checked)
                 {
-                    weatherToggle.Image = Properties.Resources.rain;
+                    weatherToggle.Image = Properties.Resources.sunny;
                     StartRainEffect();
                 }
                 else
                 {
-                    weatherToggle.Image = Properties.Resources.sunny;
+                    weatherToggle.Image = Properties.Resources.rain;
                     StopRainEffect();
                 }
             };
 
             levelEditorPanel.Controls.Add(weatherToggle);
             currentTop = weatherToggle.Bottom + spacing;
+
+            // Resize the panel to fit all controls
+            levelEditorPanel.Height = currentTop + spacing;
 
             // -----------------------------
             // Add the Menu Panel to the Form
@@ -640,27 +644,45 @@ namespace AnimSprites
             }
         }
 
-
-
+        /// <summary>
+        /// Custom paint routine that renders a scrolling background and optional rain effect.
+        /// </summary>
+        /// <param name="e">Provides data for the Paint event.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
+            // --- Scrolling background rendering ---
             if (this.BackgroundImage != null)
             {
                 // Retrieve background image dimensions
                 int backgroundImageWidth = this.BackgroundImage.Width;
 
-                // Calculate the scrolling offset for the background image
+                // Calculate the horizontal offset for parallax scrolling
                 int backgroundScrollOffset = (int)(viewportHorizontalOffset * 0.5) % backgroundImageWidth;
 
-                // Draw the background image multiple times to ensure continuous scrolling
+                // Draw the background image repeatedly to create a seamless scrolling effect
                 for (int positionX = -backgroundScrollOffset; positionX < this.ClientSize.Width; positionX += backgroundImageWidth)
                 {
                     e.Graphics.DrawImage(this.BackgroundImage, positionX, 0, backgroundImageWidth, this.ClientSize.Height);
                 }
             }
 
+            // --- Rain effect rendering ---
+            if (isRaining)
+            {
+                // Create a semi-transparent light blue pen for raindrops
+                using Pen rainPen = new Pen(Color.FromArgb(180, Color.LightBlue), 2);
+
+                // Draw each raindrop as a short diagonal line
+                foreach (Point drop in rainDrops)
+                {
+                    e.Graphics.DrawLine(rainPen, drop.X, drop.Y, drop.X + 2, drop.Y + 12);
+                }
+            }
+
+            // Call base method to ensure standard control rendering
             base.OnPaint(e);
         }
+
 
         /// <summary>
         /// Saves all Solid and Breakable objects into a JSON string in app settings.
@@ -735,6 +757,8 @@ namespace AnimSprites
         /// </summary>
         private void StartRainEffect()
         {
+            isRaining = true;
+
             // Clear any existing raindrops
             rainDrops.Clear();
 
@@ -776,6 +800,8 @@ namespace AnimSprites
         /// </summary>
         private void StopRainEffect()
         {
+            isRaining = false;
+
             // Stop and dispose the timer if it exists
             rainTimer?.Stop();
             rainTimer = null;
