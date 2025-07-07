@@ -1,7 +1,7 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
 /// <version>0.5</version>
-/// <date>July 6th, 2025</date>
+/// <date>July 7th, 2025</date>
 
 using System;
 using System.Collections.Generic;
@@ -570,15 +570,13 @@ namespace AnimSprites
         }
 
         /// <summary>
-        /// Load platforms and bushes with default textures based on type
+        /// Load platforms and bushes with default textures based on type.
         /// </summary>
         private void LoadLevel()
         {
             string json = Properties.Settings.Default.LevelData;
             if (string.IsNullOrWhiteSpace(json))
-            {
                 return;
-            }
 
             try
             {
@@ -586,13 +584,23 @@ namespace AnimSprites
 
                 foreach (SimpleLevelObject data in savedObjects)
                 {
+                    // Validate essential data before proceeding
+                    if (string.IsNullOrWhiteSpace(data.ObjectType) ||
+                        data.Width <= 0 || data.Height <= 0)
+                    {
+                        // Skip malformed or incomplete entries
+                        continue;
+                    }
+
                     PictureBox pb;
 
                     // Create object based on type
                     if (data.ObjectType == "Breakable")
                         pb = new BreakableSolidPictureBox();
-                    else
+                    else if (data.ObjectType == "Solid")
                         pb = new SolidPictureBox();
+                    else
+                        throw new Exception($"Unknown object type: {data.ObjectType}");
 
                     // Restore position and size
                     pb.Location = new Point(data.PositionX, data.PositionY);
@@ -609,17 +617,14 @@ namespace AnimSprites
                         // Reconstruct platform texture dynamically from tileset
                         Bitmap tileSet = Properties.Resources.nature_tileset;
 
-                        // Define the rectangles inside the tileset image
                         Rectangle srcRectLeft = new Rectangle(4, 2, 28, 31);
                         Rectangle srcRectMiddle = new Rectangle(36, 2, 30, 31);
                         Rectangle srcRectRight = new Rectangle(68, 2, 26, 31);
 
-                        // Estimate the number of middle blocks based on total width
                         int totalEdgeWidth = srcRectLeft.Width + srcRectRight.Width;
                         int availableMiddleWidth = Math.Max(0, data.Width - totalEdgeWidth);
                         int middleBlockCount = availableMiddleWidth / srcRectMiddle.Width;
 
-                        // Build the final composite image
                         pb.BackgroundImage = FillPlatformWithTextures(middleBlockCount, srcRectLeft, srcRectMiddle, srcRectRight, tileSet);
                         pb.BackgroundImageLayout = ImageLayout.None;
                     }
@@ -638,13 +643,14 @@ namespace AnimSprites
                     pb.SendToBack();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Could not load saved level.");
+                MessageBox.Show("Could not load saved level.\n\n" + ex.Message);
                 Properties.Settings.Default.LevelData = "";
                 Properties.Settings.Default.Save();
             }
         }
+
 
         /// <summary>
         /// Custom paint routine that renders a scrolling background and optional rain effect.
@@ -695,11 +701,13 @@ namespace AnimSprites
 
             foreach (Control control in this.Controls)
             {
-                // Only save SolidPictureBox or BreakableSolidPictureBox
-                if (control is SolidPictureBox)
+                // Only save SolidPictureBox or BreakableSolidPictureBox, excluding the player
+                if (control is SolidPictureBox && control != picKnight)
                 {
+                    // Determine object type
                     string type = control is BreakableSolidPictureBox ? "Breakable" : "Solid";
 
+                    // Create a simplified representation of the object
                     SimpleLevelObject obj = new SimpleLevelObject
                     {
                         ObjectType = type,
@@ -713,12 +721,11 @@ namespace AnimSprites
                 }
             }
 
-            // Convert list to JSON and save it
+            // Convert the list to JSON and save it in application settings
             string json = JsonSerializer.Serialize(allObjects);
             Properties.Settings.Default.LevelData = json;
             Properties.Settings.Default.Save();
         }
-
 
         private void SelectObject(object sender, EventArgs e)
         {
@@ -831,12 +838,22 @@ namespace AnimSprites
                 bool isHorizontalMovementAllowed = true;
 
                 // Check for collisions with solid objects
+                // Prevent the player from colliding with itself by skipping picKnight
+                // in the collision check
                 foreach (Control gameObject in this.Controls)
                 {
-                    if (gameObject is SolidPictureBox solidObject && solidObject.Bounds.IntersectsWith(horizontalCollisionArea))
+                    if (gameObject is SolidPictureBox solidObject)
                     {
-                        isHorizontalMovementAllowed = false;
-                        break;
+                        if (solidObject == picKnight)
+                        {
+                            continue;
+                        }
+
+                        if (solidObject.Bounds.IntersectsWith(horizontalCollisionArea))
+                        {
+                            isHorizontalMovementAllowed = false;
+                            break;
+                        }
                     }
                 }
 
