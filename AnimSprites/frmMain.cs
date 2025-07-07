@@ -641,6 +641,8 @@ namespace AnimSprites
             catch
             {
                 MessageBox.Show("Could not load saved level.");
+                Properties.Settings.Default.LevelData = "";
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -687,7 +689,7 @@ namespace AnimSprites
         /// <summary>
         /// Saves all Solid and Breakable objects into a JSON string in app settings.
         /// </summary>
-        private void SaveLevel()
+        public void SaveLevel()
         {
             List<SimpleLevelObject> allObjects = new List<SimpleLevelObject>();
 

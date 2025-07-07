@@ -83,8 +83,6 @@ namespace AnimSprites
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool FacingLeft { get; set; } = false;
 
-
-
         public PlayerPictureBox()
         {
             // Load all animations automatically when the player object is created

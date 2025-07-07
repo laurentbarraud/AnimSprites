@@ -24,8 +24,6 @@ namespace AnimSprites
         // Reference to the level editor panel, used to determine if editor interactions should be active
         private Control levelEditorPanelRef;
 
-
-
         /// <summary>
         /// Starts a flickering animation of the image by briefly inverting its colors.
         /// </summary>
@@ -97,6 +95,9 @@ namespace AnimSprites
         private void Editor_MouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
+
+            // Calling SaveLevel() on the parent form (frmMain)
+            (this.FindForm() as frmMain)?.SaveLevel();
         }
 
 
