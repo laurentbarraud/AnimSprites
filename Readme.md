@@ -34,8 +34,6 @@ Alternatively, visit the [Releases](../../releases) section to download a ZIP ar
 - Level serialization and deserialization integrity
 
 ### References:
-
-### Sources
 - (in French): https://sources-codes.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
 - Three basic steps for using DrawImage:
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
