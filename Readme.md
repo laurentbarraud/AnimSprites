@@ -12,23 +12,26 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 </p>
 
 ### Features
-- Smooth sprite animations for movement, jumping, and attacking
-- Collision detection with platforms and screen boundaries
-- Object interaction (e.g. bushes can be added, hit and disappear)
-- Platform builder mode: create, move, and delete platforms during runtime
-  
+- Smooth sprite animations for walking, jumping, and attacking
+- Precise collision detection with platforms and screen boundaries
+- Interactive objects (e.g. bushes can be placed, hit, and removed)
+- In-game platform builder: create, move, and delete platforms at runtime
+- Toggleable rain effect via the build menu
+- Modular architecture for easy extension and maintenance
+
 ### How to Run
 1. Clone the repository
-2. Open in Visual Studio 2022
-3. Build and run the solution
+2. Open the solution in Visual Studio 2022
+3. Build and run the project
 
-Or go to the Release section to download a zip archive, containing the compiled executable (for x64 systems, starting from Windows 7 and upwards) 
+Alternatively, visit the [Releases](../../releases) section to download a ZIP archive containing the compiled executable (compatible with x64 systems running Windows 7 or later).
 
 ### Unit Tests
-- Sprite movement and animation fluidity
-- Collision with platforms from above and below
-- Screen boundary checks
-- Runtime object management (platforms and bushes)
+- Sprite movement and animation consistency
+- Platform collision from above and below
+- Screen boundary enforcement
+- Runtime object management (platforms and interactive elements)
+- Level serialization and deserialization integrity
 
 ### References:
 
