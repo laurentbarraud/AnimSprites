@@ -4,7 +4,7 @@ This is a lightweight 2D platformer engine developed in C#, using the built-in G
 
 The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects). 
 
-![GitHub all releases](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/total?color=88aacc&style=flat)
+![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
