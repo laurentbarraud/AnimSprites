@@ -1,4 +1,4 @@
-O### 2D Platformer Prototype using WinForms and GDI+
+### 2D Platformer Prototype using WinForms and GDI+
 
 This is a lightweight 2D platformer engine developed in C#, using the built-in GDI+ graphics API within Winforms.
 
