@@ -1,10 +1,10 @@
 ### 2D Platformer Prototype using WinForms and GDI+
 
-This is a lightweight 2D platformer engine developed in C#, using the built-in GDI+ graphics API within Winforms.
+This is the beginning of a lightweight 2D platformer developed in C#, using the built-in GDI+ graphics API within Winforms.
 
 The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects). 
 
-![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)
+![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/total?color=88aacc&style=flat)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
@@ -13,8 +13,8 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 ### Features
 - Smooth sprite animations for walking, jumping, and attacking
 - Precise collision detection with platforms and screen boundaries
-- Interactive objects (e.g. bushes can be placed, hit, and removed)
-- In-game platform builder: create, move, and delete platforms at runtime
+- - In-game platform builder: create, move, and delete platforms or bushes at runtime
+- Interactive objects (bushes can be placed, hit, and removed)
 - Toggleable rain effect via the build menu
 - Modular architecture for easy extension and maintenance
 
@@ -24,7 +24,7 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 3. Build and run the project
 
 ### Download
-Go to the [Releases](../../releases) section to download a ZIP archive containing the compiled executables (compatible with x64 systems running Windows 7 or later).
+Go to the [Releases](../../releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
 
 ### Unit Tests
 - Sprite movement and animation consistency
