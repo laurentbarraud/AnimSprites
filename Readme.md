@@ -13,7 +13,7 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 ### Features
 - Smooth sprite animations for walking, jumping, and attacking
 - Precise collision detection with platforms and screen boundaries
-- - In-game platform builder: create, move, and delete platforms or bushes at runtime
+- In-game platform builder: create, move, and delete platforms or bushes at runtime
 - Interactive objects (bushes can be placed, hit, and removed)
 - Toggleable rain effect via the build menu
 - Modular architecture for easy extension and maintenance
