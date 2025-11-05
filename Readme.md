@@ -2,9 +2,10 @@
 
 This is the beginning of a lightweight 2D platformer developed in C#, using the built-in GDI+ graphics API within Winforms.
 
-The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects). 
+The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects).
 
-![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/total?color=88aacc&style=flat)
+[![Release](https://img.shields.io/badge/release-stable-1B4636)](https://github.com/laurentbarraud/AnimSprites/releases)
+![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
@@ -39,3 +40,7 @@ Go to the [Releases](../../releases) section to download a ZIP archive containin
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-render-images-with-gdi
 
 Only royalty-free resources were used in this project.
+
+If you find this project useful or inspiring, feel free to drop a star — it's greatly appreciated !
+
+
