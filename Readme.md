@@ -1,23 +1,23 @@
-### 2D Platformer Prototype using WinForms and GDI+
+## 2D Platformer in C# using WinForms and GDI+
 
 This is the beginning of a lightweight 2D platformer developed in C#, using the built-in GDI+ graphics API within Winforms.
 
 The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects).
 
-[![Release](https://img.shields.io/badge/release-stable-1B4636)](https://github.com/laurentbarraud/AnimSprites/releases)
-![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)
+[![Release](https://img.shields.io/badge/release-stable-245e48?style=flat)](https://github.com/laurentbarraud/AnimSprites/releases)
+[![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)](https://github.com/laurentbarraud/AnimSprites/releases/tag/v0.5)
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="300" alt="screenshot of the main form" >
+<img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
 ### Features
-- Smooth sprite animations for walking, jumping, and attacking
-- Precise collision detection with platforms and screen boundaries
-- In-game platform builder: create, move, and delete platforms or bushes at runtime
-- Interactive objects (bushes can be placed, hit, and removed)
-- Toggleable rain effect via the build menu
-- Modular architecture for easy extension and maintenance
+- 🎮 Smooth sprite animations for walking, jumping, and attacking  
+- 🎯 Precise collision detection with platforms and screen boundaries  
+- 🛠️ In-game platform builder: create, move, and delete platforms or bushes at runtime  
+- 🌿 Interactive objects (bushes can be placed, hit, and removed)  
+- 🌧️ Toggleable rain effect via the build menu  
+- 🧩 Modular architecture for easy extension and maintenance  
 
 ### How to Run
 1. Clone the repository
@@ -41,6 +41,4 @@ https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-rende
 
 Only royalty-free resources were used in this project.
 
-If you find this project useful or inspiring, feel free to drop a star — it's greatly appreciated !
-
-
+If you find this project useful or inspiring, a star would be greatly appreciated !
