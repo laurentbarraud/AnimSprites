@@ -8,7 +8,7 @@ This is the beginning of a lightweight **2D platformer** developed in **C#**, us
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
-The goal was to implement a robust sprite animation system integrated with platforming mechanics such as movement, collision, and dynamic object handling.
+The goal was to implement a robust sprite animation system, integrated with platforming mechanics such as movement, collision, and dynamic object handling.
 
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
@@ -19,10 +19,12 @@ The goal was to implement a robust sprite animation system integrated with platf
 - 🧩 Modular architecture for easy extension and maintenance  
 
 ### Development setup
-- Open the '.sln' file in Visual Studio 2022
-- Build the solution with Ctrl+Shift+B
-- Run with debugging (F5) to test both projects using local connection
-Launch additional clients as needed to simulate 2, 3, or more connected users
+1. Clone the repository with Git
+2. Open the '.sln' file in Visual Studio 2022
+3. Build the solution with Ctrl+Shift+B
+4. Run with debugging to test both projects together  
+5. Connect using the default localhost setup (leave the IP address field blank)
+6. Launch additional clients as needed to simulate 2, 3, or more connected users
 
 ### Download
 Go to the [Releases](../../releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
