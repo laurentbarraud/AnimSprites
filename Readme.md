@@ -1,8 +1,5 @@
-## 2D Platformer in C# using WinForms and GDI+
-
-This is the beginning of a lightweight 2D platformer developed in C#, using the built-in GDI+ graphics API within Winforms.
-
-The goal was to animate sprites and handle basic platforming mechanics (movement, collision, dynamic objects).
+## AnimSprites 
+This is the beginning of a lightweight **2D platformer** developed in **C#**, using the built-in **GDI+** graphics API within **Winforms**.
 
 [![Release](https://img.shields.io/badge/release-stable-245e48?style=flat)](https://github.com/laurentbarraud/AnimSprites/releases)
 [![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)](https://github.com/laurentbarraud/AnimSprites/releases/tag/v0.5)
@@ -10,6 +7,8 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
+
+The goal was to implement a robust sprite animation system integrated with platforming mechanics such as movement, collision, and dynamic object handling.
 
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
@@ -19,10 +18,11 @@ The goal was to animate sprites and handle basic platforming mechanics (movement
 - 🌧️ Toggleable rain effect via the build menu  
 - 🧩 Modular architecture for easy extension and maintenance  
 
-### How to Run
-1. Clone the repository
-2. Open the solution in Visual Studio 2022
-3. Build and run the project
+### Development setup
+- Open the '.sln' file in Visual Studio 2022
+- Build the solution with Ctrl+Shift+B
+- Run with debugging (F5) to test both projects using local connection
+Launch additional clients as needed to simulate 2, 3, or more connected users
 
 ### Download
 Go to the [Releases](../../releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
