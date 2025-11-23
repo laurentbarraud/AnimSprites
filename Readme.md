@@ -22,9 +22,7 @@ The goal was to implement a robust sprite animation system, integrated with plat
 1. Clone the repository with Git
 2. Open the '.sln' file in Visual Studio 2022
 3. Build the solution with Ctrl+Shift+B
-4. Run with debugging to test both projects together  
-5. Connect using the default localhost setup (leave the IP address field blank)
-6. Launch additional clients as needed to simulate 2, 3, or more connected users
+4. Run with debugging
 
 ### Download
 Go to the [Releases](../../releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
