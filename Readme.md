@@ -13,8 +13,8 @@ The goal was to implement a robust sprite animation system, integrated with plat
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
 - 🎯 Precise collision detection with platforms and screen boundaries  
-- 🛠️ In-game platform builder: create, move, and delete platforms or bushes at runtime  
-- 🌿 Interactive objects (bushes can be placed, hit, and removed)  
+- 🛠️ In-game platform builder: create, move, and delete platforms or bushes at runtime
+- 🌿 Interactive objects — bushes can be placed and struck with a lightning effect
 - 🌧️ Toggleable rain effect via the build menu  
 - 🧩 Modular architecture for easy extension and maintenance  
 
@@ -41,4 +41,4 @@ https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-rende
 
 Only royalty-free resources were used in this project.
 
-If you find this project useful or inspiring, a star would be greatly appreciated !
+If you find this project useful or inspiring, please consider starring the repository — much appreciated !
