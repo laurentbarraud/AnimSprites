@@ -1,8 +1,8 @@
 ## AnimSprites 
-This is the beginning of a lightweight **2D platformer** developed in **C#**, using the built-in **GDI+** graphics API within **Winforms**.
+This is the beginning of a lightweight 2D platformer developed in C#, using the built-in GDI+ graphics API within Winforms.
 
 [![Release](https://img.shields.io/badge/release-stable-245e48?style=flat)](https://github.com/laurentbarraud/AnimSprites/releases)
-[![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)](https://github.com/laurentbarraud/AnimSprites/releases/tag/v0.5)
+[![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)](https://github.com/laurentbarraud/AnimSprites/releases/)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
@@ -25,7 +25,7 @@ The goal was to implement a robust sprite animation system, integrated with plat
 4. Run with debugging
 
 ### Download
-Go to the [Releases](../../releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
+Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
 
 ### Unit Tests
 - Sprite movement and animation consistency
