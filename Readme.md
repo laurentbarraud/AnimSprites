@@ -18,11 +18,11 @@ The goal was to implement a robust sprite animation system, integrated with plat
 - 🌧️ Toggleable rain effect via the build menu  
 - 🧩 Modular architecture for easy extension and maintenance  
 
-### Development setup
+### How to run
 1. Clone the repository with Git
 2. Open the '.sln' file in Visual Studio 2022
-3. Build the solution with Ctrl+Shift+B
-4. Run with debugging
+3. Build the project with Ctrl+B
+4. Run it
 
 ### Download
 Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
@@ -41,4 +41,4 @@ https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-rende
 
 Only royalty-free resources were used in this project.
 
-If you find this project useful or inspiring, please consider starring the repository — much appreciated !
+If you find this project useful or inspiring, please consider starring the repository — it's always appreciated !
