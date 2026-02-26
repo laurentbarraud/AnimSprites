@@ -1,6 +1,6 @@
 ﻿/// <file>SimpleLevelObject.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.5</version>
+/// <version>0.5.1</version>
 /// <date>July 6th, 2025</date>
 
 using System;

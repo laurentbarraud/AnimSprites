@@ -1,7 +1,7 @@
 ﻿/// <file>VisualEffects.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.5</version>
-/// <date>July 7th, 2025</date>
+/// <version>0.5.1</version>
+/// <date>February 26th, 2026</date>
 
 using System;
 using System.Collections.Generic;
@@ -19,35 +19,39 @@ namespace AnimSprites
         /// Creates a temporary diagonal slash effect over the given control.
         /// </summary>
         /// <param name="target">The control to overlay the slash on</param>
-        public static void PlaySlashEffect(Control target)
+        public static void PlaySlashEffect(Control targetControl)
         {
-            if (target.Parent == null) return;
-
-            var slash = new SlashEffect(target);
-            target.Parent.Controls.Add(slash);
-            slash.BringToFront();
+            if (targetControl.Parent == null)
+            {
+                return;
+            }
+            
+            var slashEffect = new SlashEffect(targetControl);
+            targetControl.Parent.Controls.Add(slashEffect);
+            slashEffect.BringToFront();
         }
 
         /// <summary>
         /// Gradually fades out the control's background and disposes it.
         /// </summary>
         /// <param name="target">The control to fade and remove</param>
-        public static void FadeAndDisappear(Control target)
+        public static void FadeAndDisappear(Control targetControl)
         {
             var timer = new Timer { Interval = 40 };
             timer.Tick += (s, e) =>
             {
-                int newAlpha = target.BackColor.A - 25; // the value of transparency that we will apply
-                if (newAlpha <= 0)
+                int newAlphaColorValue = targetControl.BackColor.A - 25; // the value of transparency that we will apply
+            
+                if (newAlphaColorValue <= 0)
                 {
                     timer.Stop();
                     timer.Dispose();
-                    target.Dispose(); 
+                    targetControl.Dispose(); 
                 }
                 else
                 {
                     // Updates the background color with the new alpha value
-                    target.BackColor = Color.FromArgb(newAlpha, target.BackColor);
+                    targetControl.BackColor = Color.FromArgb(newAlphaColorValue, targetControl.BackColor);
                 }
             };
 

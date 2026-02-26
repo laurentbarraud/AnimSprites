@@ -1,7 +1,7 @@
 ﻿/// <file>IBreakable.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.5</version>
-/// <date>July 7th, 2025</date>
+/// <version>0.5.1</version>
+/// <date>February 26th, 2026</date>
 
 using System;
 using System.Collections.Generic;

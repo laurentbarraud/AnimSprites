@@ -4,16 +4,17 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWindowsForms>True</UseWindowsForms>
-    <ApplicationIcon>knight-icon.ico</ApplicationIcon>
     <Company></Company>
     <Authors>Laurent Barraud</Authors>
     <Version></Version>
     <Title>$(AssemblyName)</Title>
     <Description>Sprites animation project illustrated by a platform game.</Description>
-    <Copyright>(c) 2019-2025</Copyright>
-    <AssemblyVersion>0.5</AssemblyVersion>
-    <FileVersion>0.5</FileVersion>
+    <Copyright>(c) 2019-2026</Copyright>
+    <AssemblyVersion>0.5.1</AssemblyVersion>
+    <FileVersion>0.5.1</FileVersion>
 	<IncludeAllLocalesForSelfContained>false</IncludeAllLocalesForSelfContained>
+	<ApplicationIcon>knight-icon.ico</ApplicationIcon>
+	<StartupObject>AnimSprites.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Resources.Extensions" Version="9.0.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>

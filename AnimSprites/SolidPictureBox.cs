@@ -1,7 +1,7 @@
 ﻿/// <file>SolidPictureBox.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.5</version>
-/// <date>July 7th, 2025</date>
+/// <version>0.5.1</version>
+/// <date>February 26th, 2026</date>
 
 using System;
 using System.Drawing;
@@ -27,17 +27,19 @@ namespace AnimSprites
         /// <summary>
         /// Starts a flickering animation of the image by briefly inverting its colors.
         /// </summary>
-        public async void BlinkIfVisible(Control editorPanel)
+        public async void BlinkIfVisible(Control editorPanelControl)
         {
-            if (!Visible || editorPanel == null || !editorPanel.Visible || isBlinking)
+            if (!Visible || editorPanelControl == null || !editorPanelControl.Visible || isBlinking)
+            {
                 return;
+            }
 
             if (this.BackgroundImage is Bitmap original)
             {
                 isBlinking = true;
 
-                Bitmap inverted = InvertBitmapColors(original);
-                this.BackgroundImage = inverted;
+                Bitmap invertedBitmap = InvertBitmapColors(original);
+                this.BackgroundImage = invertedBitmap;
 
                 await Task.Delay(200);
 
@@ -59,6 +61,7 @@ namespace AnimSprites
             this.MouseUp += Editor_MouseUp;
             this.Click += Editor_Click;
         }
+
         /// <summary>
         /// Handles the start of a drag operation when the user clicks on the object.
         /// Stores the mouse offset and brings the object to the front.
@@ -119,19 +122,19 @@ namespace AnimSprites
         /// <summary>
         /// Inverts the colors one bitmap pixel by pixel (RGB inversion)
         /// </summary>
-        private Bitmap InvertBitmapColors(Bitmap source)
+        private Bitmap InvertBitmapColors(Bitmap sourceBitmap)
         {
-            Bitmap inverted = new Bitmap(source.Width, source.Height);
-            for (int y = 0; y < source.Height; y++)
+            Bitmap invertedBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
+            for (int y = 0; y < sourceBitmap.Height; y++)
             {
-                for (int x = 0; x < source.Width; x++)
+                for (int x = 0; x < sourceBitmap.Width; x++)
                 {
-                    Color pixel = source.GetPixel(x, y);
-                    Color flipped = Color.FromArgb(pixel.A, 255 - pixel.R, 255 - pixel.G, 255 - pixel.B);
-                    inverted.SetPixel(x, y, flipped);
+                    Color pixelColor = sourceBitmap.GetPixel(x, y);
+                    Color flippedColor = Color.FromArgb(pixelColor.A, 255 - pixelColor.R, 255 - pixelColor.G, 255 - pixelColor.B);
+                    invertedBitmap.SetPixel(x, y, flippedColor);
                 }
             }
-            return inverted;
+            return invertedBitmap;
         }
     }
 

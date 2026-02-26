@@ -1,7 +1,7 @@
 ﻿/// <file>ImageHelper.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.5</version>
-/// <date>July 7th, 2025</date>
+/// <version>0.5.1</version>
+/// <date>February 26th, 2026</date>
 
 using System;
 using System.Collections.Generic;
@@ -24,17 +24,23 @@ namespace AnimSprites
         public static Bitmap ExtractSubImage(Image source, Rectangle region, Color? transparentColor = null)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             if (region.Width <= 0 || region.Height <= 0)
+            {
                 throw new ArgumentException("Region size must be positive.");
+            }
 
             if (region.Right > source.Width || region.Bottom > source.Height)
+            {
                 throw new ArgumentOutOfRangeException(nameof(region), "Region exceeds source image bounds.");
+            }
 
-            Bitmap result = new Bitmap(region.Width, region.Height);
+            Bitmap bitmapResult = new Bitmap(region.Width, region.Height);
 
-            using (Graphics g = Graphics.FromImage(result))
+            using (Graphics g = Graphics.FromImage(bitmapResult))
             {
                 Rectangle destRect = new Rectangle(0, 0, region.Width, region.Height);
                 g.DrawImage(source, destRect, region, GraphicsUnit.Pixel);
@@ -42,9 +48,11 @@ namespace AnimSprites
 
             // If a transparency color was specified, make it transparent
             if (transparentColor.HasValue)
-                result.MakeTransparent(transparentColor.Value);
+            {
+                bitmapResult.MakeTransparent(transparentColor.Value);
+            }
 
-            return result;
+            return bitmapResult;
         }
 
     }

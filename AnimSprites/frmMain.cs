@@ -1,17 +1,13 @@
 ﻿/// <file>frmMain.cs</file>
 /// <author>Laurent Barraud</author>
-/// <version>0.5</version>
-/// <date>July 7th, 2025</date>
-
+/// <version>0.5.1</version>
+/// <date>February 26th, 2026</date>
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
+using System.Collections.Generic;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AnimSprites.PlayerPictureBox;
-using Image = System.Drawing.Image;
 
 namespace AnimSprites
 {
@@ -59,7 +55,7 @@ namespace AnimSprites
                 Left = 10,
                 Top = 10,
                 Width = 250,
-                Height = 200, // Laissons un peu de marge
+                Height = 200,
                 BackColor = Color.LightGray,
                 BorderStyle = BorderStyle.FixedSingle,
                 Visible = false,
@@ -79,7 +75,8 @@ namespace AnimSprites
                 Width = 220,
                 Height = 30,
                 Left = paddingLeft,
-                Top = currentTop
+                Top = currentTop,
+                Cursor = Cursors.Hand
             };
             addPlatformButton.Click += (s, e) =>
             {
@@ -97,7 +94,8 @@ namespace AnimSprites
                 Width = 220,
                 Height = 30,
                 Left = paddingLeft,
-                Top = currentTop
+                Top = currentTop,
+                Cursor = Cursors.Hand
             };
             addBushButton.Click += (s, e) =>
             {
@@ -139,7 +137,7 @@ namespace AnimSprites
             levelEditorPanel.Controls.Add(trkBlockCount);
             currentTop = trkBlockCount.Bottom + spacing;
 
-            // Update label when slider moves
+            // Updates label when slider moves
             trkBlockCount.Scroll += (aSender, aEvent) =>
             {
                 lblBlockCount.Text = $"Number of blocs to add : {trkBlockCount.Value}";
@@ -154,7 +152,8 @@ namespace AnimSprites
                 Width = 220,
                 Height = 30,
                 Left = paddingLeft,
-                Top = currentTop
+                Top = currentTop,
+                Cursor = Cursors.Hand
             };
             deletePlatformButton.Click += DeleteSelectedObject;
             levelEditorPanel.Controls.Add(deletePlatformButton);
@@ -175,7 +174,8 @@ namespace AnimSprites
                 ImageAlign = ContentAlignment.MiddleRight,
                 FlatStyle = FlatStyle.Standard,
                 Checked = false,
-                Image = Properties.Resources.rain // Default icon
+                Image = Properties.Resources.rain,
+                Cursor = Cursors.Hand
             };
 
             weatherToggle.CheckedChanged += (s, e) =>
