@@ -8,11 +8,9 @@ A technical foundation for a 2D platformer written in C#, using WinForms and the
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
-Started as an autonomous school project.
-The goal was to implement a robust sprite animation system integrated with platforming mechanics such as movement, collision, and dynamic object handling. 
-It’s a proof of concept showing how to assemble the core building blocks of a platformer, 
-ideal for anyone who wants to build his or her own game in C# without Unity, XNA, or external libraries, and experiment with GDI+.
-
+- Started as an autonomous school project.
+- Implements a robust sprite animation system integrated with platforming mechanics.
+- Ideal for anyone who wants to build his or her own game in C# without Unity, XNA, or external libraries.
 
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
