@@ -1,5 +1,5 @@
 ## AnimSprites 
-This is the beginning of a lightweight 2D platformer developed in C#, using the built-in GDI+ graphics API within Winforms.
+A technical foundation for a 2D platformer written in C#, using WinForms and the built‑in GDI+ graphics API.
 
 [![Release](https://img.shields.io/badge/release-stable-245e48?style=flat)](https://github.com/laurentbarraud/AnimSprites/releases)
 [![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)](https://github.com/laurentbarraud/AnimSprites/releases/)
@@ -8,15 +8,20 @@ This is the beginning of a lightweight 2D platformer developed in C#, using the 
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
-The goal was to implement a robust sprite animation system, integrated with platforming mechanics such as movement, collision, and dynamic object handling.
+Started as an autonomous school project.
+The goal was to implement a robust sprite animation system integrated with platforming mechanics such as movement, collision, and dynamic object handling. 
+It’s a proof of concept showing how to assemble the core building blocks of a platformer, 
+ideal for anyone who wants to build his or her own game in C# without Unity, XNA, or external libraries, and experiment with GDI+.
+
 
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
 - 🎯 Precise collision detection with platforms and screen boundaries  
 - 🛠️ In-game platform builder: create, move, and delete platforms or bushes at runtime
-- 🌿 Interactive objects — bushes can be placed and struck with a lightning effect
-- 🌧️ Toggleable rain effect via the build menu  
+- 🌿 Interactive objects: bushes can be placed and struck with a lightning effect
+- 🌀 Side‑scrolling effect when reaching the left or right edge of the screen  
 - 🧩 Modular architecture for easy extension and maintenance  
+- 🌧️ Toggleable rain effect via the build menu
 
 ### How to run
 1. Clone the repository with Git
