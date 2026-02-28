@@ -8,9 +8,7 @@ A technical foundation for a 2D platformer written in C#, using WinForms and the
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
-- Started as an autonomous school project.
-- Implements a robust sprite animation system integrated with platforming mechanics.
-- Ideal for anyone who wants to build his or her own game in C# without Unity, XNA, or external libraries.
+Started as an autonomous school project, it is ideal for anyone who wants to build his or her own game without Unity, XNA, or external libraries.
 
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
@@ -26,6 +24,7 @@ A technical foundation for a 2D platformer written in C#, using WinForms and the
 2. Open the '.sln' file in Visual Studio 2022
 3. Build the project with Ctrl+B
 4. Run it
+5. Hit the "B" key to open the build menu and place objects on the scene.
 
 ### Download
 Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
@@ -35,7 +34,7 @@ Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) sec
 - Platform collision from above and below
 - Screen boundary enforcement
 - Runtime object management (platforms and interactive elements)
-- Level serialization and deserialization integrity
+- Level serialization and deserialization integrity — inserted objects persist across application restarts.
 
 ### References:
 - (in French): https://sources-codes.commentcamarche.net/forum/affich-878141-comprend-pas-les-sprites 
@@ -44,4 +43,4 @@ https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-rende
 
 Only royalty-free resources were used in this project.
 
-If you find this project useful or inspiring, please consider starring the repository — it's always appreciated !
+If you find this project useful or inspiring, a star would be appreciated!
