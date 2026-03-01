@@ -14,7 +14,8 @@ Started as an autonomous school project, it is ideal for anyone who wants to bui
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
 - 🎯 Precise collision detection with platforms and screen boundaries  
 - 🛠️ In-game platform builder: create, move, and delete platforms or bushes at runtime
-- 🌿 Interactive objects: bushes can be placed and struck with a lightning effect
+- 💾 All platforms and bushes you create are saved and restored at their exact positions on next launch, using basic level serialization.
+- 🌿 Interactive objects: bushes can be struck with a lightning effect
 - 🌀 Side‑scrolling effect when reaching the left or right edge of the screen  
 - 🧩 Modular architecture for easy extension and maintenance  
 - 🌧️ Toggleable rain effect via the build menu
@@ -24,10 +25,22 @@ Started as an autonomous school project, it is ideal for anyone who wants to bui
 2. Open the '.sln' file in Visual Studio 2022
 3. Build the project with Ctrl+B
 4. Run it
-5. Hit the "B" key to open the build menu and place objects on the scene.
+
+### Controls
+- left and right arrows keys : moving the sprite
+- spacebar : jump
+- Ctrl key : attack
+- A and D keys : move the camera to the left/right
+- B key : enable/disable build editor mode with menu.
+
+While the build menu is open :
+
+- left clic : select a solid object, then hold left to drag it anywhere on the form.
+- delete key : delete selected object
+- escape key or B key : close build menu and disable build editor mode.
 
 ### Download
-Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) section to download a ZIP archive containing the compiled executable (for Windows 7 and above, x64-based).
+Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) page to download a ZIP archive that includes a compiled x64 executable, for Windows 7 and later (x64-based). 
 
 ### Unit Tests
 - Sprite movement and animation consistency
