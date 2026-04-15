@@ -1,5 +1,5 @@
 ## AnimSprites 
-A technical foundation for a 2D platformer written in C#, using WinForms and the built‑in GDI+ graphics API.
+A foundation for a 2D platformer written in C#, using WinForms and the built-in GDI+ graphics API.
 
 [![Release](https://img.shields.io/badge/release-stable-245e48?style=flat)](https://github.com/laurentbarraud/AnimSprites/releases)
 [![GitHub release downloads](https://img.shields.io/github/downloads/laurentbarraud/AnimSprites/v0.5/total?color=88aacc&style=flat)](https://github.com/laurentbarraud/AnimSprites/releases/)
@@ -8,7 +8,7 @@ A technical foundation for a 2D platformer written in C#, using WinForms and the
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
-Started as an autonomous school project, it is ideal for anyone who wants to build his or her own game without Unity, XNA, or external libraries.
+Started as an autonomous school project, this demonstrates how a basic 2D game can be built from scratch without Unity, XNA, or external libraries.
 
 ### Features
 - 🎮 Smooth sprite animations for walking, jumping, and attacking  
@@ -23,8 +23,7 @@ Started as an autonomous school project, it is ideal for anyone who wants to bui
 ### How to run
 1. Clone the repository with Git
 2. Open the '.sln' file in Visual Studio 2022
-3. Build the project with Ctrl+B
-4. Run it
+3. Build the project with Ctrl+B and run it. 
 
 ### Controls
 - left and right arrows keys : moving the sprite
@@ -56,4 +55,4 @@ https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-rende
 
 Only royalty-free resources were used in this project.
 
-If you find this project useful or inspiring, a star would be appreciated!
+If you find this project useful or inspiring, a star is always appreciated!
