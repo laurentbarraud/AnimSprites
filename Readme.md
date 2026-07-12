@@ -1,5 +1,5 @@
 ## AnimSprites
-A 2D platformer foundation written in C#, using WinForms and the built-in GDI+ graphics API. Demonstrates basic platform collision detection, interactive objects, simple gravity physics, and player movement.
+A 2D platformer foundation written in C#, using WinForms and the built-in GDI+ graphics API. 
 
 <a href="https://github.com/laurentbarraud/AnimSprites/releases">
   <img src="https://img.shields.io/badge/release-stable-64B07B" alt="Release"></a>
@@ -10,31 +10,31 @@ A 2D platformer foundation written in C#, using WinForms and the built-in GDI+ g
 <img src="https://raw.githubusercontent.com/laurentbarraud/AnimSprites/refs/heads/master/AnimSprites-screenshot.jpg" width="500" alt="screenshot of the platformer" >
 </p>
 
-Started as an autonomous school project, this demonstrates how a basic 2D game can be built from scratch without any external libraries.
+Started as an autonomous school project, this demonstrates how a basic platformer can be built from scratch without any external libraries.
 
-### Features
+## Features
 - 🎮 Smooth sprite animations for walking, jumping and attacking, with refined airborne state management
+- 🧩 Modular architecture for easy extension and maintenance
 - 🎯 Precise collision detection with platforms and screen boundaries
 - 🛠️ In-game platform builder: create, move, and delete platforms or bushes at runtime. 
 - 💾 All platforms and bushes you create are saved and restored at their exact positions on next launch, using basic level serialization
 - 🌿 Interactive objects: bushes can be struck with a lightning effect
 - 🌀 Side‑scrolling effect when reaching the left or right edge of the screen
-- 🧩 Modular architecture for easy extension and maintenance
 - 🌧️ Toggleable rain effect via the build menu.
 
-### Unit Tests
+## Unit Tests
 - Sprite movement and animation consistency
 - Platform collision from above and below
 - Screen boundary enforcement
 - Runtime object management (platforms and interactive elements)
-- Level serialization and deserialization integrity — inserted objects persist across application restarts.
+- Level seralization and deserialization integrity — inserted objects persist across application restarts.
   
-### How to run
+## How to run
 1. Clone the repository with Git
 2. Open the '.sln' file in Visual Studio 2022
 3. Build the project with Ctrl+B and run it. 
 
-### Controls
+## Controls
 - left and right arrows keys : moving the sprite
 - spacebar : jump
 - Ctrl key : attack
@@ -47,7 +47,7 @@ While the build menu is open :
 - delete key : delete selected object
 - escape key or B key : close build menu and disable build editor mode.
 
-### Download
+## Download
 Go to the [Releases](https://github.com/laurentbarraud/AnimSprites/releases) page to download a ZIP archive that includes a compiled x64 executable, for Windows 7 and later (x64-based).
 
 ### References:
